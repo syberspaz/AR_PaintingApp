@@ -22,9 +22,9 @@ MonoBehaviour:
       m_GuidLow: 8013158063997746685
       m_GuidHigh: 9998872276835968472
     m_Size: {x: 0.1, y: 0.056250002}
-    m_SpecifySize: 1
+    m_SpecifySize: 0
     m_Name: Monkey
-    m_Texture: {fileID: 2800000, guid: bda47dfd74cd6f34d8254f075c21c38a, type: 3}
+    m_Texture: {fileID: 0}
   - m_SerializedGuid:
       m_GuidLow: 4691190337449954295
       m_GuidHigh: 11624794811214043064
@@ -32,6 +32,6 @@ MonoBehaviour:
       m_GuidLow: 3027705702045022139
       m_GuidHigh: 4184751950682175723
     m_Size: {x: 0.1, y: 0.06654546}
-    m_SpecifySize: 1
+    m_SpecifySize: 0
     m_Name: Sunset
-    m_Texture: {fileID: 2800000, guid: 66d177bb924b2a04ebb88835ba39133a, type: 3}
+    m_Texture: {fileID: 0}
