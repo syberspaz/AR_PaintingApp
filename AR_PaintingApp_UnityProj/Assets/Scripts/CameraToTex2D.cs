@@ -21,7 +21,16 @@ public class CameraToTex2D : MonoBehaviour
     Texture2D m_RawCameraImage;
 
     [SerializeField]
-    Text text;
+    Text RGBText;
+
+    [SerializeField]
+    Text ImageInfoText;
+
+    [SerializeField]
+    Text RawInputText;
+
+    [SerializeField]
+    Text TouchCoordText;
 
     void OnEnable()
     {
@@ -58,12 +67,14 @@ public class CameraToTex2D : MonoBehaviour
 
         if (m_CameraTexture == null || m_CameraTexture.width != image.width || m_CameraTexture.height != image.height)
         {
-            m_CameraTexture = new Texture2D(image.width, image.height, format, false);
+            m_CameraTexture = new Texture2D(image.width , image.height, format, false);
         }
+
+        ImageInfoText.text = image.dimensions.ToString();
 
         // Convert the image to format, flipping the image across the Y axis.
         // We can also get a sub rectangle, but we'll get the full image here.
-        var conversionParams = new XRCpuImage.ConversionParams(image, format, XRCpuImage.Transformation.MirrorY);
+        var conversionParams = new XRCpuImage.ConversionParams(image, format);
 
         // Texture2D allows us write directly to the raw texture data
         // This allows us to do the conversion in-place without making any copies.
@@ -86,10 +97,18 @@ public class CameraToTex2D : MonoBehaviour
         {
             return;
         }
+        //updates debug text
+        RawInputText.text = touchPosition.ToString();
 
-        // Set the RawImage's texture so we can visualize it.
-       // m_RawCameraImage = m_CameraTexture;
-        text.text = m_CameraTexture.GetPixel((int)touchPosition.x, (int)touchPosition.y).ToString();
+        //converts the touch input from screen space to within our image (camera input)
+        touchPosition.x = touchPosition.x / Screen.width * image.width;
+        touchPosition.y = touchPosition.y / Screen.height * image.height;
+
+        //updates debug text
+        TouchCoordText.text = touchPosition.ToString();
+
+        //get the pixel gathered from the touch screen
+        RGBText.text = m_CameraTexture.GetPixel((int)touchPosition.x  , (int)touchPosition.y ).ToString();
     }
     void OnCameraFrameReceived(ARCameraFrameEventArgs eventArgs)
     {
@@ -98,7 +117,7 @@ public class CameraToTex2D : MonoBehaviour
 
     private bool TryGetTouchPosition(out Vector2 touchPosition)
     {
-        if (Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             touchPosition = Input.GetTouch(0).position;
             return true;
