@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Light_Estimation.unity
     guid: 8fd2beba3c3082b45a826dcb4b81f029
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Perspective_Grid.unity
     guid: a90fcb5bd4da591479b4f19c51b87220
+  - enabled: 1
+    path: Assets/Scenes/Callipers.unity
+    guid: b1fa4e374db622341b07edd76ea7cb35
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 0cbddbb8743b3af459c678093948e826, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: baea81714524eeb42be734ed2a1d6202, type: 2}
