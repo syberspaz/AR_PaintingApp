@@ -1,6 +1,6 @@
 //This temporary script was taken from:
 //https://youtu.be/vZalV7--_uA
-
+//Locking made by Noah Glassford
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,45 +68,74 @@ public class MeasurementController : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (!Lock)
         {
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
+            if (Input.touchCount > 0)
             {
-                touchPosition = touch.position;
-
-                if (arRaycastManager.Raycast(touchPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began)
                 {
-                    startPoint.SetActive(true);
+                    touchPosition = touch.position;
 
-                    Pose hitPose = hits[0].pose;
-                    startPoint.transform.SetPositionAndRotation(hitPose.position, hitPose.rotation);
+                    if (arRaycastManager.Raycast(touchPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
+                    {
+                        startPoint.SetActive(true);
+
+                        Pose hitPose = hits[0].pose;
+                        startPoint.transform.SetPositionAndRotation(hitPose.position, hitPose.rotation);
+                    }
+                }
+
+                if (touch.phase == TouchPhase.Moved)
+                {
+                    touchPosition = touch.position;
+
+                    if (arRaycastManager.Raycast(touchPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
+                    {
+                        measureLine.gameObject.SetActive(true);
+                        endPoint.SetActive(true);
+
+                        Pose hitPose = hits[0].pose;
+                        endPoint.transform.SetPositionAndRotation(hitPose.position, hitPose.rotation);
+                    }
                 }
             }
 
-            if (touch.phase == TouchPhase.Moved)
+            if (startPoint.activeSelf && endPoint.activeSelf)
             {
-                touchPosition = touch.position;
+                //distanceText.transform.position = endPoint.transform.position + offsetMeasurement;
+                //distanceText.transform.rotation = endPoint.transform.rotation;
+                measureLine.SetPosition(0, startPoint.transform.position);
+                measureLine.SetPosition(1, endPoint.transform.position);
 
-                if (arRaycastManager.Raycast(touchPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
-                {
-                    measureLine.gameObject.SetActive(true);
-                    endPoint.SetActive(true);
-
-                    Pose hitPose = hits[0].pose;
-                    endPoint.transform.SetPositionAndRotation(hitPose.position, hitPose.rotation);
-                }
+                DistanceText.text = $"Distance: " + (Vector3.Distance(startPoint.transform.position, endPoint.transform.position)).ToString();
             }
         }
-
-        if (startPoint.activeSelf && endPoint.activeSelf)
+        else if (Lock)
         {
-            //distanceText.transform.position = endPoint.transform.position + offsetMeasurement;
-            //distanceText.transform.rotation = endPoint.transform.rotation;
-            measureLine.SetPosition(0, startPoint.transform.position);
-            measureLine.SetPosition(1, endPoint.transform.position);
+            if (startPoint.activeSelf && endPoint.activeSelf)
+            {
+                Touch touch = Input.GetTouch(0);
+                if(touch.phase == TouchPhase.Moved)
+                {
+                    //gets the deltaPosition for the touch, adds that to the start and end points
+                    //Divide by screen width is to avoid getting deltaPositions in the hundreds
+                   float newX = startPoint.transform.localPosition.x + touch.deltaPosition.x/Screen.width;
+                   float newY = startPoint.transform.localPosition.y;
+                   float newZ = startPoint.transform.localPosition.z + touch.deltaPosition.y/Screen.height;
 
-           DistanceText.text = $"Distance: " + (Vector3.Distance(startPoint.transform.position, endPoint.transform.position)).ToString();
+                   float newXEnd = endPoint.transform.localPosition.x + touch.deltaPosition.x / Screen.width;
+                    float newYEnd = endPoint.transform.localPosition.y;
+                   float newZEnd = endPoint.transform.localPosition.z + touch.deltaPosition.y / Screen.height;
+
+                    startPoint.transform.SetPositionAndRotation(new Vector3(newX, newY, newZ), Quaternion.identity);
+                    endPoint.transform.SetPositionAndRotation(new Vector3(newXEnd, newYEnd, newZEnd), Quaternion.identity);
+
+                    measureLine.SetPosition(0, startPoint.transform.position);
+                    measureLine.SetPosition(1, endPoint.transform.position);
+
+                }
+            }
         }
     }
 

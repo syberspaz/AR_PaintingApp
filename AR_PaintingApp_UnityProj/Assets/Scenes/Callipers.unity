@@ -790,7 +790,7 @@ MonoBehaviour:
   measurementPointPrefab: {fileID: 6194117077872822444, guid: 9155d0d8351095e4bb119db0a4625382, type: 3}
   offsetMeasurement: {x: 0, y: 0, z: 0}
   DistanceText: {fileID: 1652678013}
-  ButtonLockText: {fileID: 0}
+  ButtonLockText: {fileID: 984682465}
   arCameraManager: {fileID: 949316131}
 --- !u!120 &1833574227
 LineRenderer:
