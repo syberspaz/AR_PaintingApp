@@ -49,8 +49,7 @@ public class MeasurementController : MonoBehaviour
 
         measureLine = GetComponent<LineRenderer>();
 
-        startPoint.SetActive(false);
-        endPoint.SetActive(false);
+      
 
 
     }
@@ -64,6 +63,7 @@ public class MeasurementController : MonoBehaviour
             Debug.LogError("measurementPointPrefab must be set");
             enabled = false;
         }
+
     }
 
     void Update()
@@ -152,4 +152,5 @@ public class MeasurementController : MonoBehaviour
             ButtonLockText.text = "Lock Caliper";
         }
     }
+
 }

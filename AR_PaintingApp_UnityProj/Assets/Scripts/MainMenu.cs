@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     }
     public void LaunchExploreMode()
     {
-        //put the code here to switch to explore mode
+        SceneManager.LoadScene(1);//Explore mode is scene 1
     }
 
 
