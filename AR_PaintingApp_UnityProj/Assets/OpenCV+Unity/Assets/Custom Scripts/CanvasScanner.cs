@@ -2,9 +2,15 @@
 {
 	using UnityEngine;
 	using OpenCvSharp;
-
-	public class LiveSketchScript : WebCamera
+	using UnityEngine.UI;
+	public class CanvasScanner : WebCamera
 	{
+		[SerializeField]
+		private RawImage rawCamTex;
+		[SerializeField]
+		private RawImage Processed;
+
+
 		protected override void Awake()
 		{
 			base.Awake();
@@ -14,8 +20,10 @@
 		// Our sketch generation function
 		protected override bool ProcessTexture(WebCamTexture input, ref Texture2D output)
 		{
-			Mat img = Unity.TextureToMat(input, TextureParameters);
+			
 
+			Mat img = Unity.TextureToMat(input, TextureParameters);
+			Texture2D myTexture = new Texture2D(input.width, input.height);
 			//Convert image to grayscale
 			Mat imgGray = new Mat ();
 			Cv2.CvtColor (img, imgGray, ColorConversionCodes.BGR2GRAY);
@@ -35,6 +43,10 @@
 			// result, passing output texture as parameter allows to re-use it's buffer
 			// should output texture be null a new texture will be created
 			output = Unity.MatToTexture(mask, output);
+
+			rawCamTex.texture = Unity.MatToTexture(img, myTexture);
+			Processed.texture = Unity.MatToTexture(mask, output);
+
 			return true;
 		}
 	}
