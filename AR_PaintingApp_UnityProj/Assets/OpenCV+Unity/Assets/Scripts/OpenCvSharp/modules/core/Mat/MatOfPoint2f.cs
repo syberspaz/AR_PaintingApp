@@ -547,7 +547,7 @@ namespace OpenCvSharp
         /// Gets a type-specific indexer. The indexer has getters/setters to access each matrix element.
         /// </summary>
         /// <returns></returns>
-        public override MatIndexer<Point2f> GetIndexer() 
+        public override MatIndexer<Point2f> GetIndexer()
         {
             return new Indexer(this);
         }

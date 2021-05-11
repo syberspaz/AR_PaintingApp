@@ -149,12 +149,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 155458883}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aafc6733838556549829bcba110a6d0e, type: 3}
+  m_Script: {fileID: 11500000, guid: ce0518dee229c2f48b9be24304f94510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Surface: {fileID: 0}
-  rawCamTex: {fileID: 330249191}
-  Processed: {fileID: 1260403675}
+  SourceImage: {fileID: 2800000, guid: 275ab2a4bfc351e48a9297bf405a4edd, type: 3}
+  rawImage: {fileID: 330249191}
+  outputImage: {fileID: 1260403675}
 --- !u!4 &155458885
 Transform:
   m_ObjectHideFlags: 0
@@ -203,7 +203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -413.03766, y: 51.80612}
+  m_AnchoredPosition: {x: -286, y: 17}
   m_SizeDelta: {x: 599.2471, y: 400.7521}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &330249190
@@ -587,8 +587,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 474.68353, y: 73.12512}
-  m_SizeDelta: {x: 666.5391, y: 443.3901}
+  m_AnchoredPosition: {x: 299.9348, y: 7.4457}
+  m_SizeDelta: {x: 546.4088, y: 412.4987}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1975903801
 GameObject:

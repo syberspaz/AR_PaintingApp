@@ -31,6 +31,11 @@ namespace OpenCvSharp
             }
         }
 
+        internal static void FindContours(Mat sourceMat, out Mat[] mats, out HierarchyIndex[] hierarchy, RetrievalModes external, ContourApproximationModes approxSimple)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Detects corners using the FAST algorithm
         /// </summary>

@@ -55,23 +55,20 @@ namespace OpenCvSharp.Demo
 				int cameraIndex = -1;
 				for (int i = 0; i < WebCamTexture.devices.Length && -1 == cameraIndex; i++)
 				{
-					
-						if (WebCamTexture.devices[i].name == value)
-						cameraIndex = i-1;
+					if (WebCamTexture.devices[i].name == value)
+						cameraIndex = i;
 				}
 
 				// set device up
 				if (-1 != cameraIndex)
 				{
-					
-						webCamDevice = WebCamTexture.devices[cameraIndex];
-						webCamTexture = new WebCamTexture(webCamDevice.Value.name);
+					webCamDevice = WebCamTexture.devices[cameraIndex];
+					webCamTexture = new WebCamTexture(webCamDevice.Value.name);
 
-						// read device params and make conversion map
-						ReadTextureConversionParameters();
+					// read device params and make conversion map
+					ReadTextureConversionParameters();
 
-						webCamTexture.Play();
-					
+					webCamTexture.Play();
 				}
 				else
 				{

@@ -8,7 +8,7 @@
 		protected override void Awake()
 		{
 			base.Awake();
-			//this.forceFrontalCamera = false;
+			this.forceFrontalCamera = true;
 		}
 
 		// Our sketch generation function
