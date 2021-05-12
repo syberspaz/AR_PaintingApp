@@ -23,6 +23,20 @@ namespace OpenCvSharp
         private Texture2D SourceImage;
         public RawImage outputImage;
 
+        //Gameobjects used for user corner position
+        [SerializeField]
+        private GameObject TopLeft;
+        [SerializeField]
+        private GameObject TopRight;
+        [SerializeField]
+        private GameObject BotLeft;
+        [SerializeField]
+        private GameObject BotRight;
+
+
+
+        private Point[] CornersFromTouch = default;
+
         public ARCameraManager cameraManager
         {
             get => m_CameraManager;
@@ -160,7 +174,50 @@ namespace OpenCvSharp
 
         }
 
-        public void ProcessContours()
+        private bool TryGetTouchPosition(out Vector2 touchPosition)
+        {
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                touchPosition = Input.GetTouch(0).position;
+                return true;
+            }
+            touchPosition = Input.GetTouch(0).position;
+            return false;
+
+
+        }
+
+        public void CropImageFromUserProvidedCorners()
+        {
+            Mat ResultMat = Unity.TextureToMat(SourceImage);
+            Mat WarpedMat = Unity.TextureToMat(SourceImage);
+           // outputImage.texture = Unity.MatToTexture(ResultMat);
+            /*
+            CornersFromTouch[0].X = (int)TopLeft.GetComponent<RectTransform>().position.x / Screen.width * WarpedMat.Width;
+            CornersFromTouch[0].Y = (int)TopLeft.GetComponent<RectTransform>().position.y / Screen.height * WarpedMat.Height; 
+
+            CornersFromTouch[1].X = (int)TopRight.GetComponent<RectTransform>().position.x / Screen.width * WarpedMat.Width; 
+            CornersFromTouch[1].Y = (int)TopRight.GetComponent<RectTransform>().position.y / Screen.height * WarpedMat.Height;
+
+            CornersFromTouch[2].X = (int)BotRight.GetComponent<RectTransform>().position.x / Screen.width * WarpedMat.Width;
+            CornersFromTouch[2].Y = (int)BotRight.GetComponent<RectTransform>().position.y / Screen.height * WarpedMat.Height;
+
+            CornersFromTouch[3].X = (int)BotLeft.GetComponent<RectTransform>().position.x / Screen.width * WarpedMat.Width; ;
+            CornersFromTouch[3].Y = (int)BotLeft.GetComponent<RectTransform>().position.y / Screen.height * WarpedMat.Height;
+            */
+
+            for (int i = 0; i < 3; i++)
+            {
+                CornersFromTouch[i].X = i * 20;
+
+                CornersFromTouch[i].Y = i * 20;
+            }
+            WarpedMat = UnwrapShape(ResultMat, Array.ConvertAll(CornersFromTouch, p => new Point2f(p.X, p.Y)));
+            outputImage.texture = Unity.MatToTexture(WarpedMat);
+        }
+
+
+        public void ProcessContoursFromCamera()
         {
 
             Mat sourceMat = Unity.TextureToMat(SourceImage);
@@ -271,6 +328,8 @@ namespace OpenCvSharp
             //rawImage.texture = Unity.MatToTexture(sourceMat);
             outputImage.texture = Unity.MatToTexture(matUnwrapped);
         }
+
+
 
         public static T ClosestElement<T>(T[] array, T referenceObject, System.Func<T, T, double> distanceMeasurer)
         {
