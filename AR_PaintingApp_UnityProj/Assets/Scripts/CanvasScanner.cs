@@ -8,16 +8,20 @@ namespace OpenCvSharp
     using UnityEngine;
     using OpenCvSharp;
     using OpenCvSharp.Util;
+
     using UnityEngine.XR.ARFoundation;
     using UnityEngine.XR.ARSubsystems;
     
     using UnityEngine.UI;
+    using UnityEngine.UIElements;
 
     public class CanvasScanner : MonoBehaviour
     {
         [SerializeField]
         [Tooltip("The ARCameraManager which will produce frame events.")]
         ARCameraManager m_CameraManager;
+
+        public new Camera camera;
 
         private Texture2D m_CameraTexture;
         private Texture2D SourceImage;
@@ -33,9 +37,19 @@ namespace OpenCvSharp
         [SerializeField]
         private GameObject BotRight;
 
+        public bool UsingTestImage = false;
 
+        [SerializeField]
+        private Texture2D testImage;
 
-        private Point[] CornersFromTouch = default;
+        [SerializeField]
+        private Canvas canvas;
+
+        [SerializeField]
+        private Text canvasDebugText;
+
+        [SerializeField]
+        private Text TopLeftDebugText;
 
         public ARCameraManager cameraManager
         {
@@ -45,12 +59,17 @@ namespace OpenCvSharp
 
         void OnCameraFrameReceived(ARCameraFrameEventArgs eventArgs)
         {
+            
+
+
             UpdateCameraImage();
             // UpdateHumanDepthImage();
             //   UpdateHumanStencilImage();
             //   UpdateEnvironmentDepthImage();
             //  UpdateEnvironmentDepthConfidenceImage();
         }
+
+     
 
         void OnEnable()
         {
@@ -96,7 +115,7 @@ namespace OpenCvSharp
 
             // Convert the image to format, flipping the image across the Y axis.
             // We can also get a sub rectangle, but we'll get the full image here.
-            var conversionParams = new XRCpuImage.ConversionParams(image, format, XRCpuImage.Transformation.MirrorY);
+            var conversionParams = new XRCpuImage.ConversionParams(image, format);
 
             // Texture2D allows us write directly to the raw texture data
             // This allows us to do the conversion in-place without making any copies.
@@ -124,8 +143,8 @@ namespace OpenCvSharp
 
         }
 
-
        
+
 
         public bool Contains<T>( T[] array, T obj)
         {
@@ -144,7 +163,7 @@ namespace OpenCvSharp
             // divide horizontally
             System.Array.Sort<Point>(corners, (a, b) => a.X.CompareTo(b.X));
             Point[] lefts = new Point[] { corners[0], corners[1] }, rights = new Point[] { corners[2], corners[3] };
-
+            
             // fetch final array
             Point[] output = new Point[] {
                 tops[0],
@@ -187,32 +206,69 @@ namespace OpenCvSharp
 
         }
 
+   
+        
+
         public void CropImageFromUserProvidedCorners()
         {
-            Mat ResultMat = Unity.TextureToMat(SourceImage);
-            Mat WarpedMat = Unity.TextureToMat(SourceImage);
-           // outputImage.texture = Unity.MatToTexture(ResultMat);
-            /*
-            CornersFromTouch[0].X = (int)TopLeft.GetComponent<RectTransform>().position.x / Screen.width * WarpedMat.Width;
-            CornersFromTouch[0].Y = (int)TopLeft.GetComponent<RectTransform>().position.y / Screen.height * WarpedMat.Height; 
 
-            CornersFromTouch[1].X = (int)TopRight.GetComponent<RectTransform>().position.x / Screen.width * WarpedMat.Width; 
-            CornersFromTouch[1].Y = (int)TopRight.GetComponent<RectTransform>().position.y / Screen.height * WarpedMat.Height;
-
-            CornersFromTouch[2].X = (int)BotRight.GetComponent<RectTransform>().position.x / Screen.width * WarpedMat.Width;
-            CornersFromTouch[2].Y = (int)BotRight.GetComponent<RectTransform>().position.y / Screen.height * WarpedMat.Height;
-
-            CornersFromTouch[3].X = (int)BotLeft.GetComponent<RectTransform>().position.x / Screen.width * WarpedMat.Width; ;
-            CornersFromTouch[3].Y = (int)BotLeft.GetComponent<RectTransform>().position.y / Screen.height * WarpedMat.Height;
-            */
-
-            for (int i = 0; i < 3; i++)
+            Mat ResultMat;
+            Mat WarpedMat;
+            Point2f[] corners = new Point2f[4];
+            if (!UsingTestImage)
             {
-                CornersFromTouch[i].X = i * 20;
 
-                CornersFromTouch[i].Y = i * 20;
+             
+                 ResultMat = Unity.TextureToMat(SourceImage);
+                 WarpedMat = Unity.TextureToMat(SourceImage);
+
+                corners[0].X = TopLeft.GetComponent<RectTransform>().position.x / canvas.pixelRect.size.x * WarpedMat.Width;
+                corners[0].Y = TopLeft.GetComponent<RectTransform>().position.y / canvas.pixelRect.size.y * WarpedMat.Height;
+
+                corners[1].X = TopRight.GetComponent<RectTransform>().position.x / canvas.pixelRect.size.x * WarpedMat.Width;
+                corners[1].Y = TopRight.GetComponent<RectTransform>().position.y / canvas.pixelRect.size.y * WarpedMat.Height;
+
+                corners[2].X = BotRight.GetComponent<RectTransform>().position.x / canvas.pixelRect.size.x * WarpedMat.Width;
+                corners[2].Y = BotRight.GetComponent<RectTransform>().position.y / canvas.pixelRect.size.y * WarpedMat.Height;
+
+                corners[3].X = BotLeft.GetComponent<RectTransform>().position.x / canvas.pixelRect.size.x * WarpedMat.Width;
+                corners[3].Y = BotLeft.GetComponent<RectTransform>().position.y / canvas.pixelRect.size.y * WarpedMat.Height;
+
             }
-            WarpedMat = UnwrapShape(ResultMat, Array.ConvertAll(CornersFromTouch, p => new Point2f(p.X, p.Y)));
+            else
+            {
+                 ResultMat = Unity.TextureToMat(testImage);
+                 WarpedMat = Unity.TextureToMat(testImage);
+
+
+
+                corners[0].X = TopLeft.transform.position.x / canvas.pixelRect.size.x * WarpedMat.Width;
+                corners[0].Y = TopLeft.transform.position.y / canvas.pixelRect.size.y * WarpedMat.Height;
+
+                corners[1].X = TopRight.transform.position.x / canvas.pixelRect.size.x * WarpedMat.Width;
+                corners[1].Y = TopRight.transform.position.y / canvas.pixelRect.size.y * WarpedMat.Height;
+
+                corners[2].X = BotRight.transform.position.x / canvas.pixelRect.size.x * WarpedMat.Width;
+                corners[2].Y = BotRight.transform.position.y / canvas.pixelRect.size.y * WarpedMat.Height;
+
+                corners[3].X = BotLeft.transform.position.x / canvas.pixelRect.size.x * WarpedMat.Width;
+                corners[3].Y = BotLeft.transform.position.y / canvas.pixelRect.size.y * WarpedMat.Height;
+            }
+
+            //TopLeftDebugText.text = WarpedMat.Width.ToString() + WarpedMat.Height.ToString();
+            // outputImage.texture = Unity.MatToTexture(ResultMat);
+
+
+
+           
+
+
+            if (!UsingTestImage)
+            WarpedMat = UnwrapShape(ResultMat, corners);
+            else
+            {
+            WarpedMat = UnwrapShape(Unity.TextureToMat(testImage), corners);
+            }
             outputImage.texture = Unity.MatToTexture(WarpedMat);
         }
 

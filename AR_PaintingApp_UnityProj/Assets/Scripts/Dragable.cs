@@ -8,7 +8,7 @@ public class Dragable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     [SerializeField]
     private Canvas canvas;
     private GameObject circle;
-
+   // [SerializeField]
     private CanvasGroup canvasGroup;
     private RectTransform rectTransform;
     // Start is called before the first frame update
