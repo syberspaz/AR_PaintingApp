@@ -6,41 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Plane_Tracking.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: Assets/Scenes/Image_Tracking.unity
-    guid: 27b85bcb22dbcae46b8547cee4ba1f13
-  - enabled: 0
-    path: Assets/Scenes/Light_Estimation.unity
-    guid: 8fd2beba3c3082b45a826dcb4b81f029
-  - enabled: 0
-    path: Assets/Scenes/Perspective_Grid.unity
-    guid: a90fcb5bd4da591479b4f19c51b87220
-  - enabled: 0
-    path: Assets/Scenes/Callipers.unity
-    guid: b1fa4e374db622341b07edd76ea7cb35
-  - enabled: 0
     path: Assets/Scenes/Main_Scene.unity
     guid: b285d76d5e5b0c54ea4e9b7476ceb95e
   - enabled: 0
     path: Assets/Scenes/ExploreMode.unity
     guid: e05a5537b9efaa140b0a7012c5b32973
   - enabled: 0
-    path: Assets/OpenCV+Unity/Demo/LiveSketch_WebCam/LiveSketchScene.unity
-    guid: a5a11ab1373713a42b4b17072ee63929
-  - enabled: 0
-    path: Assets/OpenCV+Unity/Demo/Identifiy_Contours_by_Shape/ContoursByShapeScene.unity
-    guid: 5b0d16f801c31c944bfae4eb77cc390d
-  - enabled: 0
-    path: Assets/OpenCV+Unity/Demo/Document_Scanner/DocumentScannerScene.unity
-    guid: c273656cfabeda743b708f09ee7be34f
-  - enabled: 0
-    path: Assets/OpenCV+Unity/Demo/Document_Scanner/DocumentScannerLobby.unity
-    guid: 318ea96153fce418abd73aa22891b25d
-  - enabled: 1
     path: Assets/Scenes/DocumentScannerFromCamera.unity
     guid: 4274fa3e3a44a4747ba722212c4d0314
+  - enabled: 1
+    path: Assets/Scenes/World_Space_UI_Test.unity
+    guid: 0185cbc7fb4b3c145b1a4f841f772e28
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 0cbddbb8743b3af459c678093948e826, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: baea81714524eeb42be734ed2a1d6202, type: 2}
