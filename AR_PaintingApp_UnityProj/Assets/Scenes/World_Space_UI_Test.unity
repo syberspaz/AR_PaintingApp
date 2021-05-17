@@ -413,6 +413,7 @@ GameObject:
   - component: {fileID: 1385331319}
   - component: {fileID: 1385331318}
   - component: {fileID: 1385331317}
+  - component: {fileID: 1385331321}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -501,6 +502,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1385331321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385331316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7587454773dd084ebe83375d1f94840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScaleFactor: 0
+  rect: {fileID: 1385331320}
+  canvas: {fileID: 1385331316}
+  camera: {fileID: 423685967}
 --- !u!1 &1545314121
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,14 +555,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545314121}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.31159192, z: -0, w: 0.95021605}
+  m_LocalPosition: {x: 1.238, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 423685971}
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -36.31, z: 0}
 --- !u!1 &1817958004
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,7 +574,6 @@ GameObject:
   - component: {fileID: 1817958005}
   - component: {fileID: 1817958007}
   - component: {fileID: 1817958006}
-  - component: {fileID: 1817958008}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -622,21 +638,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817958004}
   m_CullTransparentMesh: 1
---- !u!114 &1817958008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1817958004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7587454773dd084ebe83375d1f94840, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ScaleFactor: 1.1
-  rect: {fileID: 1817958005}
-  canvas: {fileID: 1385331316}
 --- !u!1 &1921971037
 GameObject:
   m_ObjectHideFlags: 0

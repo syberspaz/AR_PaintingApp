@@ -26,6 +26,9 @@ public class MeasurementController : MonoBehaviour
     [SerializeField]
     private ARCameraManager arCameraManager;
 
+    [SerializeField]
+    private Camera camera;
+
     private LineRenderer measureLine;
 
     private ARRaycastManager arRaycastManager;
@@ -118,21 +121,42 @@ public class MeasurementController : MonoBehaviour
                 Touch touch = Input.GetTouch(0);
                 if(touch.phase == TouchPhase.Moved)
                 {
-                    //gets the deltaPosition for the touch, adds that to the start and end points
-                    //Divide by screen width is to avoid getting deltaPositions in the hundreds
-                   float newX = startPoint.transform.localPosition.x + touch.deltaPosition.x/Screen.width;
-                   float newY = startPoint.transform.localPosition.y;
-                   float newZ = startPoint.transform.localPosition.z + touch.deltaPosition.y/Screen.height;
 
-                   float newXEnd = endPoint.transform.localPosition.x + touch.deltaPosition.x / Screen.width;
-                    float newYEnd = endPoint.transform.localPosition.y;
-                   float newZEnd = endPoint.transform.localPosition.z + touch.deltaPosition.y / Screen.height;
+                    Vector3 Movement = new Vector3(0, 0, 0);
+                    
+                    //get the values for camera up (Taken from the view matrix)
+                    Vector3 up;
+                    up.x = camera.worldToCameraMatrix.m10;
+                    up.y = camera.worldToCameraMatrix.m11;
+                    up.z = camera.worldToCameraMatrix.m12;
 
-                    startPoint.transform.SetPositionAndRotation(new Vector3(newX, newY, newZ), Quaternion.identity);
-                    endPoint.transform.SetPositionAndRotation(new Vector3(newXEnd, newYEnd, newZEnd), Quaternion.identity);
+                    //get the values for camera forward (Taken from the view matrix)
+                    Vector3 forward;
+                    forward.x = camera.worldToCameraMatrix.m20;
+                    forward.y = camera.worldToCameraMatrix.m21;
+                    forward.z = camera.worldToCameraMatrix.m22;
 
-                    measureLine.SetPosition(0, startPoint.transform.position);
-                    measureLine.SetPosition(1, endPoint.transform.position);
+
+
+                    Vector3 sideways = Vector3.Cross(up, camera.transform.forward);
+                    Vector2 touchInput = touch.deltaPosition;
+
+                    touchInput.x = touchInput.x / Screen.width;
+                    touchInput.y = touchInput.y / Screen.height;
+
+                    Movement += up * touchInput.y;
+                    Movement += sideways * touchInput.x;
+
+                    DistanceText.text = Movement.ToString();
+
+                   Vector3 newStartPointPosition = startPoint.transform.position;
+                    Vector3 newEndPointPosition = endPoint.transform.position;
+
+                    newStartPointPosition += Movement;
+                    newEndPointPosition += Movement;
+
+                    startPoint.transform.SetPositionAndRotation(newStartPointPosition, Quaternion.identity);
+                    endPoint.transform.SetPositionAndRotation(newEndPointPosition, Quaternion.identity);
 
                 }
             }
