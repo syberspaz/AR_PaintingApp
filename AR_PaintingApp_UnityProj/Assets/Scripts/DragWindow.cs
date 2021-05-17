@@ -37,7 +37,7 @@ public class DragWindow : MonoBehaviour, IDragHandler
 
         Vector2 touchInput = eventData.delta;
 
-        touchInput.x = touchInput.x / Screen.width;
+        touchInput.x = -touchInput.x / Screen.width;
         touchInput.y = touchInput.y / Screen.height;
 
         Vector3 Movement = new Vector3(0, 0, 0);

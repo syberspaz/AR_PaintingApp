@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Main_Scene.unity
     guid: b285d76d5e5b0c54ea4e9b7476ceb95e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/ExploreMode.unity
     guid: e05a5537b9efaa140b0a7012c5b32973
   - enabled: 0
     path: Assets/Scenes/DocumentScannerFromCamera.unity
     guid: 4274fa3e3a44a4747ba722212c4d0314
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/World_Space_UI_Test.unity
     guid: 0185cbc7fb4b3c145b1a4f841f772e28
   m_configObjects:

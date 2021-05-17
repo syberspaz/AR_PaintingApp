@@ -12,6 +12,11 @@ public class ExploremodeUI : MonoBehaviour
 
     private MeasurementController calipers;
 
+    private bool CalipersEnabled;
+
+    [SerializeField]
+    private GameObject caliperUIGameObject;
+
     public void EnableCalipers()
     {
         calipers = arSession.GetComponent<MeasurementController>();
@@ -26,6 +31,21 @@ public class ExploremodeUI : MonoBehaviour
     public void SwitchToMainMenu()
     {
         SceneManager.LoadScene(0);//main menu is scene 0
+    }
+
+    public void ToggleCalipers()
+    {
+        CalipersEnabled = !CalipersEnabled;
+        caliperUIGameObject.SetActive(CalipersEnabled);
+        if (CalipersEnabled)
+        {
+           
+            EnableCalipers();
+        }
+        else
+        {
+            DisableCalipers();
+        }
     }
 
 }
