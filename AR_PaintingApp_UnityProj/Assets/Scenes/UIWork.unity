@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 316927609}
   - component: {fileID: 316927608}
   - component: {fileID: 316927607}
+  - component: {fileID: 316927612}
   m_Layer: 5
   m_Name: circleAlone
   m_TagString: Untagged
@@ -338,6 +339,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316927605}
   m_CullTransparentMesh: 1
+--- !u!114 &316927612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316927605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &470135473
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,6 +861,7 @@ GameObject:
   - component: {fileID: 1079896080}
   - component: {fileID: 1079896079}
   - component: {fileID: 1079896078}
+  - component: {fileID: 1079896081}
   m_Layer: 5
   m_Name: MainCircle
   m_TagString: Untagged
@@ -922,6 +939,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1079896076}
   m_CullTransparentMesh: 1
+--- !u!114 &1079896081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079896076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1241108855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,4 +1069,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdingObject: {fileID: 1241108859}
   holdDuration: 0.5
-  objectToSpawn: {fileID: 172674, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+  objectToSpawn: {fileID: 1999216400773366072, guid: 184374c5e6183b944aacb3530e1bafa7, type: 3}

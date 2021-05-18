@@ -9,11 +9,12 @@ public class RadialSpawn: MonoBehaviour
     public GameObject objectToSpawn;
     private float startTime;
     private bool isInstantiated = false;
+    private int childCount;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        childCount = this.gameObject.transform.childCount;
     }
 
     // Update is called once per frame
@@ -37,6 +38,9 @@ public class RadialSpawn: MonoBehaviour
                         menu.transform.position = new Vector3(touchInfo.position.x, touchInfo.position.y);
                     }
                 }
+            }else if(this.gameObject.transform.childCount == childCount){
+                startTime = 0.0f;
+                isInstantiated = false;
             }else{
                 startTime = 0.0f;
             }
