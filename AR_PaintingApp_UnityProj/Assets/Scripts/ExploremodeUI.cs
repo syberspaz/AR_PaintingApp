@@ -14,8 +14,19 @@ public class ExploremodeUI : MonoBehaviour
 
     private bool CalipersEnabled;
 
+    private bool ColorToolsEnabled;
+
+    private bool PerspectiveLinesEnabled;
+
     [SerializeField]
     private GameObject caliperUIGameObject;
+
+    [SerializeField]
+    private GameObject colorToolUIGameObject;
+
+    [SerializeField]
+    private GameObject LineToolUIGameObject;
+
 
     public void EnableCalipers()
     {
@@ -46,6 +57,33 @@ public class ExploremodeUI : MonoBehaviour
         {
             DisableCalipers();
         }
+    }
+
+    public void ToggleCalipers()
+    {
+        CalipersEnabled = !CalipersEnabled;
+        caliperUIGameObject.SetActive(CalipersEnabled);
+        if (CalipersEnabled)
+        {
+           
+            EnableCalipers();
+        }
+        else
+        {
+            DisableCalipers();
+        }
+    }
+
+    public void ToggleColorTools()
+    {
+        ColorToolsEnabled = !ColorToolsEnabled;
+        colorToolUIGameObject.SetActive(ColorToolsEnabled);
+    }
+
+    public void TogglePerspectiveLines()
+    {
+        PerspectiveLinesEnabled = !PerspectiveLinesEnabled;
+        LineToolUIGameObject.SetActive(PerspectiveLinesEnabled);
     }
 
 }
