@@ -59,20 +59,6 @@ public class ExploremodeUI : MonoBehaviour
         }
     }
 
-    public void ToggleCalipers()
-    {
-        CalipersEnabled = !CalipersEnabled;
-        caliperUIGameObject.SetActive(CalipersEnabled);
-        if (CalipersEnabled)
-        {
-           
-            EnableCalipers();
-        }
-        else
-        {
-            DisableCalipers();
-        }
-    }
 
     public void ToggleColorTools()
     {
