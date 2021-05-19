@@ -8,7 +8,7 @@ public class ValueToggler : MonoBehaviour
     [SerializeField]
     private GameObject goToggler;
 
-    private bool Value;
+    private bool Value = true;
     public void ToggleValue()
     {
         Value = !Value;
