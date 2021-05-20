@@ -26,8 +26,17 @@ public class MeasurementController : MonoBehaviour
 
     private bool visualEnabled = false;
 
+    private bool isPlacing = false;
+
+    private bool firstPoint = true;
+
     [SerializeField]
     private Camera camera;
+
+    public void StartPlacing()
+    {
+        isPlacing = true;
+    }
 
     public void ToggleLock()
     {
@@ -70,8 +79,12 @@ public class MeasurementController : MonoBehaviour
         }
     }
 
+
     public void Update()
     {
+
+      
+
         if (isLocked)
         {
             Vector3 up;
@@ -106,6 +119,25 @@ public class MeasurementController : MonoBehaviour
                 endPoint.transform.position += Movement;
             }
         }
+
+        if (isPlacing && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            if (firstPoint)
+            {
+                PlaceStartPoint();
+                firstPoint = false;
+            }
+            else
+            {
+                PlaceEndPoint();
+                firstPoint = true;
+
+                isPlacing = false;
+            }
+
+     
+        }
+
     }
 
 

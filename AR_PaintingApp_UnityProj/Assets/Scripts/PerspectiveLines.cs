@@ -27,6 +27,9 @@ public class PerspectiveLines : MonoBehaviour
 
     static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
 
+    [Tooltip("Set this to be the ui pannel for the perspective lines")]
+    [SerializeField]
+    private GameObject linesUI;
 
 
     private void Update()
@@ -39,7 +42,7 @@ public class PerspectiveLines : MonoBehaviour
             return;
         }
 
-        if (raycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon))
+        if (raycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon) && linesUI.activeSelf)
         {
 
 
