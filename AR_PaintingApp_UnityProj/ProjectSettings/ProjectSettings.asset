@@ -128,9 +128,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets:
-  - {fileID: 1238336104896149714, guid: 22121e77c4ae59a42b288b16fa941605, type: 2}
-  - {fileID: 4800000, guid: c9f956787b1d945e7b36e0516201fc76, type: 3}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -770,11 +768,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: b4e77cb5-f619-437e-8548-2b5bcf1f1a26
+  cloudProjectId: ca42a543-fe8a-493c-882c-aaf9ab4cd8d1
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: AR_PaintingApp_UnityProj
-  organizationId: noahglassford
+  projectName: XR-AS
+  organizationId: ahogue
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   virtualTexturingSupportEnabled: 0
