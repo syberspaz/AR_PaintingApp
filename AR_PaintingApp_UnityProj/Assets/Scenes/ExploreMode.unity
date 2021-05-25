@@ -1437,6 +1437,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527776871}
   m_CullTransparentMesh: 1
+--- !u!1 &541288912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 541288913}
+  m_Layer: 0
+  m_Name: TestingCubes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &541288913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541288912}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.958}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_Children:
+  - {fileID: 1050879161}
+  - {fileID: 1282015866}
+  - {fileID: 1006452146}
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &552908474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,7 +1854,7 @@ MonoBehaviour:
   ScaleFactor: 0
   rect: {fileID: 704929819}
   canvas: {fileID: 704929814}
-  camera: {fileID: 0}
+  camera: {fileID: 1249025626}
 --- !u!114 &704929816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2681,7 +2714,7 @@ GameObject:
   - component: {fileID: 1006452144}
   - component: {fileID: 1006452143}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2757,11 +2790,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006452142}
   m_LocalRotation: {x: -0.25301436, y: -0.269341, z: 0.073569335, w: 0.92629737}
-  m_LocalPosition: {x: 1.55, y: 0, z: 3.05}
+  m_LocalPosition: {x: 1.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_Father: {fileID: 541288913}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -25.411, y: -36.416, z: 17.565}
 --- !u!1 &1028207355
 GameObject:
@@ -2848,7 +2881,7 @@ GameObject:
   - component: {fileID: 1050879159}
   - component: {fileID: 1050879158}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: G
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2924,11 +2957,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050879157}
   m_LocalRotation: {x: -0.25301436, y: -0.269341, z: 0.073569335, w: 0.92629737}
-  m_LocalPosition: {x: 0, y: 0, z: 3.05}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_Father: {fileID: 541288913}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -25.411, y: -36.416, z: 17.565}
 --- !u!1 &1089241998
 GameObject:
@@ -3129,7 +3162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LineMaterial: {fileID: 2100000, guid: 264094a80ae138e45be9033cafc92666, type: 2}
-  raycastManager: {fileID: 0}
+  raycastManager: {fileID: 969840958}
   NumberOfLines: 50
   LineLength: 3
   LineThickness: 0.006
@@ -3631,7 +3664,7 @@ GameObject:
   - component: {fileID: 1282015864}
   - component: {fileID: 1282015863}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3707,11 +3740,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282015862}
   m_LocalRotation: {x: -0.25301436, y: -0.269341, z: 0.073569335, w: 0.92629737}
-  m_LocalPosition: {x: -1.45, y: 0, z: 3.05}
+  m_LocalPosition: {x: -1.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_Father: {fileID: 541288913}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -25.411, y: -36.416, z: 17.565}
 --- !u!1 &1305245102
 GameObject:
@@ -4456,7 +4489,7 @@ MonoBehaviour:
   reticleObject: {fileID: 1677620604}
   startPoint: {fileID: 1759245346}
   endPoint: {fileID: 986840417}
-  camera: {fileID: 0}
+  camera: {fileID: 1249025626}
 --- !u!4 &1569457861
 Transform:
   m_ObjectHideFlags: 0
