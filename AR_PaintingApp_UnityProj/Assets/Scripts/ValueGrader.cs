@@ -31,36 +31,73 @@ namespace OpenCvSharp
         //Later this will be turned into a seperate function
         void Start()
         {
+            //Set up Mat for opencv and display the source image
             Mat input = Unity.TextureToMat(sourceImage);
-            //Just shows the sourceImage before processing
             outputImages[0].texture = Unity.MatToTexture(input);
 
-           
-
+            //This entire block finds and draws the contours
             Mat ContoursMat = Unity.TextureToMat(sourceImage);
-
             Cv2.CvtColor(ContoursMat, ContoursMat, ColorConversionCodes.BGR2GRAY);
-
             ContoursMat.GaussianBlur(new Size(5, 5), 0);
             //threshold for b&w
             Cv2.Threshold(ContoursMat, ContoursMat, 0.0, 255.0, ThresholdTypes.Otsu);
             //canny edge detection
             Cv2.Canny(ContoursMat, ContoursMat, 50.0, 50.0);
-
             HierarchyIndex[] hierarchies;
             Point[][] contours;
             Cv2.FindContours(ContoursMat, out contours, out hierarchies, RetrievalModes.External, ContourApproximationModes.ApproxSimple);
             Cv2.DrawContours(input, contours, -1, new OpenCvSharp.Scalar(255,0,0), 4, LineTypes.Link8);
 
+            //shows the contours in the unity canvas
             outputImages[1].texture = Unity.MatToTexture(input);
 
-
+            //Create our bounding boxes and add them to a list for more processing
+            List<Rect> boundingBoxes = new List<Rect>();
+            for (int i = 0; i < contours.Length; i++)
+                boundingBoxes.Add(Cv2.BoundingRect(contours[i]));
             
+            //sort bounding boxes
+            for (int i = 0; i < boundingBoxes.Count; i++)
+            {
+                for (int j = 0; j < boundingBoxes.Count; j++)
+                {
+                    if (boundingBoxes[i].Center.X < boundingBoxes[j].Center.X)
+                    {
+                        var temp = boundingBoxes[i];
+                        boundingBoxes[i] = boundingBoxes[j];
+                        boundingBoxes[j] = temp;
+                    }
+                }
+            }
+
+            Mat colorAnalysisMat;
+            colorAnalysisMat = Unity.TextureToMat(sourceImage);
+           
+            //Cv2.CvtColor(colorAnalysisMat, colorAnalysisMat, ColorConversionCodes.BGR2HSV);
+
+            //Draws the circles at the center of the bounding boxes (for testing)
+            for (int i = 0; i < boundingBoxes.Count; i++)
+            {
+                Debug.Log(boundingBoxes[i].Center);
+
+                float h, s, v;
+                Color.RGBToHSV(sourceImage.GetPixel((int)boundingBoxes[i].Center.X, (int)boundingBoxes[i].Center.Y),out h,out s,out v);
+
+                Debug.Log("H: " + h + " S: " + s + " V: " + v);
+
+                Cv2.Circle(colorAnalysisMat, boundingBoxes[i].Center, 10, new Scalar(255, 0, 60));
+            }
+            //Shows the image with the circles in the unity canvas
+            outputImages[2].texture = Unity.MatToTexture(colorAnalysisMat);
+
+
+
 
         }
 
         private void Update()
         {
+            /*
             Mat input = Unity.TextureToMat(sourceImage);
 
 
@@ -73,10 +110,9 @@ namespace OpenCvSharp
             Col.z = color.Item2;
 
             debugText.text = Col.ToString();
-
+            */
 
         }
-
 
     }
 }
