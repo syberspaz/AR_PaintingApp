@@ -85,7 +85,9 @@ namespace OpenCvSharp
 
                 Debug.Log("H: " + h + " S: " + s + " V: " + v);
 
-                Cv2.Circle(colorAnalysisMat, boundingBoxes[i].Center, 10, new Scalar(255, 0, 60));
+
+                if (i == 5)
+                    Cv2.Rectangle(colorAnalysisMat, boundingBoxes[i], new Scalar(100, 0, 20), 4);
             }
             //Shows the image with the circles in the unity canvas
             outputImages[2].texture = Unity.MatToTexture(colorAnalysisMat);
