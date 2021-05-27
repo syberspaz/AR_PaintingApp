@@ -13,9 +13,16 @@ namespace OpenCvSharp
     using UnityEngine.UI;
     public class ValueGrader : MonoBehaviour
     {
+        [SerializeField]
+        [Tooltip("The ARCameraManager which will produce frame events.")]
+        ARCameraManager m_CameraManager;
+
         //test source image
         [SerializeField]
         private Texture2D sourceImage;
+
+
+        private Texture2D m_CameraTexture;
 
         //element 0 is top left, element 1 is top right, element 2 is bottom left, element 3 is bottom right
         [SerializeField]
@@ -26,6 +33,68 @@ namespace OpenCvSharp
 
         [SerializeField]
         private Vector2 debugTextLoc;
+
+        public ARCameraManager cameraManager
+        {
+            get => m_CameraManager;
+            set => m_CameraManager = value;
+        }
+
+        void OnCameraFrameReceived(ARCameraFrameEventArgs eventArgs)
+        {
+
+
+
+            UpdateCameraImage();
+        }
+
+        unsafe void UpdateCameraImage()
+        {
+            // Attempt to get the latest camera image. If this method succeeds,
+            // it acquires a native resource that must be disposed (see below).
+            if (!cameraManager.TryAcquireLatestCpuImage(out XRCpuImage image))
+            {
+                return;
+            }
+
+
+
+            // Once we have a valid XRCpuImage, we can access the individual image "planes"
+            // (the separate channels in the image). XRCpuImage.GetPlane provides
+            // low-overhead access to this data. This could then be passed to a
+            // computer vision algorithm. Here, we will convert the camera image
+            // to an RGBA texture and draw it on the screen.
+
+            // Choose an RGBA format.
+            // See XRCpuImage.FormatSupported for a complete list of supported formats.
+            var format = TextureFormat.RGBA32;
+
+            if (m_CameraTexture == null || m_CameraTexture.width != image.width || m_CameraTexture.height != image.height)
+            {
+                m_CameraTexture = new Texture2D(image.width, image.height, format, false);
+            }
+
+            // Convert the image to format, flipping the image across the Y axis.
+            // We can also get a sub rectangle, but we'll get the full image here.
+            var conversionParams = new XRCpuImage.ConversionParams(image, format);
+
+            // Texture2D allows us write directly to the raw texture data
+            // This allows us to do the conversion in-place without making any copies.
+            var rawTextureData = m_CameraTexture.GetRawTextureData<byte>();
+            try
+            {
+                image.Convert(conversionParams, new IntPtr(rawTextureData.GetUnsafePtr()), rawTextureData.Length);
+            }
+            finally
+            {
+                // We must dispose of the XRCpuImage after we're finished
+                // with it to avoid leaking native resources.
+                image.Dispose();
+            }
+
+            // Apply the updated texture data to our texture
+            m_CameraTexture.Apply();
+        }
 
 
         //Later this will be turned into a seperate function
