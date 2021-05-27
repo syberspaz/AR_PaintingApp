@@ -481,8 +481,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputTexture: {fileID: 2800000, guid: 66d177bb924b2a04ebb88835ba39133a, type: 3}
-  GridSizeX: 25
-  GridSizeY: 25
+  GridSizeX: 20
+  GridSizeY: 10
   inputImageVisual: {fileID: 623250243}
   outputImageVisual: {fileID: 1222659138}
 --- !u!4 &1597399511
