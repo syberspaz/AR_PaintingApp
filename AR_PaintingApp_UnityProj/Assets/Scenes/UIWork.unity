@@ -1067,6 +1067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f908b6a5ea5834bb625c399b28b704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdingObject: {fileID: 1241108859}
-  holdDuration: 0.5
+  invalidObjectOne: {fileID: 1079896076}
+  invalidObjectTwo: {fileID: 316927605}
+  holdDuration: 0.25
   objectToSpawn: {fileID: 1999216400773366072, guid: 184374c5e6183b944aacb3530e1bafa7, type: 3}

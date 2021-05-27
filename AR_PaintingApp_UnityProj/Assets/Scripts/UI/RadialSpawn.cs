@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class RadialSpawn: MonoBehaviour
 {
-    public RectTransform holdingObject;
+    //These are the current UI objects that are on the screen.
+    public GameObject invalidObjectOne;
+    private RectTransform invalidHoldOne;
+
+    public GameObject invalidObjectTwo;
+    private RectTransform invalidHoldTwo;
     public float holdDuration = 1.0f;
     public GameObject objectToSpawn;
     private float startTime;
@@ -15,6 +20,8 @@ public class RadialSpawn: MonoBehaviour
     void Start()
     {
         childCount = this.gameObject.transform.childCount;
+        invalidHoldOne = invalidObjectOne.GetComponent<RectTransform>();
+        invalidHoldTwo = invalidObjectTwo.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -23,6 +30,10 @@ public class RadialSpawn: MonoBehaviour
         if(Input.touchCount > 0){
             Touch touchInfo = Input.GetTouch(0);
             if(touchInfo.phase == TouchPhase.Stationary && //You're touching & holding
+                //We don't want to spawn the radial menu on top of other UI elements
+                ! RectTransformUtility.RectangleContainsScreenPoint(invalidHoldOne, touchInfo.position) &&
+                ! RectTransformUtility.RectangleContainsScreenPoint(invalidHoldTwo, touchInfo.position)&& 
+                //Only spawn when the radial menu doesn't exist
                 !isInstantiated){
                 
                 if(startTime == 0.0f){ //first frame of the hold
@@ -36,6 +47,8 @@ public class RadialSpawn: MonoBehaviour
                         isInstantiated = true;
                         menu.transform.parent = this.gameObject.transform;
                         menu.transform.position = new Vector3(touchInfo.position.x, touchInfo.position.y);
+                        menu.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+                        LeanTween.scale(menu, new Vector3(1.0f, 1.0f, 1.0f), 0.25f).setEase(LeanTweenType.easeOutBack);
                     }
                 }
             }else if(this.gameObject.transform.childCount == childCount){
