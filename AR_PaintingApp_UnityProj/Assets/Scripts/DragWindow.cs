@@ -46,12 +46,7 @@ public class DragWindow : MonoBehaviour, IDragHandler
         Movement += sideways * touchInput.x;
 
     
-            rect.position += Movement;
-        
-
-
-
+       rect.position += Movement;
 
     }
-
 }

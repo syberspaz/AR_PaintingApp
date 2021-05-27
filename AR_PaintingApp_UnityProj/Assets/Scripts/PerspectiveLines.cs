@@ -1,23 +1,68 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
+//Class that goes onto the perspective lines prefab
 public class PerspectiveLines : MonoBehaviour
 {
     [SerializeField]
     private Material LineMaterial;
+    [SerializeField]
+    private ARRaycastManager raycastManager;
 
     [SerializeField]
-    public Vector3 start = new Vector3(0, 0, 0);
-    [SerializeField]
-    public Vector3 end = new Vector3(10, 0, 0);
-    [SerializeField]
-    public Color col = Color.blue;
-    [SerializeField]
-    public int NumOfLines;
-    [SerializeField]
-    public Vector3 Rotation = new Vector3(10,10,10);
+    private float NumberOfLines;
 
+    [SerializeField]
+    private float LineLength;
+
+    [SerializeField]
+    private float LineThickness;
+
+    [SerializeField]
+    private float RotationAmount;
+
+    static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
+
+    [Tooltip("Set this to be the ui pannel for the perspective lines")]
+    [SerializeField]
+    private GameObject linesUI;
+
+
+    private void Update()
+    {
+        //vector that will be rotated
+        Vector3 end = new Vector3(0, 0, 0);
+
+        if (!TryGetTouchPosition(out Vector2 touchPosition))
+        {
+            return;
+        }
+
+        if (raycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon) && linesUI.activeSelf)
+        {
+
+
+            var hitPos = s_Hits[0].pose;
+
+            end = (hitPos.forward * LineLength) + hitPos.position;
+
+            for (int i = 0; i < NumberOfLines; i++)
+            {
+
+                DrawLine(hitPos.position, end, Color.red);
+                end = RotatePointAroundPivot(end, hitPos.position, hitPos.up * RotationAmount);
+            }
+
+
+
+        }
+    }
+
+    //Function called when drawing a line
     void DrawLine(Vector3 start, Vector3 end, Color color)
     {
         GameObject myLine = new GameObject();
@@ -28,74 +73,62 @@ public class PerspectiveLines : MonoBehaviour
         lr.material = LineMaterial;
         lr.startColor = color;
         lr.endColor = color;
-        lr.startWidth = 0.01f;
-        lr.endWidth = 0.01f;
+        lr.startWidth = 0.0001f;
+        lr.endWidth = LineThickness;
         lr.SetPosition(0, start);
         lr.SetPosition(1, end);
-
-
     }
 
-    public void CreateLines(int NumOfLines)
+    private bool TryGetTouchPosition(out Vector2 touchPosition)
     {
-        for (int i = 0; i < NumOfLines; i++)
+        if (Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            DrawLine(start, end, col);
-            end = RotatePointAroundPivot(end, start, Rotation);
+            touchPosition = Input.GetTouch(0).position;
+            return true;
         }
+
+        touchPosition = default;
+        return false;
+
+
     }
 
-    private Vector3 RotatePointAroundPivot(Vector3 point, Vector3 pivot, Vector3 angles)
+    public Vector3 RotatePointAroundPivot(Vector3 point, Vector3 pivot, Vector3 angles)
     {
-        return Quaternion.Euler(angles) * (point - pivot) + pivot;
+        Vector3 dir = point - pivot; // get point direction relative to pivot
+        dir = Quaternion.Euler(angles) * dir; // rotate it
+        point = dir + pivot; // calculate rotated point
+        return point; // return it
+    }
+
+    public void SetNumLines(System.Single num)
+    {
+        NumberOfLines = num;
+    }
+
+    public void SetLineThickness(System.Single thick)
+    {
+        LineThickness = thick;
+    }
+
+    public void SetLineRotation(System.Single rotInDeg)
+    {
+        RotationAmount = rotInDeg;
+    }
+
+    public void SetLineLength(System.Single length)
+    {
+        LineLength = length;
     }
 
     public void DestroyAllLines()
     {
-       GameObject[] PerspectiveLines = GameObject.FindGameObjectsWithTag("PerspectiveLine");
+        GameObject[] PerspectiveLines = GameObject.FindGameObjectsWithTag("PerspectiveLine");
 
-        for(int i = 0; i < PerspectiveLines.Length; i++)
+        for (int i = 0; i < PerspectiveLines.Length; i++)
         {
             GameObject.Destroy(PerspectiveLines[i], 0.0f);
         }
 
     }
-
-    public void SetRotX(float rot)
-    {
-        Rotation.x = rot;
-    }
-    public void SetRotY(float rot)
-    {
-        Rotation.y = rot;
-    }
-    public void SetRotZ(float rot)
-    {
-        Rotation.z = rot;
-    }
-    public void SetStartPosX(float pos)
-    {
-        start.x = pos;
-    }
-    public void SetStartPosY(float pos)
-    {
-        start.y = pos;
-    }
-    public void SetStartPosZ(float pos)
-    {
-        start.z = pos;
-    }
-    public void SetEndPosX(float pos)
-    {
-        end.x = pos;
-    }
-    public void SetEndPosY(float pos)
-    {
-        end.y = pos;
-    }
-    public void SetEndPosZ(float pos)
-    {
-        end.z = pos;
-    }
-
 }

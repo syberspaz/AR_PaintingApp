@@ -17,7 +17,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/World_Space_UI_Test.unity
     guid: 0185cbc7fb4b3c145b1a4f841f772e28
+  - enabled: 0
+    path: Assets/Scenes/MARS_Testing.unity
+    guid: 173d0226f6546cb41a32b944d7c4a119
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 0cbddbb8743b3af459c678093948e826, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: baea81714524eeb42be734ed2a1d6202, type: 2}
+    com.unity.mars-ar-foundation-providers.xr_subsystem_settings: {fileID: 11400000, guid: fa2a520ff83598746b6dc1b9ee0a635e, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 22121e77c4ae59a42b288b16fa941605, type: 2}
