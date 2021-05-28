@@ -11,6 +11,19 @@ using UnityEngine.EventSystems;
 
 public class MeasurementController : MonoBehaviour
 {
+    [SerializeField]
+    private Animator animator;
+
+    [SerializeField]
+    private GameObject LeftTipOfCaliper;
+    [SerializeField]
+    private GameObject RightTipOfCaliper;
+    [SerializeField]
+    private GameObject Caliper;
+
+
+
+
 
     [Tooltip("Gameobject for reticle")]
     [SerializeField]
@@ -32,6 +45,9 @@ public class MeasurementController : MonoBehaviour
 
     [SerializeField]
     private Camera camera;
+
+    [SerializeField]
+    private Text text;
 
     public void StartPlacing()
     {
@@ -78,13 +94,12 @@ public class MeasurementController : MonoBehaviour
 
         }
     }
-
+    //need to be outside the loop
+    bool animSwitch = false;
+    float animationFloat = 0;
 
     public void Update()
     {
-
-      
-
         if (isLocked)
         {
             Vector3 up;
@@ -106,7 +121,7 @@ public class MeasurementController : MonoBehaviour
             {
                 Vector2 touchInput = touch.deltaPosition;
 
-                touchInput.x = -touchInput.x / Screen.width; 
+                touchInput.x = -touchInput.x / Screen.width;
                 touchInput.y = touchInput.y / Screen.height;
 
                 Vector3 Movement = new Vector3(0, 0, 0);
@@ -135,11 +150,17 @@ public class MeasurementController : MonoBehaviour
                 isPlacing = false;
             }
 
-     
-        }
 
+        }
     }
 
+    //For future use
+    void MoveWithDrag()
+    {
+        /*
+       
+        */
+    }
 
 
 
