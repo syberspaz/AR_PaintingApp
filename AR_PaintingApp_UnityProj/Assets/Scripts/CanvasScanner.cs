@@ -21,6 +21,8 @@ namespace OpenCvSharp
         [Tooltip("The ARCameraManager which will produce frame events.")]
         ARCameraManager m_CameraManager;
 
+        private SceneCameraPassthrough cameraInfo;
+
         public new Camera camera;
 
         private Texture2D m_CameraTexture;
@@ -39,8 +41,6 @@ namespace OpenCvSharp
 
         public bool UsingTestImage = false;
 
-        [SerializeField]
-        private Texture2D testImage;
 
         [SerializeField]
         private Canvas canvas;
@@ -50,101 +50,6 @@ namespace OpenCvSharp
 
         [SerializeField]
         private Text TopLeftDebugText;
-
-        public ARCameraManager cameraManager
-        {
-            get => m_CameraManager;
-            set => m_CameraManager = value;
-        }
-
-        void OnCameraFrameReceived(ARCameraFrameEventArgs eventArgs)
-        {
-            
-
-
-            UpdateCameraImage();
-            // UpdateHumanDepthImage();
-            //   UpdateHumanStencilImage();
-            //   UpdateEnvironmentDepthImage();
-            //  UpdateEnvironmentDepthConfidenceImage();
-        }
-
-     
-
-        void OnEnable()
-        {
-            if (m_CameraManager != null)
-            {
-                m_CameraManager.frameReceived += OnCameraFrameReceived;
-            }
-        }
-
-        void OnDisable()
-        {
-            if (m_CameraManager != null)
-            {
-                m_CameraManager.frameReceived -= OnCameraFrameReceived;
-            }
-        }
-
-        unsafe void UpdateCameraImage()
-        {
-            // Attempt to get the latest camera image. If this method succeeds,
-            // it acquires a native resource that must be disposed (see below).
-            if (!cameraManager.TryAcquireLatestCpuImage(out XRCpuImage image))
-            {
-                return;
-            }
-
-           
-
-            // Once we have a valid XRCpuImage, we can access the individual image "planes"
-            // (the separate channels in the image). XRCpuImage.GetPlane provides
-            // low-overhead access to this data. This could then be passed to a
-            // computer vision algorithm. Here, we will convert the camera image
-            // to an RGBA texture and draw it on the screen.
-
-            // Choose an RGBA format.
-            // See XRCpuImage.FormatSupported for a complete list of supported formats.
-            var format = TextureFormat.RGBA32;
-
-            if (m_CameraTexture == null || m_CameraTexture.width != image.width || m_CameraTexture.height != image.height)
-            {
-                m_CameraTexture = new Texture2D(image.width, image.height, format, false);
-            }
-
-            // Convert the image to format, flipping the image across the Y axis.
-            // We can also get a sub rectangle, but we'll get the full image here.
-            var conversionParams = new XRCpuImage.ConversionParams(image, format);
-
-            // Texture2D allows us write directly to the raw texture data
-            // This allows us to do the conversion in-place without making any copies.
-            var rawTextureData = m_CameraTexture.GetRawTextureData<byte>();
-            try
-            {
-                image.Convert(conversionParams, new IntPtr(rawTextureData.GetUnsafePtr()), rawTextureData.Length);
-            }
-            finally
-            {
-                // We must dispose of the XRCpuImage after we're finished
-                // with it to avoid leaking native resources.
-                image.Dispose();
-            }
-
-            // Apply the updated texture data to our texture
-            m_CameraTexture.Apply();
-
-            // Set the RawImage's texture so we can visualize it.
-            SourceImage = m_CameraTexture;
-
-          
-
-           
-
-        }
-
-       
-
 
         public bool Contains<T>( T[] array, T obj)
         {
@@ -211,12 +116,13 @@ namespace OpenCvSharp
 
         public void CropImageFromUserProvidedCorners()
         {
+            SourceImage = cameraInfo.camOutput;
+
 
             Mat ResultMat;
             Mat WarpedMat;
             Point2f[] corners = new Point2f[4];
-            if (!UsingTestImage)
-            {
+            
 
              
                  ResultMat = Unity.TextureToMat(SourceImage);
@@ -234,47 +140,18 @@ namespace OpenCvSharp
                 corners[3].X = BotLeft.GetComponent<RectTransform>().position.x / canvas.pixelRect.size.x * WarpedMat.Width;
                 corners[3].Y = BotLeft.GetComponent<RectTransform>().position.y / canvas.pixelRect.size.y * WarpedMat.Height;
 
-            }
-            else
-            {
-                 ResultMat = Unity.TextureToMat(testImage);
-                 WarpedMat = Unity.TextureToMat(testImage);
-
-
-
-                corners[0].X = TopLeft.transform.position.x / canvas.pixelRect.size.x * WarpedMat.Width;
-                corners[0].Y = TopLeft.transform.position.y / canvas.pixelRect.size.y * WarpedMat.Height;
-
-                corners[1].X = TopRight.transform.position.x / canvas.pixelRect.size.x * WarpedMat.Width;
-                corners[1].Y = TopRight.transform.position.y / canvas.pixelRect.size.y * WarpedMat.Height;
-
-                corners[2].X = BotRight.transform.position.x / canvas.pixelRect.size.x * WarpedMat.Width;
-                corners[2].Y = BotRight.transform.position.y / canvas.pixelRect.size.y * WarpedMat.Height;
-
-                corners[3].X = BotLeft.transform.position.x / canvas.pixelRect.size.x * WarpedMat.Width;
-                corners[3].Y = BotLeft.transform.position.y / canvas.pixelRect.size.y * WarpedMat.Height;
-            }
-
-            //TopLeftDebugText.text = WarpedMat.Width.ToString() + WarpedMat.Height.ToString();
-            // outputImage.texture = Unity.MatToTexture(ResultMat);
-
-
-
-           
-
+         
 
             if (!UsingTestImage)
             WarpedMat = UnwrapShape(ResultMat, corners);
-            else
-            {
-            WarpedMat = UnwrapShape(Unity.TextureToMat(testImage), corners);
-            }
+          
             outputImage.texture = Unity.MatToTexture(WarpedMat);
         }
 
 
         public void ProcessContoursFromCamera()
         {
+            SourceImage = cameraInfo.camOutput;
 
             Mat sourceMat = Unity.TextureToMat(SourceImage);
             Mat ResultMat = Unity.TextureToMat(SourceImage);
