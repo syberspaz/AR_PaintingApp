@@ -38,6 +38,7 @@ namespace OpenCvSharp
                     Size rectSize = new Size(inputMat.Width / GridSizeX, inputMat.Height / GridSizeY);
                     Rect tempRect = new Rect(new Point(x * inputMat.Width / GridSizeX, y * inputMat.Height / GridSizeY), rectSize);
                     rectsGrid.Add(tempRect);
+                    Cv2.Rectangle(inputMat, tempRect, new Scalar(255, 0, 0));
                     //
                     //Debug.Log(tempRect.ToString());
 
@@ -86,10 +87,14 @@ namespace OpenCvSharp
                 }
                 Debug.Log(average / (float)colorsInBox.Count);
 
+               
+
+
+
                 //Debug.Log(pixelCount);
                 //Debug.Log(average / pixelCount);
-                
-              }
+
+            }
             
 
             outputImageVisual.texture = Unity.MatToTexture(inputMat);
