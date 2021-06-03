@@ -20,6 +20,7 @@ namespace OpenCvSharp
         [SerializeField]
         private int GridSizeY;
 
+        //User sets the ui panels for visualization
         [SerializeField]
         RawImage inputImageVisual;
         [SerializeField]
@@ -30,7 +31,7 @@ namespace OpenCvSharp
             Mat inputMat = Unity.TextureToMat(inputTexture);
             inputImageVisual.texture = inputTexture;
 
-            //Divide the image into 10 equal sized pieces
+            //Divide the image into n pieces (n is inputted by user)
             //Create the grid of Rects that will split up the image
             for (int y = 0; y < GridSizeY ; y++)
                 for(int x = 0; x < GridSizeX; x++)
@@ -38,24 +39,21 @@ namespace OpenCvSharp
                     Size rectSize = new Size(inputMat.Width / GridSizeX, inputMat.Height / GridSizeY);
                     Rect tempRect = new Rect(new Point(x * inputMat.Width / GridSizeX, y * inputMat.Height / GridSizeY), rectSize);
                     rectsGrid.Add(tempRect);
+
+                    //Grid visualization, this line can be removed later
                     Cv2.Rectangle(inputMat, tempRect, new Scalar(255, 0, 0));
-                    //
-                    //Debug.Log(tempRect.ToString());
+                   
 
                 }
 
-            //setup an indexer
-            var indexer = inputMat.GetGenericIndexer<Vec3b>();
 
             //needs to be outside of loop
-       
             List<Color> colorsInBox = new List<Color>();
             Color average;
 
 
             //This is the function that goes through the grid and returns the average color of each square
             //This code is terrible but opencv has forced my hand due to a lack of overloaded functions
-           
             for (int i = 0; i < rectsGrid.Count; i++)
              {
                 average = Color.black;
@@ -68,9 +66,9 @@ namespace OpenCvSharp
                 endX = rectsGrid[i].Right;
                 startY = rectsGrid[i].Top;
                 endY = rectsGrid[i].Bottom;
+                
 
-                //Debug.Log(startX + " " + endX + " " + startY + " " + endY);
-
+                //goes through every pixel in a rect, and adds it to an array of colors (each element of this array is a pixel)
                 for (int y = startY; y < endY; y++)
                 {
                     for (int x = startX; x < endX; x++)
@@ -80,23 +78,17 @@ namespace OpenCvSharp
                     }
                 }
 
+                //after all the colors are aquired for a box, we can average them out
                 for (int j = 0; j < colorsInBox.Count; j++)
                 {
-                    //Debug.Log("Color in box: " + colorsInBox[j]);
                     average += colorsInBox[j];
                 }
                 Debug.Log(average / (float)colorsInBox.Count);
 
-               
-
-
-
-                //Debug.Log(pixelCount);
-                //Debug.Log(average / pixelCount);
 
             }
             
-
+            //just sets visualization
             outputImageVisual.texture = Unity.MatToTexture(inputMat);
             
 

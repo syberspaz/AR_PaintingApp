@@ -7,11 +7,12 @@ public class ARMovementControllerManager : MonoBehaviour
     [SerializeField]
     private List<ARTransformController> transformControllers;
 
-    public void SetAll(int movementType)
+    //Takes input from slider, and applies to all ARTransformControllers given to this script
+    public void SetAll(System.Single movementType)
     {
         for (int i = 0; i < transformControllers.Count; i++)
         {
-            transformControllers[i].activeMovementType = movementType;
+            transformControllers[i].activeMovementType = (int)movementType;
         }
     }
 }

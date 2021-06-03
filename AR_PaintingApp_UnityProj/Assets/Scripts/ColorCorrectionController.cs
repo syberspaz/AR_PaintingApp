@@ -13,6 +13,7 @@ public class ColorCorrectionController : MonoBehaviour
 
     private bool effectToggle = false;
 
+    //Just applies a color correct effect of the same color as the value in the color picker on the ui panel for color tools
     public void Update()
     {
         ColorAdjustments colorAdjustments;

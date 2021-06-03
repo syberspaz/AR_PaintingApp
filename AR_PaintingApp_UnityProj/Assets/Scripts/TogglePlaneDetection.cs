@@ -1,6 +1,8 @@
 //This script was taken from:
 //https://youtu.be/1Edsroa16fo
 
+//just to toggle planes on & off
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

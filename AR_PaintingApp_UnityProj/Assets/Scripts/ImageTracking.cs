@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.ARFoundation;
 
+//Keeping in case image tracking becomes needed, if it is not this script can be safely removed
 public class ImageTracking : MonoBehaviour
 {
     [SerializeField]

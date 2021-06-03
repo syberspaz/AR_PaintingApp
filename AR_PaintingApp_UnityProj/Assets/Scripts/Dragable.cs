@@ -5,13 +5,16 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Dragable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    //This script exists to have 2d ui space objects be dragged around
+    //Mostly just used for user selected corners but many possible applications
+
     [SerializeField]
     private Canvas canvas;
     private GameObject circle;
-   // [SerializeField]
+
     private CanvasGroup canvasGroup;
     private RectTransform rectTransform;
-    // Start is called before the first frame update
+
     void Start()
     {
         circle = this.gameObject;
@@ -21,11 +24,9 @@ public class Dragable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         canvasGroup = circle.GetComponent<CanvasGroup>();
 
     }
-    public void TaskOnClick()
-    {
-        Debug.Log("Button Clicked");
-    }
 
+
+    //These functions are all the eventsystem calls, they just move the ui element according to the drag delta position
     public void OnBeginDrag(PointerEventData eventData)
     {
        
@@ -44,9 +45,5 @@ public class Dragable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1.0f;
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+  
 }

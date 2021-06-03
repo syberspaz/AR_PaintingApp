@@ -7,6 +7,8 @@ using UnityEngine.XR.ARSubsystems;
 //The following script was taken from:
 //https://youtu.be/VMjZ70PmnPs
 
+//Used to place objects on plane, not currently being used but good reference for AR Raycasts and may be useful in future
+
 [RequireComponent(typeof(ARRaycastManager))]
 public class SpawnObjectOnPlane : MonoBehaviour
 {

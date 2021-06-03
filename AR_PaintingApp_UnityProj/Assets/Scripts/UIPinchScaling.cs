@@ -55,6 +55,7 @@ public class UIPinchScaling : MonoBehaviour
             {
                 if(result.gameObject.GetComponent<Pinchable>() != null)
                 {
+                    //Uses the delta of both touch positions to affect the scale
                     Vector3 newScale = result.gameObject.GetComponent<RectTransform>().localScale;
                     newScale.x += difference / Screen.width;
                     newScale.y += difference / Screen.height;

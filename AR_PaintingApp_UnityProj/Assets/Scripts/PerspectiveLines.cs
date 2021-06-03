@@ -37,14 +37,15 @@ public class PerspectiveLines : MonoBehaviour
         //vector that will be rotated
         Vector3 end = new Vector3(0, 0, 0);
 
+        //if no touch, don't need to run the rest of the code
         if (!TryGetTouchPosition(out Vector2 touchPosition))
         {
             return;
         }
 
+        //if touch raycasts onto a plane (valid placement), we can continue with the code that places the lines
         if (raycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon) && linesUI.activeSelf)
         {
-
 
             var hitPos = s_Hits[0].pose;
 
@@ -52,7 +53,9 @@ public class PerspectiveLines : MonoBehaviour
 
             for (int i = 0; i < NumberOfLines; i++)
             {
-
+                //Loops based on number of lines selected by user, takes a vector and rotates it around a pivot
+                //Each line that gets drawn is a line defined by 2 vectors, the center one does not change, but the end
+                //gets rotated around the center and passed into the line drawing function
                 DrawLine(hitPos.position, end, Color.red);
                 end = RotatePointAroundPivot(end, hitPos.position, hitPos.up * RotationAmount);
             }
@@ -65,6 +68,8 @@ public class PerspectiveLines : MonoBehaviour
     //Function called when drawing a line
     void DrawLine(Vector3 start, Vector3 end, Color color)
     {
+        //Creates a game object for the lines, and with settings from user/developers
+        
         GameObject myLine = new GameObject();
         myLine.gameObject.tag = "PerspectiveLine";
         myLine.transform.position = start;
@@ -93,6 +98,7 @@ public class PerspectiveLines : MonoBehaviour
 
     }
 
+    //Custom math function to rotate around the pivot
     public Vector3 RotatePointAroundPivot(Vector3 point, Vector3 pivot, Vector3 angles)
     {
         Vector3 dir = point - pivot; // get point direction relative to pivot
@@ -101,6 +107,7 @@ public class PerspectiveLines : MonoBehaviour
         return point; // return it
     }
 
+    //Functions for ui controls
     public void SetNumLines(System.Single num)
     {
         NumberOfLines = num;

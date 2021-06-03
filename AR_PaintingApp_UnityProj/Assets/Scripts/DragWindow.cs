@@ -21,7 +21,7 @@ public class DragWindow : MonoBehaviour, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-
+        //get the values for camera up (Taken from the view matrix)
         Vector3 up;
         up.x = camera.worldToCameraMatrix.m10;
         up.y = camera.worldToCameraMatrix.m11;
@@ -33,6 +33,7 @@ public class DragWindow : MonoBehaviour, IDragHandler
         forward.y = camera.worldToCameraMatrix.m21;
         forward.z = camera.worldToCameraMatrix.m22;
 
+        //Cross gives vector perpendicular to up and forward
         Vector3 sideways = Vector3.Cross(up, forward);
 
         Vector2 touchInput = eventData.delta;
@@ -42,10 +43,10 @@ public class DragWindow : MonoBehaviour, IDragHandler
 
         Vector3 Movement = new Vector3(0, 0, 0);
 
+        //getting the vectors for camera rotation allow for 3d movement based on the position of the phone relative to the AR object
         Movement += up * touchInput.y;
         Movement += sideways * touchInput.x;
 
-    
        rect.position += Movement;
 
     }

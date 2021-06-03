@@ -1,6 +1,6 @@
 //This temporary script was taken from:
 //https://youtu.be/vZalV7--_uA
-//Locking made by Noah Glassford
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +9,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+//Used for a measuring tape type caliper, currently not being used but could very well be added back
 public class MeasurementController : MonoBehaviour
 {
     [SerializeField]

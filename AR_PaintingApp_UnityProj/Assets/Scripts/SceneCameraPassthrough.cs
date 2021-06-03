@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
+//Basically a passthrough so all scripts that need the camera can get their image feed from 1 script,
+//instead of each script having its own camera feed
 public class SceneCameraPassthrough : MonoBehaviour
 {
     public Texture2D camOutput;

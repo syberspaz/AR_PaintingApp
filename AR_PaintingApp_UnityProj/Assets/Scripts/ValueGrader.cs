@@ -1,6 +1,7 @@
 using Unity.Collections.LowLevel.Unsafe;
 namespace OpenCvSharp
 {
+    //looks at a series of value boxes, creates an array of them and gets the color inside them
     using System;
 
     using System.Collections;

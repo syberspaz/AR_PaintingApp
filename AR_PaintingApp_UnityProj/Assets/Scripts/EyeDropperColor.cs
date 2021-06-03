@@ -19,6 +19,8 @@ public class EyeDropperColor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //Temporary test/proof of concept, the block of .SetColor functions is useful for the future however
         if (Physics.Raycast(tip.transform.position, new Vector3(0,-1,0), out touch, 10f))
         {
             Renderer hitObjectRenderer = touch.collider.GetComponent<Renderer>();

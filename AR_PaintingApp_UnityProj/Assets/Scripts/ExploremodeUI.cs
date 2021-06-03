@@ -27,7 +27,7 @@ public class ExploremodeUI : MonoBehaviour
     [SerializeField]
     private GameObject LineToolUIGameObject;
 
-
+    //Just a lot of small functions to control the UI in the explore mode scene
     public void EnableCalipers()
     {
         calipers = arSession.GetComponent<MeasurementController>();

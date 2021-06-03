@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BillBoard : MonoBehaviour
 {
+
+    //This script rotates the world space ui panels so they are always facing the camera
+
     [SerializeField]
     public Transform camTransform;
 

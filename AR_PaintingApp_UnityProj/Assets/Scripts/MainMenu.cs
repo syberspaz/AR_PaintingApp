@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
+    //just ui code
     public void LaunchLearnMode()
     {
         //put the code here to switch to learn mode

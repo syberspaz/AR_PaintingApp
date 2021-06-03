@@ -1,3 +1,4 @@
+//This script was taken from: https://pastebin.com/6EXJHAgA
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

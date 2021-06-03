@@ -56,6 +56,7 @@ namespace OpenCvSharp
             return ((IList<T>)array).Contains(obj);
         }
 
+        //function from opencv demo to sort corners found from camera
         private Point[] SortCorners(Point[] corners)
         {
             if (corners.Length != 4)
@@ -84,18 +85,13 @@ namespace OpenCvSharp
             // done
             return output;
         }
+
+        //function from opencv demo to swap elements in an array
         public static void Swap<T>(T[] array, int i1, int i2)
         {
             T v = array[i2];
             array[i2] = array[i1];
             array[i1] = v;
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-
-
         }
 
         private bool TryGetTouchPosition(out Vector2 touchPosition)
@@ -113,7 +109,8 @@ namespace OpenCvSharp
 
    
         
-
+        //Using the corner game objects (UI sprites) as points for the unwrap function
+        //We can unwrap without needing to rely on opencv detection working properly
         public void CropImageFromUserProvidedCorners()
         {
             SourceImage = cameraInfo.camOutput;
@@ -140,15 +137,13 @@ namespace OpenCvSharp
                 corners[3].X = BotLeft.GetComponent<RectTransform>().position.x / canvas.pixelRect.size.x * WarpedMat.Width;
                 corners[3].Y = BotLeft.GetComponent<RectTransform>().position.y / canvas.pixelRect.size.y * WarpedMat.Height;
 
-         
 
-            if (!UsingTestImage)
-            WarpedMat = UnwrapShape(ResultMat, corners);
-          
             outputImage.texture = Unity.MatToTexture(WarpedMat);
         }
 
 
+        //Unwrap an image automatically from the camera without needing to define corners.
+        //This function was mostly taken (but slightly modified) from the opencv demos
         public void ProcessContoursFromCamera()
         {
             SourceImage = cameraInfo.camOutput;
@@ -170,7 +165,6 @@ namespace OpenCvSharp
             Point[][] contours;
             Cv2.FindContours(sourceMat, out contours, out hierarchies, RetrievalModes.External, ContourApproximationModes.ApproxSimple);
 
-            //Cv2.DrawContours(ResultMat, contours, -1, new OpenCvSharp.Scalar(255,0,0), 4, LineTypes.Link8);
 
             // check contours and drop those we consider "noise", all others put into a single huge "key points" map
             // also, detect all almost-rectangular contours with big area and try to determine whether they're exact match
@@ -247,18 +241,8 @@ namespace OpenCvSharp
                 Debug.Log("Unwraping Shape");
 
                 matUnwrapped = UnwrapShape(ResultMat, Array.ConvertAll(paperContour, p => new Point2f(p.X, p.Y)));
-                // automatic color converter
-
-
             }
 
-            //  Cv2.WarpPerspective(sourceMat, SourceImage,  );
-
-
-
-
-
-            //rawImage.texture = Unity.MatToTexture(sourceMat);
             outputImage.texture = Unity.MatToTexture(matUnwrapped);
         }
 
@@ -304,7 +288,7 @@ namespace OpenCvSharp
             return result;
         }
 
-        //public Mat UnwrapShape(this Mat img, Point2f[] corners, int maxSize = 0)
+        //function from opencv demo to do the perspective transform just given the corners
         public Mat UnwrapShape( Mat img, Point2f[] corners, int maxSize = 0)
         {
             if (corners.Length != 4)
