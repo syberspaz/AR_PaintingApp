@@ -1,0 +1,2 @@
+3c8af103ddd54461b4855c8ac7e62e3a|C:\Users\noahg\Desktop\XR_Summer_Job\XR_AS_Project\AR_PaintingApp\AR_PaintingApp_UnityProj\Assets\Images\Monkey.jpeg
+c5730bf774c1411ab897373d4a9153a1|C:\Users\noahg\Desktop\XR_Summer_Job\XR_AS_Project\AR_PaintingApp\AR_PaintingApp_UnityProj\Assets\Images\Sunset.jpg

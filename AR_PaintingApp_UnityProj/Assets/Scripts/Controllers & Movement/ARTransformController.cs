@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ARTransformController : MonoBehaviour
 {
@@ -14,7 +15,17 @@ public class ARTransformController : MonoBehaviour
     [SerializeField]
     private Transform reticleTransform;
 
-    public int activeMovementType = 1;
+    [Tooltip("Drag in all renderers that have a edge material here.")]
+    [SerializeField]
+    private List<Renderer> renderers;
+
+
+    [SerializeField]
+    Text debugText;
+
+    public int activeMovementType = 0;
+
+    public bool isActive = true;
 
    public void CameraLockMove()
     {
@@ -81,19 +92,40 @@ public class ARTransformController : MonoBehaviour
 
     public void Update()
     {
+        debugText.text = isActive.ToString();
         //mostly self explanatory, uses activeMovementType (controlled by slider and ARMovementControllerManger script)
         //to decide which movement function to use
-        if (activeMovementType == 0)
+
+        if (isActive)
         {
-            CameraLockMove();
+            for (int i = 0; i < renderers.Count; i++)
+            {
+                renderers[i].material.SetFloat("EdgeOpacity", 0.8f);
+              
+            }
         }
-        else if(activeMovementType == 1)
+        else
         {
-            ReticleMove();
+            for (int i = 0; i < renderers.Count; i++)
+            {
+                renderers[i].material.SetFloat("EdgeOpacity", 0.0f);
+
+            }
         }
-        else if (activeMovementType == 2)
-        {
-            TouchScreenDragMove();
-        }
+
+       
+            if (activeMovementType == 0 && isActive)
+            {
+                CameraLockMove();
+            }
+            else if (activeMovementType == 1 && isActive)
+            {
+                ReticleMove();
+            }
+            else if (activeMovementType == 2 && isActive)
+            {
+                TouchScreenDragMove();
+            }
+      
     }
 }

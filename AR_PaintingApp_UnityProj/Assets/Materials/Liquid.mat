@@ -117,8 +117,8 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _WobbleX: 0.02
-    - _WobbleZ: 0.04
+    - _WobbleX: 0
+    - _WobbleZ: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
@@ -128,5 +128,8 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FresnelColor: {r: 0.8584906, g: 0.3170318, b: 0.1741278, a: 0}
+    - _LiquidColor: {r: 0.990566, g: 0.03270739, b: 0.03270739, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _SurfaceColor: {r: 0.5660378, g: 0.04004984, b: 0.04004984, a: 0}
   m_BuildTextureStacks: []
