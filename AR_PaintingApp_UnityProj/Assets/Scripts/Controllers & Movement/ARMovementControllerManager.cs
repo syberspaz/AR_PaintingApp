@@ -7,7 +7,7 @@ using UnityEngine.XR.ARSubsystems;
 public class ARMovementControllerManager : MonoBehaviour
 {
     [SerializeField]
-    private List<ARTransformController> transformControllers;
+    public List<ARTransformController> transformControllers;
 
     [SerializeField]
     private Camera camera;

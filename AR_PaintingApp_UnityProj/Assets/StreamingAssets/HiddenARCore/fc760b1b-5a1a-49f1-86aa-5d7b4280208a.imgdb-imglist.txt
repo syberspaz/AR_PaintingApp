@@ -1,6 +1,0 @@
-6530f33122724dda824c04b1f1578e8f|C:\Users\noahg\Desktop\XR_Summer_Job\XR_AS_Project\AR_PaintingApp\AR_PaintingApp_UnityProj\Assets\MARS\Content\Shared\Textures\ImageMarker_Centered.png|4
-a0b3a9bc59a74b739c7e92e4c9606371|C:\Users\noahg\Desktop\XR_Summer_Job\XR_AS_Project\AR_PaintingApp\AR_PaintingApp_UnityProj\Assets\MARS\Content\Shared\Textures\ImageMarker_Fit.png|4
-a6f9b131a52d4ce18ef9839e79c43711|C:\Users\noahg\Desktop\XR_Summer_Job\XR_AS_Project\AR_PaintingApp\AR_PaintingApp_UnityProj\Assets\MARS\Content\Shared\Textures\ImageMarker_TopLeft.png|4
-b94509f42e234cd699c97ee98d9a25cd|C:\Users\noahg\Desktop\XR_Summer_Job\XR_AS_Project\AR_PaintingApp\AR_PaintingApp_UnityProj\Assets\MARS\Content\Shared\Textures\ImageMarker_TopRight.png|4
-921e71c6cbbe4a4da74975738b12e7df|C:\Users\noahg\Desktop\XR_Summer_Job\XR_AS_Project\AR_PaintingApp\AR_PaintingApp_UnityProj\Assets\MARS\Content\Shared\Textures\ImageMarker_BottomLeft.png|4
-4e1a87fc813246e6ae60eeb17e37ed7c|C:\Users\noahg\Desktop\XR_Summer_Job\XR_AS_Project\AR_PaintingApp\AR_PaintingApp_UnityProj\Assets\MARS\Content\Shared\Textures\ImageMarker_BottomRight.png|4

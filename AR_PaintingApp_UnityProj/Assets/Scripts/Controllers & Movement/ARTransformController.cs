@@ -9,15 +9,17 @@ public class ARTransformController : MonoBehaviour
     //Used for its transform, for both the lock type movement and drag type movement
     [Tooltip("Use the main AR camera transform here")]
     [SerializeField]
-    private Camera cameraTransform;
+    public Camera cameraTransform = null;
 
     [Tooltip("Scene should have a reticle object, place its transform here")]
     [SerializeField]
-    private Transform reticleTransform;
+    public Transform reticleTransform;
 
     [Tooltip("Drag in all renderers that have a edge material here.")]
     [SerializeField]
     private List<Renderer> renderers;
+
+    public int PlaceInList;
 
 
     [SerializeField]
@@ -27,7 +29,15 @@ public class ARTransformController : MonoBehaviour
 
     public bool isActive = true;
 
-   public void CameraLockMove()
+    public void Start()
+    {
+        if (cameraTransform == null)
+        cameraTransform = GameObject.Find("AR Camera").GetComponent<Camera>();
+
+        reticleTransform = GameObject.Find("Reticle").transform;
+    }
+
+    public void CameraLockMove()
     {
 
         //Parents object to camera, so all movements in physical space to the phone also happen in AR space to the object
@@ -114,15 +124,15 @@ public class ARTransformController : MonoBehaviour
         }
 
        
-            if (activeMovementType == 0 && isActive)
+            if (activeMovementType == 0 )
             {
                 CameraLockMove();
             }
-            else if (activeMovementType == 1 && isActive)
+            else if (activeMovementType == 1 )
             {
                 ReticleMove();
             }
-            else if (activeMovementType == 2 && isActive)
+            else if (activeMovementType == 2)
             {
                 TouchScreenDragMove();
             }

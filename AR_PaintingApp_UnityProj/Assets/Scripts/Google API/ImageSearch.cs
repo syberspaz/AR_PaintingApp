@@ -38,9 +38,11 @@ public class ImageSearch : MonoBehaviour
     private List<string> imageLinks = new List<string>(); //
 
     [SerializeField]
-    private List<Image> imagePannels;
+    public List<RawImage> imagePannels;
 
     private string DataFromWebReq;
+
+
 
 
     public void SearchButtonPress()
@@ -67,23 +69,11 @@ public class ImageSearch : MonoBehaviour
     }
     public void  GetWebResults()
     {
-        
+
         imageLinks.Clear();
 
-            string path = "Assets/Text Files/SearchResults.txt";
-
-            if (File.Exists(path)) //If the file already exists, delete it before writing the search results
-            {
-                File.Delete(path);
-            }
-
-            //writes to actual JSON file for testing
-            StreamWriter writer = new StreamWriter(path, true);
-            writer.Write(DataFromWebReq);
-            //string link;
-            Debug.Log(DataFromWebReq);
-
-            var N = JSON.Parse(DataFromWebReq);
+      
+        var N = JSON.Parse(DataFromWebReq);
             
             for (int i = 0; i < 8; i++)
             {
@@ -94,8 +84,11 @@ public class ImageSearch : MonoBehaviour
                 Debug.Log(link);
             }
 
+      
+
         for (int i = 0; i < imagePannels.Count; i++)
         {
+            //debugText.text = imageLinks[i];
             StartCoroutine(LoadImageFromWeb(i));
         }
     }
@@ -127,7 +120,7 @@ public class ImageSearch : MonoBehaviour
 
                 //if there is no error we can set the texture
                 Texture2D img = ((DownloadHandlerTexture)req.downloadHandler).texture;
-                imagePannels[index].sprite = Sprite.Create(img, new Rect(0, 0, 400, 400), Vector2.zero);
+                imagePannels[index].texture = img;
             }
             else
             {
@@ -156,13 +149,16 @@ public class ImageSearch : MonoBehaviour
                 case UnityWebRequest.Result.ConnectionError:
                 case UnityWebRequest.Result.DataProcessingError:
                     Debug.LogError(pages[page] + ": Error: " + webRequest.error);
+                   // debugText.text = webRequest.error;
                     break;
                 case UnityWebRequest.Result.ProtocolError:
                     Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
+                    //debugText.text = webRequest.error;
                     break;
                 case UnityWebRequest.Result.Success:
                     DataFromWebReq = webRequest.downloadHandler.text;
                     Debug.Log(webRequest.downloadHandler.text);
+                    //debugText.text = webRequest.downloadHandler.text;
                     break;
             }
         }
