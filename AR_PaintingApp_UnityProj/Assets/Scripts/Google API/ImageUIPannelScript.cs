@@ -18,7 +18,7 @@ public class ImageUIPannelScript : MonoBehaviour
     private GameObject referenceImageQuadPrefab;
 
     [SerializeField]
-    private ARMovementControllerManager transformController;
+    private ControllerManager transformController;
 
     public void Start()
     {
@@ -37,7 +37,7 @@ public class ImageUIPannelScript : MonoBehaviour
             GameObject newPlane = Instantiate(referenceImageQuadPrefab, new Vector3(0,0,0), Quaternion.identity); //spawns at 0,0,0
             newPlane.tag = "ReferenceImageQuad";
             newPlane.GetComponent<Renderer>().material.mainTexture = selectionDisplay.texture;
-            transformController.transformControllers.Add(newPlane.GetComponent<ARTransformController>());
+            transformController.movementControllers.Add(newPlane.GetComponent<MovementController>());
         }
         else
         {
@@ -52,7 +52,7 @@ public class ImageUIPannelScript : MonoBehaviour
 
         for (int i = 0; i < ImagePannels.Length; i ++)
         {
-            transformController.transformControllers.Remove(ImagePannels[i].GetComponent<ARTransformController>());
+            transformController.movementControllers.Remove(ImagePannels[i].GetComponent<MovementController>());
            GameObject.Destroy(ImagePannels[i]);
         }
     }

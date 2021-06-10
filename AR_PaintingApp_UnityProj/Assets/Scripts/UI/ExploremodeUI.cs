@@ -18,6 +18,8 @@ public class ExploremodeUI : MonoBehaviour
 
     private bool PerspectiveLinesEnabled;
 
+    private bool imageSearchEnabled;
+
     [SerializeField]
     private GameObject caliperUIGameObject;
 
@@ -26,6 +28,9 @@ public class ExploremodeUI : MonoBehaviour
 
     [SerializeField]
     private GameObject LineToolUIGameObject;
+
+    [SerializeField]
+    private GameObject ImageSearchUIGameObject;
 
     //Just a lot of small functions to control the UI in the explore mode scene
     public void EnableCalipers()
@@ -71,5 +76,12 @@ public class ExploremodeUI : MonoBehaviour
         PerspectiveLinesEnabled = !PerspectiveLinesEnabled;
         LineToolUIGameObject.SetActive(PerspectiveLinesEnabled);
     }
+
+    public void ToggleImageSearchUI()
+    {
+        imageSearchEnabled = !imageSearchEnabled;
+        ImageSearchUIGameObject.SetActive(imageSearchEnabled);
+    }
+
 
 }

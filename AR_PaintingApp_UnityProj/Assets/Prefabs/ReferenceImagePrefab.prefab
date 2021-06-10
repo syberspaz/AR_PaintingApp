@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5648712327210613819}
   - component: {fileID: 4488371844465501455}
   - component: {fileID: 7907318154709935519}
-  - component: {fileID: 3460938942128678849}
   - component: {fileID: 274553871656664864}
+  - component: {fileID: -5992732871725576085}
   m_Layer: 0
   m_Name: ReferenceImagePrefab
   m_TagString: ReferenceImageQuad
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6117001475370531238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.4668, y: -18.076452, z: 52.3918}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -62,7 +62,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  - {fileID: 2100000, guid: c9e913b2c8cfdb14a9291a4c0881e029, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,26 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3460938942128678849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6117001475370531238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d9af9202fc0aea42b9d38654a34166e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 0}
-  reticleTransform: {fileID: 0}
-  renderers:
-  - {fileID: 7907318154709935519}
-  PlaceInList: 0
-  debugText: {fileID: 0}
-  activeMovementType: 0
-  isActive: 1
 --- !u!65 &274553871656664864
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117,3 +96,40 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9.999999, y: 0.06, z: 9.999999}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5992732871725576085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6117001475370531238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7142e91cfd7aa44c82314440712dfc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 0}
+  isSelected: 1
+  gyroEnabled: 1
+  viewMatrix:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  renderers:
+  - {fileID: 7907318154709935519}
+  DragMovementSpeed: 1
+  GyroMovementSpeed: 1
+  text: {fileID: 0}
