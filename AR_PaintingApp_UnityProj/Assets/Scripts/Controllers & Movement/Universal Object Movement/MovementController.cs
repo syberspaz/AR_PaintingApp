@@ -11,7 +11,7 @@ public class MovementController : MonoBehaviour
 
     [Tooltip("Drag in all renderers that have a edge material here.")]
     [SerializeField]
-    private List<Renderer> renderers;
+    private List<Outline> outlines;
 
     [SerializeField]
     private float DragMovementSpeed;
@@ -20,18 +20,43 @@ public class MovementController : MonoBehaviour
 
     private float prevAccelerationY = 0;
 
+    [SerializeField]
+    private float pinchScalingSpeed;
+
     //debug
     [SerializeField]
     private Text text;
 
     public void Update()
     {
+        float pinchAmount = 0f;
+        Quaternion desiredRotation = transform.rotation;
+
+        DetectTouchMovement.Calculate();
+
         Input.gyro.enabled = gyroEnabled;
 
         Touch touch = Input.GetTouch(0);
 
         if (isSelected)
         {
+            if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
+            { // zoom
+                pinchAmount = DetectTouchMovement.pinchDistanceDelta;
+            }
+
+            if (Mathf.Abs(DetectTouchMovement.turnAngleDelta) > 0)
+            { // rotate
+                Vector3 rotationDeg = Vector3.zero;
+                rotationDeg = (transform.position - cameraTransform.position).normalized;
+
+                rotationDeg *= -DetectTouchMovement.turnAngleDelta;
+
+               // rotationDeg.z = -DetectTouchMovement.turnAngleDelta;
+                desiredRotation *= Quaternion.Euler(rotationDeg);
+            }
+
+
             //if the finger is moving, we are trying to move it along x/y relative to user, no gyro
             if (touch.phase == TouchPhase.Moved)
             {
@@ -66,9 +91,17 @@ public class MovementController : MonoBehaviour
 
                 Movement = Movement * DragMovementSpeed;
 
-                transform.position += Movement;
+                Vector3 localScale = transform.localScale;
 
-                
+                localScale.x += (pinchAmount / 500) * pinchScalingSpeed;
+                localScale.y += (pinchAmount / 500) * pinchScalingSpeed;
+                localScale.z += (pinchAmount / 500) * pinchScalingSpeed;
+
+
+                transform.position += Movement;
+                transform.rotation = desiredRotation;
+                transform.localScale = localScale;
+
 
             }
             else if (touch.phase == TouchPhase.Stationary)
@@ -105,16 +138,16 @@ public class MovementController : MonoBehaviour
                 prevAccelerationY = gyroMovement;
 
             }
-            for (int i = 0; i < renderers.Count; i++)
+            for (int i = 0; i < outlines.Count; i++)
             {
-                renderers[i].material.SetFloat("EdgeOpacity", 0.8f);
+                outlines[i].enabled = true;
             }
         }
         else
         {
-            for (int i = 0; i < renderers.Count; i++)
+            for (int i = 0; i < outlines.Count; i++)
             {
-                renderers[i].material.SetFloat("EdgeOpacity", 0.0f);
+                outlines[i].enabled = false;
             }
         }
 
