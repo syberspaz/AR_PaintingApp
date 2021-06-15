@@ -13,28 +13,43 @@ public class MovementController : MonoBehaviour
     [SerializeField]
     private List<Outline> outlines;
 
-    [SerializeField]
-    private float DragMovementSpeed;
-    [SerializeField]
-    private float GyroMovementSpeed;
+
+    public float DragMovementSpeed;
+
+    public float GyroMovementSpeed;
+
+    public float pinchScalingSpeed;
 
     private float prevAccelerationY = 0;
 
-    [SerializeField]
-    private float pinchScalingSpeed;
+
+
 
     //debug
     [SerializeField]
     private Text text;
 
+
+
+
     public void Update()
     {
+        //Updates the values to what we set in the settings
+        DragMovementSpeed = PlayerPrefs.GetFloat("DragMovementSpeed");
+        GyroMovementSpeed = PlayerPrefs.GetFloat("GyroMovementSpeed");
+        pinchScalingSpeed = PlayerPrefs.GetFloat("PinchScaleSpeed");
+
+
         float pinchAmount = 0f;
         Quaternion desiredRotation = transform.rotation;
 
         DetectTouchMovement.Calculate();
 
         Input.gyro.enabled = gyroEnabled;
+
+        Quaternion phoneRotation = Input.gyro.attitude;
+
+        text.text = phoneRotation.eulerAngles + " " + cameraTransform.rotation.eulerAngles;
 
         Touch touch = Input.GetTouch(0);
 
@@ -116,8 +131,17 @@ public class MovementController : MonoBehaviour
 
                 float gyroMovement;
 
-                gyroMovement = cameraTransform.rotation.x;
-
+                //This takes the rotation from the phone and the camera and averages the 2 of them to get a more accurate value
+                if (Input.gyro.enabled)
+                {
+                    gyroMovement = cameraTransform.rotation.x;
+                    gyroMovement += phoneRotation.x;
+                    gyroMovement = gyroMovement / 2;
+                }
+                else //if the gyroscope somehow gets disabled, fallback to just camera rotation
+                {
+                    gyroMovement = cameraTransform.rotation.x;
+                }
 
                 float GyroMovementDelta;
 
