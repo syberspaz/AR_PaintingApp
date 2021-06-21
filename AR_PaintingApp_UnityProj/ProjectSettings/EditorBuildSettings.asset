@@ -20,6 +20,21 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MARS_Testing.unity
     guid: 173d0226f6546cb41a32b944d7c4a119
+  - enabled: 1
+    path: Assets/Scenes/SceneToggles/lessonFourTest.unity
+    guid: 6120073cb3c58604f981b84c60dc45bd
+  - enabled: 1
+    path: Assets/Scenes/SceneToggles/lessonTwoTest.unity
+    guid: 3704f70cbb9d95a46a3cdc9cd1c1a967
+  - enabled: 1
+    path: Assets/Scenes/SceneToggles/lessonThreeTest.unity
+    guid: 6f7c642bcb7a721448c18104b2acad28
+  - enabled: 1
+    path: Assets/Scenes/SceneToggles/lessonFiveTest.unity
+    guid: 04559727f8668a340a8fffdfe068b773
+  - enabled: 1
+    path: Assets/Scenes/SceneToggles/lessonOneTest.unity
+    guid: 0bf6b4ba574703b41b0384cae7b06641
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 0cbddbb8743b3af459c678093948e826, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: baea81714524eeb42be734ed2a1d6202, type: 2}

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
-
+using UnityEngine.SceneManagement;
 public class CircularMenu : MonoBehaviour, IDropHandler
 {
     public float radius = 100.0f;
-    public int NumItems =  5;
-    public GameObject cube;
-
+    static public int NumItems =  5;
+    public int startSceneIndex;
+    //public GameObject cube;
+    public string[] scenesNames = new string[NumItems];
     private Color[] colours;
     private Vector2 cartesianToPolar(Vector3 pos){
         //We want atan2 instead of atan b/c atan2 handles when x = 0
@@ -23,11 +23,16 @@ public class CircularMenu : MonoBehaviour, IDropHandler
         float y = Mathf.Sin(theta) * radius;
         return new Vector3(x, y, z);
     }
+
+    void Awake(){
+        DontDestroyOnLoad(this.gameObject.transform.parent.gameObject);
+        SceneManager.LoadScene(scenesNames[startSceneIndex], LoadSceneMode.Single);
+    }
     // Start is called before the first frame update
     void Start()
     {
         
-        cube.GetComponent<Renderer>().material.color = Color.red;
+        //cube.GetComponent<Renderer>().material.color = Color.red;
         colours = new Color[NumItems];
         colours[0] = Color.red;
         colours[1] = Color.blue;
@@ -65,12 +70,16 @@ public class CircularMenu : MonoBehaviour, IDropHandler
             for(int i = 0; i < NumItems; i ++){
                 if(polarCoord.x >= circleAngle && polarCoord.x < circleAngle + angleDelta){
                     float midAngle = circleAngle + (angleDelta / 2.0f);
-                    //midAngle = 0.0f + angleDelta * 2;
+                    
                     Vector3 cartCoord = polarToCartesian(midAngle, radius, 0);
-                    //eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = cartCoord;
+                    
                     eventData.pointerDrag.GetComponent<ColourCircle>().moveTo(cartCoord);
-                    cube.GetComponent<Renderer>().material.color = colours[i];
-                    //break;
+                    
+
+                    Debug.Log(scenesNames[i]);
+                    
+                    SceneManager.LoadScene(scenesNames[i], LoadSceneMode.Single);
+
                 }
                 circleAngle += angleDelta;
             }
