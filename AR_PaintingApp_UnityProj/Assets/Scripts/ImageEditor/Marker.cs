@@ -23,7 +23,7 @@ public class Marker : MonoBehaviour
 
     private bool isFirst = true;
 
-    private bool isRestoreMode = true;
+    private bool isRestoreMode = false;
 
     private void Start()
     {
