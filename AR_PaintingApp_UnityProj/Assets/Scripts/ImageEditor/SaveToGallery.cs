@@ -35,31 +35,7 @@ public class SaveToGallery : MonoBehaviour
         SaveCurrentImage();
     }
 
-	public void LoadButtonPressed()
-    {
-        PickImage(2048);
-    }
-
-
-	private void PickImage(int maxSize)
-	{
-		NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
-		{
-			Debug.Log("Image path: " + path);
-			if (path != null)
-			{
-				// Create Texture from selected image
-				Texture2D texture = NativeGallery.LoadImageAtPath(path, maxSize, false);
-
-                //texture.Apply();
-                MainImageRenderer.material.mainTexture = texture;
-
-
-			}
-		}, "Select a PNG image", "image/png");
-
-		Debug.Log("Permission result: " + permission);
-	}
+	
 
 
 }
