@@ -26,7 +26,7 @@ public class CircularMenu : MonoBehaviour, IDropHandler
 
     void Awake(){
         DontDestroyOnLoad(this.gameObject.transform.parent.gameObject);
-        SceneManager.LoadScene(scenesNames[startSceneIndex], LoadSceneMode.Single);
+        // SceneManager.LoadScene(scenesNames[startSceneIndex], LoadSceneMode.Single);
     }
     // Start is called before the first frame update
     void Start()
@@ -78,6 +78,13 @@ public class CircularMenu : MonoBehaviour, IDropHandler
 
                     Debug.Log(scenesNames[i]);
                     
+                    //if going back to main scene, destroy this object
+                    if (scenesNames[i] == "MainScreen")
+                    {
+                        Destroy((this.gameObject.transform.parent.gameObject));
+                    }
+
+
                     SceneManager.LoadScene(scenesNames[i], LoadSceneMode.Single);
 
                 }

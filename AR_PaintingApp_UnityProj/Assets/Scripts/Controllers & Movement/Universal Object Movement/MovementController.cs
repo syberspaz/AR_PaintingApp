@@ -25,11 +25,7 @@ public class MovementController : MonoBehaviour
 
 
 
-    //debug
-    [SerializeField]
-    private Text text;
-
-
+  
     public void Start()
     {
         cameraTransform = Camera.main.transform;
@@ -37,6 +33,9 @@ public class MovementController : MonoBehaviour
 
     public void Update()
     {
+        isSelected = true;
+
+        viewMatrix = Matrix4x4.Inverse(cameraTransform.localToWorldMatrix);
         //Updates the values to what we set in the settings
         /*
         DragMovementSpeed = PlayerPrefs.GetFloat("DragMovementSpeed");
@@ -53,7 +52,7 @@ public class MovementController : MonoBehaviour
 
         Quaternion phoneRotation = Input.gyro.attitude;
 
-        text.text = phoneRotation.eulerAngles + " " + cameraTransform.rotation.eulerAngles;
+       // text.text = phoneRotation.eulerAngles + " " + cameraTransform.rotation.eulerAngles;
 
         Touch touch = Input.GetTouch(0);
 
@@ -166,17 +165,17 @@ public class MovementController : MonoBehaviour
                 prevAccelerationY = gyroMovement;
 
             }
-            for (int i = 0; i < outlines.Count; i++)
-            {
-                outlines[i].enabled = true;
-            }
+         ///   for (int i = 0; i < outlines.Count; i++)
+           // {
+        //        outlines[i].enabled = true;
+        //    }
         }
         else
         {
-            for (int i = 0; i < outlines.Count; i++)
-            {
-                outlines[i].enabled = false;
-            }
+           // for (int i = 0; i < outlines.Count; i++)
+           // {
+          //      outlines[i].enabled = false;
+           // }
         }
 
 
