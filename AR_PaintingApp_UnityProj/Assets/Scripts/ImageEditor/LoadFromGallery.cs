@@ -16,15 +16,13 @@ public class LoadFromGallery : MonoBehaviour
 
     [SerializeField]
     Texture2D testTexture;
-   
+
+    public bool shouldCrop = false;
 
     public void ImageFromGallery()
     {
         //get texture applied
         PickImage(0);
-        
-       
-
     }
 
     private void PickImage(int maxSize)
@@ -44,7 +42,7 @@ public class LoadFromGallery : MonoBehaviour
         Debug.Log("Permission result: " + permission);
     }
 
-    private void Update()
+    public void Crop()
     {
         TextureCanvasRenderer.material.mainTexture = testTexture;
 
@@ -57,5 +55,13 @@ public class LoadFromGallery : MonoBehaviour
         objectTrans.localScale = newScale;
         objectTrans.position = new Vector3(0, 0, 3.28f);
         objectTrans.rotation = Quaternion.Euler(0, 180, 0);
+    }
+
+    private void Update()
+    {
+       if (shouldCrop)
+        {
+            Crop();
+        }
     }
 }

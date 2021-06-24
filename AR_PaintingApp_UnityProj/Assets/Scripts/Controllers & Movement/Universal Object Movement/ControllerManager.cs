@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ControllerManager : MonoBehaviour
 {
-    [SerializeField]
+
     private Camera cameraObject;
 
     [SerializeField]
@@ -13,8 +13,15 @@ public class ControllerManager : MonoBehaviour
     public bool isSelectionMode; //We will only check for selections if this is on
     //This avoids unwanted selection (1 input that can do 2 things does NOT work well)
 
+    public void Start()
+    {
+        cameraObject = Camera.main;
+    }
+
     public void Update()
     {
+
+
         //Code to select specific objects
         if (isSelectionMode)
         {

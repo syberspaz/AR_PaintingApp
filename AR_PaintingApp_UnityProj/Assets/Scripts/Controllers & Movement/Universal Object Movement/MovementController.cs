@@ -30,15 +30,19 @@ public class MovementController : MonoBehaviour
     private Text text;
 
 
-
+    public void Start()
+    {
+        cameraTransform = Camera.main.transform;
+    }
 
     public void Update()
     {
         //Updates the values to what we set in the settings
+        /*
         DragMovementSpeed = PlayerPrefs.GetFloat("DragMovementSpeed");
         GyroMovementSpeed = PlayerPrefs.GetFloat("GyroMovementSpeed");
         pinchScalingSpeed = PlayerPrefs.GetFloat("PinchScaleSpeed");
-
+        */
 
         float pinchAmount = 0f;
         Quaternion desiredRotation = transform.rotation;
