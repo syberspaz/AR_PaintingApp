@@ -16,6 +16,8 @@ public class TutorialObjectSpawner : MonoBehaviour
 
     public GameObject spawningPrefab;
 
+    public bool isMovementControllerSpawner;
+
     public void SpawnTutorialObject()
     {
       
@@ -40,6 +42,12 @@ public class TutorialObjectSpawner : MonoBehaviour
         if (shouldParent)
         {
             newSpawnedObj.transform.parent = Camera.main.transform;
+        }
+
+        if (isMovementControllerSpawner)
+        {
+            GameObject controllerManager = GameObject.Find("Controller Manager");
+            controllerManager.GetComponent<ControllerManager>().movementControllers.Add(spawningPrefab.GetComponent<MovementController>());
         }
 
         GameObject.Destroy(newSpawnedObj, TimeBeforeDestroy);
