@@ -14,13 +14,15 @@ public class TutorialObjectSpawner : MonoBehaviour
 
     public float TimeBeforeDestroy;
 
-    public GameObject spawningPrefab;
+    public string NewMessage;
+
+    public bool isBubble;
 
     public bool isMovementControllerSpawner;
 
-    public void SpawnTutorialObject()
+    public void SpawnTutorialObject(GameObject Gameobj)
     {
-      
+        //handles spawning objects in the tutorial menu
 
         Matrix4x4 viewMatrix = Camera.main.worldToCameraMatrix;
 
@@ -37,7 +39,13 @@ public class TutorialObjectSpawner : MonoBehaviour
         PlacingLocation = Camera.main.transform.position;
         PlacingLocation -= forward; //calculate final spawning position
 
-        GameObject newSpawnedObj = Instantiate(spawningPrefab, PlacingLocation, Quaternion.identity); //spawn object
+        if (isBubble)
+        {
+
+            PlacingLocation.y -= 2;
+        }
+
+        GameObject newSpawnedObj = Instantiate(Gameobj, PlacingLocation, Quaternion.identity); //spawn object
 
         if (shouldParent)
         {
@@ -47,9 +55,17 @@ public class TutorialObjectSpawner : MonoBehaviour
         if (isMovementControllerSpawner)
         {
             GameObject controllerManager = GameObject.Find("Controller Manager");
-            controllerManager.GetComponent<ControllerManager>().movementControllers.Add(spawningPrefab.GetComponent<MovementController>());
+            controllerManager.GetComponent<ControllerManager>().movementControllers.Add(Gameobj.GetComponent<MovementController>());
         }
-
+        if(isBubble)
+        {
+            newSpawnedObj.GetComponent<PopUp>().PopupText.text = NewMessage;
+        }
+        if (TimeBeforeDestroy == 0)
+        {
+            return;
+        }
+        else
         GameObject.Destroy(newSpawnedObj, TimeBeforeDestroy);
 
     }

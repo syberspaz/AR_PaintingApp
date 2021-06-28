@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3618539526628819975}
+  - component: {fileID: 2561549823073515152}
+  - component: {fileID: 1785846056352285899}
   m_Layer: 0
   m_Name: 3d_Caliper
   m_TagString: Untagged
@@ -31,6 +33,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2561549823073515152
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3618539526628819992}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bc41ca18dd3795243aaf1eb798dfd955, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1785846056352285899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3618539526628819992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 380685294254c604da4203761e0bfa07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Openness: 0.19
 --- !u!1001 &3618539527193890132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97,7 +131,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 4e2247099ee4a1d47be4cc9e6127f341, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 635d56a58ef6d0d468898cbfe1eca8d0, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4e2247099ee4a1d47be4cc9e6127f341, type: 3}
       propertyPath: m_Name
       value: Painted Caliper left Arm
@@ -174,7 +208,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 6d069770b7f0dde4c9d8d411f490a745, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 635d56a58ef6d0d468898cbfe1eca8d0, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6d069770b7f0dde4c9d8d411f490a745, type: 3}
       propertyPath: m_Name
       value: Painted Caliper Center
@@ -252,7 +286,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: e991a5f3ce658504f8d53f25abb5e38d, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 635d56a58ef6d0d468898cbfe1eca8d0, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e991a5f3ce658504f8d53f25abb5e38d, type: 3}
       propertyPath: m_Name
       value: Painted Caliper Right Arm
