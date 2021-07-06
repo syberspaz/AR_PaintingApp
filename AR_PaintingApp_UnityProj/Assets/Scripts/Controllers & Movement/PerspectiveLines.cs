@@ -31,6 +31,8 @@ public class PerspectiveLines : MonoBehaviour
     [SerializeField]
     private GameObject linesUI;
 
+    public bool isEnabled = false;
+
 
     private void Update()
     {
@@ -42,26 +44,24 @@ public class PerspectiveLines : MonoBehaviour
         {
             return;
         }
-
-        //if touch raycasts onto a plane (valid placement), we can continue with the code that places the lines
-        if (raycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon) && linesUI.activeSelf)
+        if (isEnabled)
         {
-
-            var hitPos = s_Hits[0].pose;
-
-            end = (hitPos.forward * LineLength) + hitPos.position;
-
-            for (int i = 0; i < NumberOfLines; i++)
+            //if touch raycasts onto a plane (valid placement), we can continue with the code that places the lines
+            if (raycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon) && linesUI.activeSelf)
             {
-                //Loops based on number of lines selected by user, takes a vector and rotates it around a pivot
-                //Each line that gets drawn is a line defined by 2 vectors, the center one does not change, but the end
-                //gets rotated around the center and passed into the line drawing function
-                DrawLine(hitPos.position, end, Color.red);
-                end = RotatePointAroundPivot(end, hitPos.position, hitPos.up * RotationAmount);
+                var hitPos = s_Hits[0].pose;
+
+                end = (hitPos.forward * LineLength) + hitPos.position;
+
+                for (int i = 0; i < NumberOfLines; i++)
+                {
+                    //Loops based on number of lines selected by user, takes a vector and rotates it around a pivot
+                    //Each line that gets drawn is a line defined by 2 vectors, the center one does not change, but the end
+                    //gets rotated around the center and passed into the line drawing function
+                    DrawLine(hitPos.position, end, Color.red);
+                    end = RotatePointAroundPivot(end, hitPos.position, hitPos.up * RotationAmount);
+                }
             }
-
-
-
         }
     }
 
@@ -137,5 +137,10 @@ public class PerspectiveLines : MonoBehaviour
             GameObject.Destroy(PerspectiveLines[i], 0.0f);
         }
 
+    }
+
+    public void ToggleEnable()
+    {
+        isEnabled = !isEnabled;
     }
 }

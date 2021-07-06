@@ -50,7 +50,9 @@ public class MovementController : MonoBehaviour
 
         Input.gyro.enabled = gyroEnabled;
 
-        Quaternion phoneRotation = Input.gyro.attitude;
+        Vector3 rotationRate = Input.gyro.rotationRateUnbiased;
+
+        Quaternion phoneRotation = Quaternion.Euler(rotationRate);
 
        // text.text = phoneRotation.eulerAngles + " " + cameraTransform.rotation.eulerAngles;
 

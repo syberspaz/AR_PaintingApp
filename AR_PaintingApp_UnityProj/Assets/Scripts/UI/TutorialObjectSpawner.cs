@@ -10,16 +10,22 @@ public class TutorialObjectSpawner : MonoBehaviour
 
     public float distanceFromCamera;
 
-    public bool shouldParent;
+    private ControllerManager controllerManager;
 
-    public float TimeBeforeDestroy;
+    [SerializeField]
+    GameObject GreenBubble;
 
-    public string NewMessage;
+    [SerializeField]
+    GameObject RedBubble;
 
-    public bool isBubble;
+    public bool isRedBubble;
 
-    public bool isMovementControllerSpawner;
+    private void Start()
+    {
+        controllerManager = GameObject.FindGameObjectWithTag("ControllerManager").GetComponent<ControllerManager>();
+            }
 
+    //this is the blank one
     public void SpawnTutorialObject(GameObject Gameobj)
     {
         //handles spawning objects in the tutorial menu
@@ -39,35 +45,73 @@ public class TutorialObjectSpawner : MonoBehaviour
         PlacingLocation = Camera.main.transform.position;
         PlacingLocation -= forward; //calculate final spawning position
 
-        if (isBubble)
-        {
+        GameObject newSpawnedObj = Instantiate(Gameobj, PlacingLocation, Quaternion.identity); //spawn object
+    }
 
-            PlacingLocation.y -= 2;
+    //For spawning tutorial bubbles
+    public void SpawnTutorialBubble(string Message)
+    {
+        //handles spawning objects in the tutorial menu
+
+        Matrix4x4 viewMatrix = Camera.main.worldToCameraMatrix;
+
+        //Get forward vec
+        Vector3 forward;
+        forward.x = viewMatrix.m20;
+        forward.y = viewMatrix.m21;
+        forward.z = viewMatrix.m22;
+
+        forward.Normalize();
+        forward *= distanceFromCamera; //apply our distance
+
+        Vector3 PlacingLocation;
+        PlacingLocation = Camera.main.transform.position;
+        PlacingLocation -= forward; //calculate final spawning position
+
+        GameObject newSpawnedObj;
+
+        if (isRedBubble)
+        {
+             newSpawnedObj = Instantiate(RedBubble, PlacingLocation, Quaternion.identity); //spawn object
         }
+        else
+        {
+             newSpawnedObj = Instantiate(GreenBubble, PlacingLocation, Quaternion.identity); //spawn object
+        }
+
+
+        PopUp pop = newSpawnedObj.GetComponent<PopUp>();
+        pop.ChangeText(Message);
+    }
+
+    public void SpawnMovementController(GameObject Gameobj)
+    {
+        //handles spawning objects in the tutorial menu
+
+        Matrix4x4 viewMatrix = Camera.main.worldToCameraMatrix;
+
+        //Get forward vec
+        Vector3 forward;
+        forward.x = viewMatrix.m20;
+        forward.y = viewMatrix.m21;
+        forward.z = viewMatrix.m22;
+
+        forward.Normalize();
+        forward *= distanceFromCamera; //apply our distance
+
+        Vector3 PlacingLocation;
+        PlacingLocation = Camera.main.transform.position;
+        PlacingLocation -= forward; //calculate final spawning position
 
         GameObject newSpawnedObj = Instantiate(Gameobj, PlacingLocation, Quaternion.identity); //spawn object
 
-        if (shouldParent)
+        MovementController controller = newSpawnedObj.GetComponent<MovementController>();
+        
+        if (controller != null)
         {
-            newSpawnedObj.transform.parent = Camera.main.transform;
+            controllerManager.movementControllers.Add(controller);
         }
-
-        if (isMovementControllerSpawner)
-        {
-            GameObject controllerManager = GameObject.Find("Controller Manager");
-            controllerManager.GetComponent<ControllerManager>().movementControllers.Add(Gameobj.GetComponent<MovementController>());
-        }
-        if(isBubble)
-        {
-            newSpawnedObj.GetComponent<PopUp>().PopupText.text = NewMessage;
-        }
-        if (TimeBeforeDestroy == 0)
-        {
-            return;
-        }
-        else
-        GameObject.Destroy(newSpawnedObj, TimeBeforeDestroy);
-
+        
     }
 
 }
