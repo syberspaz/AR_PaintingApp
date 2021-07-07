@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Options_Scene.unity
     guid: b285d76d5e5b0c54ea4e9b7476ceb95e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ExploreMode.unity
     guid: e05a5537b9efaa140b0a7012c5b32973
   - enabled: 1
