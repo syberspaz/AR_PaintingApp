@@ -37,11 +37,26 @@ public class MovementController : MonoBehaviour
 
         viewMatrix = Matrix4x4.Inverse(cameraTransform.localToWorldMatrix);
         //Updates the values to what we set in the settings
-        /*
+
         DragMovementSpeed = PlayerPrefs.GetFloat("DragMovementSpeed");
         GyroMovementSpeed = PlayerPrefs.GetFloat("GyroMovementSpeed");
         pinchScalingSpeed = PlayerPrefs.GetFloat("PinchScaleSpeed");
-        */
+
+        if (PlayerPrefs.GetFloat("DragMovementSpeed") == 0)
+        {
+            DragMovementSpeed = 0.5f;
+        }
+        if (PlayerPrefs.GetFloat("GyroMovementSpeed") == 0)
+        {
+            GyroMovementSpeed = 0.5f;
+        }
+        if (PlayerPrefs.GetFloat("PinchScaleSpeed") == 0)
+        {
+            pinchScalingSpeed = 0.5f;
+        }
+
+      
+        
 
         float pinchAmount = 0f;
         Quaternion desiredRotation = transform.rotation;
@@ -107,7 +122,7 @@ public class MovementController : MonoBehaviour
 
                 //By multiplying by the up and sideways vectors, we can move in 3d space based on the orientation of the camera
                 Movement += up * touchInput.y;
-                Movement -= sideways * touchInput.x;
+                Movement += sideways * touchInput.x;
 
                 Movement = Movement * DragMovementSpeed;
 

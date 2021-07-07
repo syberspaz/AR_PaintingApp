@@ -186,6 +186,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1308715385564287166, guid: 4872d871c1b9e944197171972363970e, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1620716843}
     - target: {fileID: 3268834675495694284, guid: 4872d871c1b9e944197171972363970e, type: 3}
       propertyPath: m_text
       value: Welcome to the AR Painting App. Use the wheel at the bottom right to

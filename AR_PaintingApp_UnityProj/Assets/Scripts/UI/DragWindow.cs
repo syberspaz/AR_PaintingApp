@@ -15,9 +15,12 @@ public class DragWindow : MonoBehaviour, IDragHandler
 
     [SerializeField] private GameObject canvas;
 
-    [SerializeField]
     private Camera camera;
 
+    public void Start()
+    {
+        camera = Camera.main;
+    }
 
     public void OnDrag(PointerEventData eventData)
     {

@@ -15,33 +15,29 @@ public class TogglePlaneDetection : MonoBehaviour
 {
     private ARPlaneManager planeManager;
 
+    public bool Enabled = false; //More to show than to switch
+
     [SerializeField]
     private Text toggleButtonText;
 
     private void Awake()
     {
+
         planeManager = GetComponent<ARPlaneManager>();
+
+        SetAllPlannesActive(Enabled);
 
         toggleButtonText.text = "Disable";
     }
 
     public void PlaneDetectionToggle()
     {
-        planeManager.enabled = !planeManager.enabled;
-        string toggleButtonMessage = "";
 
-        if (planeManager.enabled)
-        {
-            toggleButtonMessage = "Disable";
-            SetAllPlannesActive(true);
-        }
-        else
-        {
-            toggleButtonMessage = "Enable";
-            SetAllPlannesActive(false);
-        }
+        Enabled = !Enabled;
 
-        toggleButtonText.text = toggleButtonMessage;
+
+       SetAllPlannesActive(Enabled);
+    
     }
 
     private void SetAllPlannesActive(bool value)

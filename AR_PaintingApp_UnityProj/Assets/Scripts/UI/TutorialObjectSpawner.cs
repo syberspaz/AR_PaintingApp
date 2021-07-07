@@ -23,7 +23,7 @@ public class TutorialObjectSpawner : MonoBehaviour
     private void Start()
     {
         controllerManager = GameObject.FindGameObjectWithTag("ControllerManager").GetComponent<ControllerManager>();
-            }
+    }
 
     //this is the blank one
     public void SpawnTutorialObject(GameObject Gameobj)
