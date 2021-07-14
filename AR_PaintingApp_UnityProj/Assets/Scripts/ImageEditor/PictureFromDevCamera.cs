@@ -55,6 +55,8 @@ public class PictureFromDevCamera : MonoBehaviour
 		Texture2D newTex = new Texture2D(cameraTexture.width, cameraTexture.height);
 		newTex.SetPixels(colors);
 		newTex.Apply();
+		TextureScale.Bilinear(newTex, 300, 300);
+
 		mainImageRenderer.material.mainTexture = newTex;
 		userMarkerHandler.restoreTex = newTex;
 

@@ -21,11 +21,10 @@ namespace OpenCvSharp
         private int PixelCount; //needed for % calcs
 
         [SerializeField]
-        private Texture2D testImage;
+        private Renderer ImageObject;
 
         //debug
-        [SerializeField]
-        private RawImage visalizer;
+     
 
         public int jump;
 
@@ -105,23 +104,33 @@ namespace OpenCvSharp
 
         private void CreateListFromImage()
         {
-            var temp = DateTime.Now;
+
+        
+
+            Texture CanvasTexture = ImageObject.material.mainTexture;
+
+            Texture2D inputTexture = CanvasTexture as Texture2D;
+
+            TextureScale.Bilinear(inputTexture, 300, 300);
+
+            inputTexture.Apply();
+
+            Debug.Log("Starting Kmeans"); //this prints
+
+            Mat InputMat = new Mat();
 
             Mat outputMat = new Mat();
+
             //first reduce colors in the image
-            Kmeans(Unity.TextureToMat(testImage), outputMat, k);
+            Kmeans(Unity.TextureToMat(inputTexture), outputMat, k);
 
-
+            Debug.Log("Finished kmeans"); //this doesn't print
 
             Texture2D inputTextureQuantized = Unity.MatToTexture(outputMat);
-
-            visalizer.texture = inputTextureQuantized;
 
             PixelCount = 0;
 
             List<Color> allSampledPixels = new List<Color>();
-
-
 
             //samples every nth pixel (n being whatever the value of jump is set to in the inspector) and stores them in a list
             for (int i = 0; i < inputTextureQuantized.width; i += jump)
@@ -157,24 +166,15 @@ namespace OpenCvSharp
             //sort the list from lowest count to highest count
             myList.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
 
-            Debug.Log("Excecution time was: " + (DateTime.Now - temp).ToString());
-
             MakeGraph(myList);
 
         }
 
 
-        public void Start()
+        public void CreateColorPallete()
         {
-           
-
-            CreateListFromImage(); //also makes the graph
-
-            //
-
-          
-
-          
+            Debug.Log("Generating Pallete");
+            CreateListFromImage();
 
         }
 
