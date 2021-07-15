@@ -2722,6 +2722,7 @@ MonoBehaviour:
   dragSpeedSlider: {fileID: 0}
   gyroSpeedSlider: {fileID: 0}
   pinchScaleSlider: {fileID: 0}
+  parentGO: {fileID: 0}
 --- !u!1 &660476917
 GameObject:
   m_ObjectHideFlags: 0
@@ -7269,11 +7270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100828587843553282, guid: 5030a4d839632314397286cbc52bce81, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.01
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 9100828587843553282, guid: 5030a4d839632314397286cbc52bce81, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.01
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 9100828587843553282, guid: 5030a4d839632314397286cbc52bce81, type: 3}
       propertyPath: m_LocalScale.z

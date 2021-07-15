@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76ed93e6192e189478d228a356260516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  cam: {fileID: 1832631842}
   quad: {fileID: 923244938}
   fcp: {fileID: 1562835989}
   restoreTex: {fileID: 2800000, guid: 66d177bb924b2a04ebb88835ba39133a, type: 3}

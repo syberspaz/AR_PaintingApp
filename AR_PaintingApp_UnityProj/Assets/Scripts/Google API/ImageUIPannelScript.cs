@@ -34,7 +34,7 @@ public class ImageUIPannelScript : MonoBehaviour
     {
         if (selectionDisplay.texture != null) //Check to make sure there is a valid selection
         {
-            GameObject newPlane = Instantiate(referenceImageQuadPrefab, new Vector3(0,0,0), Quaternion.identity); //spawns at 0,0,0
+            GameObject newPlane = Instantiate(referenceImageQuadPrefab, new Vector3(-1,-1,0), Quaternion.identity); //spawns at 0,0,0
             newPlane.tag = "ReferenceImageQuad";
             newPlane.GetComponent<Renderer>().material.mainTexture = selectionDisplay.texture;
             transformController.movementControllers.Add(newPlane.GetComponent<MovementController>());
