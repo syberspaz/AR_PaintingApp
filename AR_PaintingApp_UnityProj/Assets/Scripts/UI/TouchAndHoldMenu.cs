@@ -13,18 +13,18 @@ public class TouchAndHoldMenu : MonoBehaviour
 
     private float internalDismissTimer;
 
-    public Text debugText;
+    public bool isMenuActive = false;
 
     [SerializeField]
-    private GameObject spawningMenuObject;
+    private GameObject menuObject;
 
-    public bool isMenuActive = false;
+    //this script just spawns and despawns an object based on touch + hold controls, mostly just used for 1 menu
 
     void Update()
     {
-        spawningMenuObject.SetActive(isMenuActive);
+        menuObject.SetActive(isMenuActive);
         CheckForTouchHold();
-      
+
     }
 
     private void CheckForTouchHold()
