@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 public class PaletteMenuSelection : MonoBehaviour
 {
 
@@ -12,23 +13,29 @@ public class PaletteMenuSelection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Touch touch = Input.GetTouch(0);
 
-        RaycastHit hit;
-
-        if (!Physics.Raycast(Camera.main.ScreenPointToRay(touch.position), out hit))
-            return;
-        else
+        if (Input.GetMouseButtonDown(0))
         {
-            text.text = "Processing Touch";
-            ProcessMenuTouch(hit.rigidbody.gameObject);
+            Debug.Log("Clicked");
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            {
+                text.text = "Processing Touch";
+               // Debug.Log(hit.transform.gameObject);
+                ProcessMenuTouch(hit.transform.gameObject);
+            }
+            else
+            {
+                text.text = "No Hit";
+                return;
+            }
         }
     }
 
     private void ProcessMenuTouch(GameObject menuItem)
     {
-        text.text = "Hit, going through to check";
-
+        text.text = "ProcessMenuTouchFuncCalled";
+        
         PaletteMenuItem item;
 
         if (menuItem.TryGetComponent<PaletteMenuItem>(out item))
@@ -50,6 +57,11 @@ public class PaletteMenuSelection : MonoBehaviour
             if (item.ToolType == 2)
             {
                 //perspective lines
+                item.toolGO[0].GetComponent<TogglePlaneDetection>().PlaneDetectionToggle();
+                item.toolGO[1].GetComponent<PerspectiveLines>().ToggleEnable();
+                item.toolGO[2].SetActive(true);
+
+
 
             }
             if (item.ToolType == 3)
@@ -61,8 +73,9 @@ public class PaletteMenuSelection : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Invalid Selection");
+            text.text = "Hit, but not a menu item, ignore";
         }
+        
     }
-
+        
 }

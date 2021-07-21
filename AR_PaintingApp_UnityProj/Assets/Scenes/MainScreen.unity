@@ -467,9 +467,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToHold: 2
   TimeToDismiss: 0.5
-  debugText: {fileID: 1641092843}
-  spawningMenuObject: {fileID: 253768232}
   isMenuActive: 0
+  menuObject: {fileID: 0}
 --- !u!4 &469825784
 Transform:
   m_ObjectHideFlags: 0
