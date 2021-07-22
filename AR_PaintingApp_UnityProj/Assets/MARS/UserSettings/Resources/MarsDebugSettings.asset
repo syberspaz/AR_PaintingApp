@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68c9b4a5963ba6245a9b0852f786fbd0, type: 3}
+  m_Script: {fileID: 0}
   m_Name: MarsDebugSettings
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Unity.MARS:Unity.MARS.Settings:MarsDebugSettings
   m_SceneModuleLogging: 0
   m_GeolocationModuleLogging: 0
   m_QuerySimulationModuleLogging: 0

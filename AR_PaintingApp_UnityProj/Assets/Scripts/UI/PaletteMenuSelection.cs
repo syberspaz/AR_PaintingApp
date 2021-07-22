@@ -67,7 +67,7 @@ public class PaletteMenuSelection : MonoBehaviour
             if (item.ToolType == 3)
             {
                 //image search
-
+                item.toolGO[0].GetComponent<ValueToggler>().ToggleValue();
             }
 
         }

@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb0c7a3cd3246ee4487b03f8cbe00b7c, type: 3}
+  m_Script: {fileID: 0}
   m_Name: SimulatedObjectsManager
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Unity.MARS.Editor:UnityEditor.MARS.Simulation:SimulatedObjectsManager

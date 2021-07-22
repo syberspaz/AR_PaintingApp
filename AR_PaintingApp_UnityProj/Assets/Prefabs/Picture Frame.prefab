@@ -27,11 +27,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734303573100180518}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 1, z: 1.06}
+  m_LocalPosition: {x: 0, y: 1, z: 1.0600002}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1}
   m_Children: []
-  m_Father: {fileID: 7859375704819750598}
-  m_RootOrder: 1
+  m_Father: {fileID: 7305446224559138718}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &4792560902083149464
 MeshFilter:
@@ -122,9 +122,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005236378804090021}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6490688689584746042}
   m_Father: {fileID: 7859375704819750598}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -203,11 +204,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7375150425159076988}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 3.28}
+  m_LocalPosition: {x: 0, y: 0, z: 3.33}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 7305446224559138718}
-  - {fileID: 6490688689584746042}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -225,6 +225,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextureCanvasRenderer: {fileID: 5150577643718016237}
   objectTrans: {fileID: 0}
+  testTexture: {fileID: 0}
+  shouldCrop: 0
 --- !u!114 &5903706990173666726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,4 +263,3 @@ MonoBehaviour:
   DragMovementSpeed: 2
   GyroMovementSpeed: 0.2
   pinchScalingSpeed: 0.1
-  text: {fileID: 0}
