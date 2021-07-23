@@ -462,13 +462,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 469825782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f17ace9c0f82064479e4de9507a0f7cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f40349177f7a5a4fb6ed1ac4f2a7590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToHold: 2
-  TimeToDismiss: 0.5
-  isMenuActive: 0
-  menuObject: {fileID: 0}
 --- !u!4 &469825784
 Transform:
   m_ObjectHideFlags: 0
