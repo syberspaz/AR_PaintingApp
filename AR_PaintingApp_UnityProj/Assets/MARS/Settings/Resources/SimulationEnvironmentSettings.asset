@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15448c54fd2dd1143a5d9c99ddd39f3f, type: 3}
+  m_Script: {fileID: 0}
   m_Name: SimulationEnvironmentSettings
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Unity.MARS:Unity.MARS.Simulation:SimulationEnvironmentSettings
   m_SimulationEnvironmentLayer: 0

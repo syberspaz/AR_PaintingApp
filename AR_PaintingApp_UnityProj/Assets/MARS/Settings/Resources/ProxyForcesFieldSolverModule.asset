@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8949285cdd393449ab629c30f2b2a7ee, type: 3}
+  m_Script: {fileID: 0}
   m_Name: ProxyForcesFieldSolverModule
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Unity.MARS:Unity.MARS.Forces:ProxyForcesFieldSolverModule
   m_ShowForcesInSceneView: 0

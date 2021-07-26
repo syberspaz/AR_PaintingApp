@@ -17,8 +17,8 @@ public class TogglePlaneDetection : MonoBehaviour
 
     public bool Enabled = false; //More to show than to switch
 
-    [SerializeField]
-    private Text toggleButtonText;
+   // [SerializeField]
+   // private Text toggleButtonText;
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class TogglePlaneDetection : MonoBehaviour
 
         SetAllPlannesActive(Enabled);
 
-        toggleButtonText.text = "Disable";
+     //   toggleButtonText.text = "Disable";
     }
 
     public void PlaneDetectionToggle()

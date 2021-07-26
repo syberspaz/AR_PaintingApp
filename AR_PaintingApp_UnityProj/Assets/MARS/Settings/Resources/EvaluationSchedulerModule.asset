@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa8c106d6a5342ff80a3e8191ace4f5f, type: 3}
+  m_Script: {fileID: 0}
   m_Name: EvaluationSchedulerModule
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Unity.MARS:Unity.MARS.Query:EvaluationSchedulerModule
   m_StartupMode: 1
   m_EvaluationInterval: 0.3
   m_MinimumEvaluationInterval: 0.2
