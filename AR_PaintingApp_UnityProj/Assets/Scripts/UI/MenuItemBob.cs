@@ -24,6 +24,9 @@ public class MenuItemBob : MonoBehaviour
     [SerializeField]
     public float rotationT = 0;
 
+    [SerializeField]
+    public bool isRotationEndless;
+
     [Tooltip("lower number is slower higher number is faster")]
     [SerializeField]
     public float moveSpeed;
@@ -38,6 +41,7 @@ public class MenuItemBob : MonoBehaviour
         if (moveT >= 1)
         {
             isForwardsMove = false;
+            
         }
         if (moveT <= 0)
         {
@@ -58,6 +62,10 @@ public class MenuItemBob : MonoBehaviour
 
         if (rotationT >= 1)
         {
+            if (isRotationEndless)
+            {
+                rotationT = 0;
+            }
             isForwardsRotation = false;
         }
         if (rotationT <= 0)
@@ -73,6 +81,8 @@ public class MenuItemBob : MonoBehaviour
         else
         {
             rotationT -= Time.deltaTime * rotationSpeed;
+
+
         }
 
         transform.localPosition = Vector3.Lerp(startingPosition, endingPosition, moveT);
