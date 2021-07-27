@@ -6,27 +6,28 @@ using UnityEngine.XR.ARFoundation;
 public class PaletteMenuSelection : MonoBehaviour
 {
 
-
     [SerializeField]
-    Text text;
-   
+    private GameObject menuObject;
+
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(0))
+        Touch touch = Input.GetTouch(0);
+
+        if (touch.phase == TouchPhase.Began && menuObject.activeSelf)
         {
             Debug.Log("Clicked");
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(touch.position), out hit))
             {
-                text.text = "Processing Touch";
+              
                // Debug.Log(hit.transform.gameObject);
                 ProcessMenuTouch(hit.transform.gameObject);
             }
             else
             {
-                text.text = "No Hit";
+
                 return;
             }
         }
@@ -34,7 +35,7 @@ public class PaletteMenuSelection : MonoBehaviour
 
     private void ProcessMenuTouch(GameObject menuItem)
     {
-        text.text = "ProcessMenuTouchFuncCalled";
+        
         
         PaletteMenuItem item;
 
@@ -45,7 +46,7 @@ public class PaletteMenuSelection : MonoBehaviour
 
             if (item.ToolType == 1)
             {
-                text.text = "Caliper Menu";
+
 
                 //Caliper Tools
                 item.toolGO[0].SetActive(true);
@@ -56,6 +57,8 @@ public class PaletteMenuSelection : MonoBehaviour
             }
             if (item.ToolType == 2)
             {
+              
+
                 //perspective lines
                 item.toolGO[0].GetComponent<TogglePlaneDetection>().PlaneDetectionToggle();
                 item.toolGO[1].GetComponent<PerspectiveLines>().ToggleEnable();
@@ -73,7 +76,7 @@ public class PaletteMenuSelection : MonoBehaviour
         }
         else
         {
-            text.text = "Hit, but not a menu item, ignore";
+           
         }
         
     }
