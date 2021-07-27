@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainScreen.unity
     guid: 8d4684040d043a64db2dc53985d82faa
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Options_Scene.unity
     guid: b285d76d5e5b0c54ea4e9b7476ceb95e
   - enabled: 1
     path: Assets/Scenes/ExploreMode.unity
     guid: e05a5537b9efaa140b0a7012c5b32973
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/2D_Image_Editor.unity
     guid: 9ef57c0a8721d8a40ab87e57fa4cf00c
   m_configObjects:
