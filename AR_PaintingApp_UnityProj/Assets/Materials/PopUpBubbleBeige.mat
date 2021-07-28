@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3752812701433297954
+--- !u!114 &-8476264330785287499
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,20 +20,21 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Liquid
-  m_Shader: {fileID: -6465566751694194690, guid: f3e6c19032550044ba6713466cc34c72, type: 3}
+  m_Name: PopUpBubbleBeige
+  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 1
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 26a35e990d0a02a4ca4d25ef26026808, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -57,7 +58,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 26a35e990d0a02a4ca4d25ef26026808, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -89,10 +90,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_0cff090851e04e78878f99b815736b81: 0.09
-    - Vector1_49befed511cb418693231c7a44fc03bb: 0.48
-    - Vector1_8521bca10ba346b18f990b980cfdb0b3: 0.09
-    - Vector1_f1d1d45415284091913d784e2c526231: -0.31
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -112,24 +109,17 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _SampleGI: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _WobbleX: 0
-    - _WobbleZ: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_33319601c5d04558ba9aba6213b241bd: {r: 0, g: 0.6348052, b: 1, a: 0}
-    - Color_6ba469a06b094a0eb746fcf5fbd8da27: {r: 0.21560162, g: 0.48315054, b: 0.8018868, a: 0.36862746}
-    - Color_a23a45c716ec40f0bc58bc754e245f12: {r: 0, g: 1, b: 0.992012, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 0, g: 0.09511185, b: 1, a: 0}
-    - _LiquidColor: {r: 0, g: 0.288177, b: 1, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _SurfaceColor: {r: 0, g: 0.21038437, b: 1, a: 0}
   m_BuildTextureStacks: []
