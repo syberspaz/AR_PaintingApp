@@ -8,7 +8,7 @@ public class ValueToggler : MonoBehaviour
     [SerializeField]
     private GameObject goToggler;
 
-    private bool Value;
+    private bool Value = false; //assume false, if object is active it will get set to active in Start
 
     private void Start()
     {
