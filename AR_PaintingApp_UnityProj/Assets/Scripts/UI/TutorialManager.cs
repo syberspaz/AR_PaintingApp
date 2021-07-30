@@ -11,6 +11,9 @@ public class TutorialManager : MonoBehaviour
     private GameObject caliperObject;
 
     [SerializeField]
+    private GameObject caliperUIObject;
+
+    [SerializeField]
     private GameObject movementTutLocation;
 
     [SerializeField]
@@ -21,10 +24,18 @@ public class TutorialManager : MonoBehaviour
 
     [SerializeField]
     private GameObject perspectiveLinesObject;
+    [SerializeField]
+    private TogglePlaneDetection toggler;
+
+    
 
     private int PaletteMenuTutProgress = 0;
 
     private int CaliperTutProgress = 0;
+
+    private int PersLineTutProgress = 0;
+
+    private int SearchTutProgress = 0;
 
     [SerializeField]
     private GameObject PaletteMenuTutBubble;
@@ -45,6 +56,7 @@ public class TutorialManager : MonoBehaviour
 
         if (PaletteMenuTutProgress == 2)
         {
+            paletteMenu.SetActive(false);
             PaletteMenuTutBubble.SetActive(true);
             PaletteMenuTutProgress = 0; //resets the tutorial
         }
@@ -53,7 +65,25 @@ public class TutorialManager : MonoBehaviour
 
         if (CaliperTutProgress == 1)
         {
+            caliperObject.SetActive(false);
+            caliperUIObject.SetActive(false);
+            movementTutLocation.SetActive(false);
+            CaliperTutBubble.SetActive(true);
+            CaliperTutProgress = 0;
+        }
 
+        if (PersLineTutProgress == 1)
+        {
+            PerspectiveLinesTutBubble.SetActive(true);
+            perspectiveLinesObject.SetActive(false);
+            PersLineTutProgress = 0;
+        }
+
+        if (SearchTutProgress == 1)
+        {
+            ImageSearchTutBubble.SetActive(true);
+            imageSearchUIObject.SetActive(false);
+            SearchTutProgress = 0;
         }
 
     }
@@ -77,6 +107,7 @@ public class TutorialManager : MonoBehaviour
             if (caliperObject.GetComponent<CaliperController>().Openness >= 0.95f)
             {
                 CaliperTutProgress = 1;
+                movementTutLocation.transform.position = new Vector3(100, 100, 100);
             }
         }
     }
@@ -86,5 +117,32 @@ public class TutorialManager : MonoBehaviour
         //just opens directly to explore mode
         SceneManager.LoadScene(2);
     }
+
+    public void PerspectiveLinesTutorialCheck()
+    {
+     
+
+        GameObject[] PerspectiveLines = GameObject.FindGameObjectsWithTag("PerspectiveLine");
+
+        if (PerspectiveLines.Length >= 1)
+        {
+
+            for (int i = 0; i < PerspectiveLines.Length; i++)
+            {
+                GameObject.Destroy(PerspectiveLines[i], 0.0f);
+            }
+            toggler.PlaneDetectionToggle();
+            PersLineTutProgress = 1;
+
+        }
+    }
+
+    public void ImageSearchTutorialCheck()
+    {
+        Debug.Log(":)");
+        GameObject.Destroy(GameObject.Find("ReferenceImageQuad"));
+        SearchTutProgress = 1;
+    }
+
 
 }
