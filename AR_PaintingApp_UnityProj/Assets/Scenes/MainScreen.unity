@@ -409,7 +409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8978098098609706689, guid: 72e4e4df8d4576745a9925d889cd01ff, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.81
+      value: 6.16
       objectReference: {fileID: 0}
     - target: {fileID: 8978098098609706689, guid: 72e4e4df8d4576745a9925d889cd01ff, type: 3}
       propertyPath: m_LocalRotation.w
@@ -853,8 +853,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.72, y: 4.28}
-  m_SizeDelta: {x: 176.24, y: 94.83}
+  m_AnchoredPosition: {x: 0.72, y: 5.3}
+  m_SizeDelta: {x: 161.83, y: 81.29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1534926502
 MonoBehaviour:
@@ -883,15 +883,15 @@ MonoBehaviour:
     mode gives access to all AR tools with no restrictions) Press the button to continue
     to the tutorial.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 17b411dd5bc19ae4c8e680763892da2b, type: 2}
+  m_sharedMaterial: {fileID: 263116076355454068, guid: 17b411dd5bc19ae4c8e680763892da2b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
