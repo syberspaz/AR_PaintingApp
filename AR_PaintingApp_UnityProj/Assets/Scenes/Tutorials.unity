@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5566,7 +5566,7 @@ MonoBehaviour:
   LineLength: 10
   LineThickness: 0.1
   RotationAmount: 18
-  linesUI: {fileID: 1136130099}
+  linesUI: {fileID: 927665292}
   isEnabled: 1
 --- !u!4 &1136130101
 Transform:
@@ -8690,6 +8690,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3502197764383188847, guid: 6a07b8199a401ae488c9b1247fb278ca, type: 3}
       propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3502197764383188847, guid: 6a07b8199a401ae488c9b1247fb278ca, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5635591610520510937, guid: 6a07b8199a401ae488c9b1247fb278ca, type: 3}

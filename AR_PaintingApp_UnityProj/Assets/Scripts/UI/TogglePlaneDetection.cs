@@ -25,9 +25,14 @@ public class TogglePlaneDetection : MonoBehaviour
 
         planeManager = GetComponent<ARPlaneManager>();
 
-        SetAllPlannesActive(Enabled);
+      
 
      //   toggleButtonText.text = "Disable";
+    }
+
+    public void Update()
+    {
+        SetAllPlannesActive(Enabled);
     }
 
     public void PlaneDetectionToggle()
