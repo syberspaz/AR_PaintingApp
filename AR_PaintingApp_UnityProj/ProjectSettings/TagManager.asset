@@ -7,6 +7,7 @@ TagManager:
   - PerspectiveLine
   - ReferenceImageQuad
   - ControllerManager
+  - UserToolPlane
   layers:
   - Default
   - TransparentFX

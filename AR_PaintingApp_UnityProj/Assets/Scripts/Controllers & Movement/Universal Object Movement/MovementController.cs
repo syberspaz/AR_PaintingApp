@@ -33,6 +33,9 @@ public class MovementController : MonoBehaviour
 
     public void Update()
     {
+
+       
+         
         isSelected = true;
 
         viewMatrix = Matrix4x4.Inverse(cameraTransform.localToWorldMatrix);
@@ -195,7 +198,7 @@ public class MovementController : MonoBehaviour
            // }
         }
 
-
+     
     }
 
 
