@@ -24,7 +24,7 @@ public class MoveObjectOnPlane : MonoBehaviour
         {
             if(hit.transform.gameObject.tag == "UserToolPlane")
             {
-                transform.position = hit.point - hit.transform.forward;
+                transform.position = hit.point;
                 transform.rotation = hit.transform.rotation;
             }
         }

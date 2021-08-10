@@ -58,7 +58,7 @@ public class PerspectiveLines : MonoBehaviour
             {
                 var hitPos = hit.transform;
 
-                end = (hitPos.up * LineLength) + hit.point;
+                end = (hitPos.right * LineLength) + hit.point;
 
                 for (int i = 0; i < NumberOfLines; i++)
                 {
