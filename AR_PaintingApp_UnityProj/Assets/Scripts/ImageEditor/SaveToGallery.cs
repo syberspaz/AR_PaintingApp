@@ -10,9 +10,7 @@ public class SaveToGallery : MonoBehaviour
     [SerializeField]
     RawImage test;
 
-    //debug
-    [SerializeField]
-    public Text debugText;
+
 
     private void SaveCurrentImage()
     {
@@ -25,7 +23,7 @@ public class SaveToGallery : MonoBehaviour
 
         NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(tex2D.EncodeToPNG(), "ARPaintingApp", "Image.png");
 
-        debugText.text = permission.ToString();
+
 
         Destroy(tex2D);
     }

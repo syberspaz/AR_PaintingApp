@@ -27,8 +27,6 @@ public class TouchAndHoldMenu : MonoBehaviour
     [SerializeField]
     private Camera uiCam;
 
-    [SerializeField]
-    private Text debugText;
 
     //this script just spawns and despawns an object based on touch + hold controls, mostly just used for 1 menu
     //also manages the icon that shows how close to open it is
@@ -105,8 +103,7 @@ public class TouchAndHoldMenu : MonoBehaviour
     }
 
     public void DisableMenu()
-    {
-        debugText.text = "Disabling Menu";
+    { 
         isMenuActive = false;
     }
 
