@@ -41,6 +41,9 @@ public class TutorialManager : MonoBehaviour
     private GameObject PaletteMenuTutBubble;
 
     [SerializeField]
+    private GameObject PaletteMenuManager;
+
+    [SerializeField]
     private GameObject CaliperTutBubble;
 
     [SerializeField]
@@ -56,6 +59,7 @@ public class TutorialManager : MonoBehaviour
 
         if (PaletteMenuTutProgress == 2)
         {
+            GameObject.Destroy(PaletteMenuManager);
             paletteMenu.SetActive(false);
             PaletteMenuTutBubble.SetActive(true);
             PaletteMenuTutProgress = 0; //resets the tutorial

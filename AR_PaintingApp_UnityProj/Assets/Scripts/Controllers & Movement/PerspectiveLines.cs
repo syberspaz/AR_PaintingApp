@@ -56,17 +56,21 @@ public class PerspectiveLines : MonoBehaviour
             //if touch raycasts onto a plane (valid placement), we can continue with the code that places the lines
             if (Physics.Raycast(Camera.main.ScreenPointToRay(touchPosition), out hit) && linesUI.activeSelf)
             {
-                var hitPos = hit.transform;
-
-                end = (hitPos.right * LineLength) + hit.point;
-
-                for (int i = 0; i < NumberOfLines; i++)
+                if (hit.transform.gameObject.tag == "UserToolPlane")
                 {
-                    //Loops based on number of lines selected by user, takes a vector and rotates it around a pivot
-                    //Each line that gets drawn is a line defined by 2 vectors, the center one does not change, but the end
-                    //gets rotated around the center and passed into the line drawing function
-                    DrawLine(hit.point, end, Color.red);
-                    end = RotatePointAroundPivot(end, hit.point, hitPos.forward * RotationAmount);
+
+                    var hitPos = hit.transform;
+
+                    end = (hitPos.right * LineLength) + hit.point;
+
+                    for (int i = 0; i < NumberOfLines; i++)
+                    {
+                        //Loops based on number of lines selected by user, takes a vector and rotates it around a pivot
+                        //Each line that gets drawn is a line defined by 2 vectors, the center one does not change, but the end
+                        //gets rotated around the center and passed into the line drawing function
+                        DrawLine(hit.point, end, Color.red);
+                        end = RotatePointAroundPivot(end, hit.point, hitPos.forward * RotationAmount);
+                    }
                 }
             }
           }
