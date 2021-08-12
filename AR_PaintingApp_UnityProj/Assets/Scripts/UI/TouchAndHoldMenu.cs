@@ -7,11 +7,11 @@ public class TouchAndHoldMenu : MonoBehaviour
 {
     public float TimeToHold;
 
-    private float internalHoldTimer;
+    public float internalHoldTimer;
 
     public float TimeToDismiss;
 
-    private float internalDismissTimer;
+    public float internalDismissTimer;
 
     public bool isMenuActive = false;
 
@@ -27,16 +27,18 @@ public class TouchAndHoldMenu : MonoBehaviour
     [SerializeField]
     private Camera uiCam;
 
-
+    [SerializeField]
+    private Text debugText;
 
     //this script just spawns and despawns an object based on touch + hold controls, mostly just used for 1 menu
     //also manages the icon that shows how close to open it is
 
     void Update()
     {
-      
 
 
+
+    
         menuObject.SetActive(isMenuActive);
         CheckForTouchHold();
 
@@ -100,6 +102,12 @@ public class TouchAndHoldMenu : MonoBehaviour
 
 
 
+    }
+
+    public void DisableMenu()
+    {
+        debugText.text = "Disabling Menu";
+        isMenuActive = false;
     }
 
 }

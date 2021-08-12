@@ -32,10 +32,10 @@ public class PerspectiveLines : MonoBehaviour
     private GameObject linesUI;
 
     [SerializeField]
-
-
     public bool isEnabled = false;
 
+    [SerializeField]
+    private Text debugText;
 
     private void Update()
     {
@@ -43,30 +43,39 @@ public class PerspectiveLines : MonoBehaviour
         Vector3 end = new Vector3(0, 0, 0);
 
         //if no touch, don't need to run the rest of the code
+        
         if (!TryGetTouchPosition(out Vector2 touchPosition))
         {
             return;
         }
-        if (isEnabled)
-        {
+        
+
+         if (isEnabled)
+          {
+            RaycastHit hit;
             //if touch raycasts onto a plane (valid placement), we can continue with the code that places the lines
-            if (raycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon) && linesUI.activeSelf)
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(touchPosition), out hit) && linesUI.activeSelf)
             {
-                var hitPos = s_Hits[0].pose;
-
-                end = (hitPos.forward * LineLength) + hitPos.position;
-
-                for (int i = 0; i < NumberOfLines; i++)
+                if (hit.transform.gameObject.tag == "UserToolPlane")
                 {
-                    //Loops based on number of lines selected by user, takes a vector and rotates it around a pivot
-                    //Each line that gets drawn is a line defined by 2 vectors, the center one does not change, but the end
-                    //gets rotated around the center and passed into the line drawing function
-                    DrawLine(hitPos.position, end, Color.red);
-                    end = RotatePointAroundPivot(end, hitPos.position, hitPos.up * RotationAmount);
+
+                    var hitPos = hit.transform;
+
+                    end = (hitPos.right * LineLength) + hit.point;
+
+                    for (int i = 0; i < NumberOfLines; i++)
+                    {
+                        //Loops based on number of lines selected by user, takes a vector and rotates it around a pivot
+                        //Each line that gets drawn is a line defined by 2 vectors, the center one does not change, but the end
+                        //gets rotated around the center and passed into the line drawing function
+                        DrawLine(hit.point, end, Color.red);
+                        end = RotatePointAroundPivot(end, hit.point, hitPos.forward * RotationAmount);
+                    }
                 }
             }
-        }
+          }
     }
+
 
     //Function called when drawing a line
     void DrawLine(Vector3 start, Vector3 end, Color color)
