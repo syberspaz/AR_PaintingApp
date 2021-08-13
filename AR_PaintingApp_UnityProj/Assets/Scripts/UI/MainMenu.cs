@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
     }
     public void LaunchExploreMode()
     {
-        SceneManager.LoadScene(2);//Explore mode is scene 1
+        SceneManager.LoadScene(2);//Explore mode is scene 2
     }
 
 
