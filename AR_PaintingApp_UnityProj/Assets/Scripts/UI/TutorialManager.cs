@@ -80,6 +80,7 @@ public class TutorialManager : MonoBehaviour
         {
             PerspectiveLinesTutBubble.SetActive(true);
             perspectiveLinesObject.SetActive(false);
+           // toggler.PlaneDetectionToggle();
             PersLineTutProgress = 0;
         }
 

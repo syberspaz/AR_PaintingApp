@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.SceneManagement;
+
 public class PaletteMenuSelection : MonoBehaviour
 {
 
@@ -11,6 +13,7 @@ public class PaletteMenuSelection : MonoBehaviour
 
     [SerializeField]
     private TouchAndHoldMenu menuManager;
+
 
 
     // Update is called once per frame
@@ -79,6 +82,22 @@ public class PaletteMenuSelection : MonoBehaviour
                 //image search
                 item.toolGO[0].GetComponent<ValueToggler>().ToggleValue();
 
+            }
+
+            if (item.ToolType == 4)
+            {
+                item.toolGO[0].SetActive(true);
+                item.toolGO[1].SetActive(false);
+                item.toolGO[2].SetActive(false);
+                item.toolGO[3].SetActive(false);
+
+
+
+            }
+
+            if (item.ToolType == 5)
+            {
+                SceneManager.LoadScene(3); //scene 3 is the 2d image editing scene
             }
 
             menuManager.DisableMenu();

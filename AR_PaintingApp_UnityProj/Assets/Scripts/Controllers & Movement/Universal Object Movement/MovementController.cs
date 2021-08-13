@@ -129,19 +129,16 @@ public class MovementController : MonoBehaviour
 
                 Movement = Movement * DragMovementSpeed;
 
-                Vector3 localScale = transform.localScale;
-
-                localScale.x += (pinchAmount / 500) * pinchScalingSpeed;
-                localScale.y += (pinchAmount / 500) * pinchScalingSpeed;
-                localScale.z += (pinchAmount / 500) * pinchScalingSpeed;
+              
 
 
                 transform.position += Movement;
+                transform.position -= (pinchAmount * Time.deltaTime * forward) * pinchScalingSpeed;
                 transform.rotation = desiredRotation;
-                transform.localScale = localScale;
 
 
             }
+            /*
             else if (touch.phase == TouchPhase.Stationary)
             {
               
@@ -185,6 +182,7 @@ public class MovementController : MonoBehaviour
                 prevAccelerationY = gyroMovement;
 
             }
+            */
          ///   for (int i = 0; i < outlines.Count; i++)
            // {
         //        outlines[i].enabled = true;

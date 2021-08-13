@@ -80,7 +80,13 @@ public class PlaceUserPlane : MonoBehaviour
     public void StartSequence()
     {
         startedPlacing = true;
-    }
+        gameObject.transform.parent = Camera.main.transform;
+        gameObject.SetActive(true);
+        gameObject.transform.position = Camera.main.transform.position + (Camera.main.transform.forward * 2);
+        progressFlagPlace = false;
+        progressFlagRotate = true;
+        progressFlagScale = true;
+}
 
     //these exist to confirm progress using the ui buttons
     public void SetPlace()
