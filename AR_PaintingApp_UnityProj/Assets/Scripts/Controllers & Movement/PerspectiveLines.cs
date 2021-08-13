@@ -9,7 +9,14 @@ using UnityEngine.XR.ARSubsystems;
 public class PerspectiveLines : MonoBehaviour
 {
     [SerializeField]
-    private Material LineMaterial;
+    private Material LineMaterialDotted;
+
+    [SerializeField]
+    private Material LineMaterialSolid;
+
+    public bool isDotted;
+
+
     [SerializeField]
     private ARRaycastManager raycastManager;
 
@@ -87,10 +94,16 @@ public class PerspectiveLines : MonoBehaviour
         myLine.transform.position = start;
         myLine.AddComponent<LineRenderer>();
         LineRenderer lr = myLine.GetComponent<LineRenderer>();
-        lr.material = LineMaterial;
+
+        if (isDotted)
+            lr.material = LineMaterialDotted;
+        else
+            lr.material = LineMaterialSolid;
+
+        lr.textureMode = LineTextureMode.Tile;
         lr.startColor = color;
         lr.endColor = color;
-        lr.startWidth = 0.0001f;
+        lr.startWidth = LineThickness;
         lr.endWidth = LineThickness;
         lr.SetPosition(0, start);
         lr.SetPosition(1, end);
