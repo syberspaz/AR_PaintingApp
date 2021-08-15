@@ -666,9 +666,9 @@ namespace OpenCvSharp
         private void GeneratePalette()
         {
             UpdateCameraImage();
-            for (int i = 0; i < ResizedCamTex.height; i++)
+            for (int i = 0; i < CamTex.height; i++)
             {
-                for (int j = 0; j < ResizedCamTex.width; j++)
+                for (int j = 0; j < CamTex.width; j++)
                 {
                     Color thisCol = CamTex.GetPixel(i, j);
                     if (thisCol.r <= 0.33f)

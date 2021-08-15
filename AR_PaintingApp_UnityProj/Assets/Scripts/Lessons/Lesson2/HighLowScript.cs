@@ -32,7 +32,10 @@ namespace OpenCvSharp
 
         private int switchTap = 0;
 
-        [SerializeField]
+        private int pressCount = 0;
+
+        public List<GameObject> UIScreens = new List<GameObject>();
+
         private bool checkHighkey = true;
 
         /*private void OnEnable()
@@ -51,16 +54,29 @@ namespace OpenCvSharp
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                if (switchTap % 2 == 0)
+                if (pressCount < 3)
                 {
-                    TakePicture();
-                    rawColourViewer.gameObject.SetActive(true);
+                    pressCount++;
                 }
                 else
                 {
-                    rawColourViewer.gameObject.SetActive(false);
+                    if (switchTap % 2 == 0)
+                    {
+                        TakePicture();
+                        rawColourViewer.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        rawColourViewer.gameObject.SetActive(false);
+                    }
+                    switchTap++;
                 }
-                switchTap++;
+
+                UIScreens[pressCount].SetActive(true);
+                if (pressCount > 0)
+                {
+                    UIScreens[pressCount - 1].SetActive(false);
+                }
 
 
                 /*UpdateCameraImage();
@@ -502,6 +518,21 @@ namespace OpenCvSharp
         public void Screenshot()
         {
             UpdateCameraImage();
+        }
+
+        public void SetKey(string isHighKey)
+        {
+            UIScreens[3].SetActive(false);
+            UIScreens[4].SetActive(true);
+
+            if (isHighKey == "true")
+            {
+                checkHighkey = true;
+            }
+            else
+            {
+                checkHighkey = false;
+            }
         }
     }
 }
