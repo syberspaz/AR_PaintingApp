@@ -26,65 +26,34 @@ namespace OpenCvSharp
 
         public ARCameraManager cameraManager;
 
-        public RawImage rawColourViewer;
-
         [SerializeField]
         List<RawImage> ValueImages = new List<RawImage>();
 
         private Mat hFactor;
+
+        private int pressCount = 0;
+
+        public List<GameObject> UIScreens = new List<GameObject>();
 
         // Update is called once per frame
         void Update()
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                TakePicture();
-                /*UpdateCameraImage();
-                thisCol = CamTex.GetPixel((int)TextureScale.Map(Input.GetTouch(0).position.x, 0, Screen.currentResolution.width, 0, CamTex.width), (int)TextureScale.Map(Input.GetTouch(0).position.y, 0, Screen.currentResolution.height, 0, CamTex.height));
-                currentColor = thisCol;
-                float hue, sat, val;
-                Color.RGBToHSV(thisCol, out hue, out sat, out val);
-                //ValueImages[0].color = thisCol;
-                if (val >= 0.0f && val <= 0.1f)
+                if (pressCount < 4)
                 {
-                    ValueImages[0].color = thisCol;
+                    pressCount++;
                 }
-                else if (val >= 0.1f && val <= 0.2f)
+                else
                 {
-                    ValueImages[1].color = thisCol;
+                    TakePicture();
                 }
-                else if (val >= 0.2f && val <= 0.3f)
+
+                UIScreens[pressCount].SetActive(true);
+                if (pressCount > 0)
                 {
-                    ValueImages[2].color = thisCol;
+                    UIScreens[pressCount-1].SetActive(false);
                 }
-                else if (val >= 0.3f && val <= 0.4f)
-                {
-                    ValueImages[3].color = thisCol;
-                }
-                else if (val >= 0.4f && val <= 0.5f)
-                {
-                    ValueImages[4].color = thisCol;
-                }
-                else if (val >= 0.5f && val <= 0.6f)
-                {
-                    ValueImages[5].color = thisCol;
-                }
-                else if (val >= 0.6f && val <= 0.7f)
-                {
-                    ValueImages[6].color = thisCol;
-                }
-                else if (val >= 0.7f && val <= 0.8f)
-                {
-                    ValueImages[6].color = thisCol;
-                }
-                else if (val >= 0.8f && val <= 0.9f)
-                {
-                    ValueImages[7].color = thisCol;
-                }
-                else if (val >= 0.9f && val <= 1.0f)
-                {
-                    ValueImages[8].color = thisCol;
-                }*/
             }
         }
 
@@ -134,7 +103,6 @@ namespace OpenCvSharp
             m_CameraTexture.Apply();
             Texture2D newTex = RotateTexture(m_CameraTexture);
             newTex.Apply();
-            //rawColourViewer.texture = newTex;
             CamTex = newTex;
             /*ResizedCamTex = newTex;
             TextureScale.Bilinear(ResizedCamTex, m_CameraTexture.width / 5, m_CameraTexture.height / 5);*/
@@ -387,7 +355,6 @@ namespace OpenCvSharp
 
             }
             ScannedCamTex = Unity.MatToTexture(matUnwrapped);
-            rawColourViewer.texture = ScannedCamTex;
         }
 
         public bool Contains<T>(T[] array, T obj)
