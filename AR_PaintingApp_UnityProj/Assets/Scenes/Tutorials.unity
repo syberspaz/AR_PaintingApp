@@ -262,8 +262,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1db3aaddf9ac0455e89f1abe63d45c28, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2654,6 +2654,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -2.76
       objectReference: {fileID: 0}
+    - target: {fileID: 3890969513046675215, guid: b74fccbc66e6f6b47a4b35da375b11bf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9227bbb6df7fe0e419b45debb01d1f50, type: 2}
     - target: {fileID: 4371532974027025111, guid: b74fccbc66e6f6b47a4b35da375b11bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2745,11 +2749,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8329143215745884058, guid: b74fccbc66e6f6b47a4b35da375b11bf, type: 3}
   m_PrefabInstance: {fileID: 385251447}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &385251452 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5278442917293749177, guid: b74fccbc66e6f6b47a4b35da375b11bf, type: 3}
-  m_PrefabInstance: {fileID: 385251447}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &385251453 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6123022142847711694, guid: b74fccbc66e6f6b47a4b35da375b11bf, type: 3}
@@ -2805,27 +2804,6 @@ MonoBehaviour:
   endingPosition: {x: -0.3999999, y: 1.5, z: -4.7}
   startingRotation: {x: 0, y: 40.97, z: 17.538}
   endingRotation: {x: 0, y: 400, z: 0}
-  moveT: 0
-  rotationT: 0
-  isRotationEndless: 1
-  moveSpeed: 0.15
-  rotationSpeed: 0.15
---- !u!114 &385251457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 385251452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1629834dab0ea04db3910aacb6e2009, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingPosition: {x: -6.07, y: 0.5, z: -2.13}
-  endingPosition: {x: -6.07, y: 1.5, z: -2.13}
-  startingRotation: {x: 0, y: 0, z: 0}
-  endingRotation: {x: 0, y: 360, z: 0}
   moveT: 0
   rotationT: 0
   isRotationEndless: 1
@@ -3358,7 +3336,8 @@ MonoBehaviour:
   m_text: 'Image Search Tutorial: In explore mode opened by tapping the picture frame.
     To complete this tutorial simply type in a search, press the search button, select
     the image and place the reference image into the scene. Once it is placed in
-    explore mode it can be moved around in the same way as the calipers.'
+    explore mode it can be moved around by draging your finger on the screen, and
+    pinching to move forwards and backwards.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17b411dd5bc19ae4c8e680763892da2b, type: 2}
   m_sharedMaterial: {fileID: 263116076355454068, guid: 17b411dd5bc19ae4c8e680763892da2b, type: 2}
@@ -3385,8 +3364,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8.31
-  m_fontSizeBase: 8.31
+  m_fontSize: 7.59
+  m_fontSizeBase: 7.59
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4188,7 +4167,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.6666667, g: 0.54509807, b: 0.4431373, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -5113,8 +5092,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1db3aaddf9ac0455e89f1abe63d45c28, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5188,12 +5167,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Next is the movement controller and caliper tutorial. Many things can be
-    moved around, and they all share the same controls. Drag your finger on the screen
-    to move the object across your screen. Hold a finger on the screen and tilt the
-    phone towards and away from you to move it forwards and backwards. Calipers can
-    be opened and closed using the slider at the bottom of the screen.  To complete
-    the tutorial move the caliper to the cube in the scene and open it all the way.
+  m_text: Next is the caliper tutorial. To use the calipers, simply touch on the
+    plane while the tool is active. To open them use the slider on the tool bar at
+    the bottom of the screen. To complete the tutorial, move the calipers to the
+    cube and open them all the way.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17b411dd5bc19ae4c8e680763892da2b, type: 2}
   m_sharedMaterial: {fileID: 263116076355454068, guid: 17b411dd5bc19ae4c8e680763892da2b, type: 2}
@@ -5220,8 +5197,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6.65
-  m_fontSizeBase: 6.65
+  m_fontSize: 8.94
+  m_fontSizeBase: 8.94
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6234,7 +6211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2b9ef2a5db69b4b9d1278e237d69b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LineMaterial: {fileID: 2100000, guid: 264094a80ae138e45be9033cafc92666, type: 2}
+  LineMaterialDotted: {fileID: 0}
+  LineMaterialSolid: {fileID: 0}
+  isDotted: 0
   raycastManager: {fileID: 1373730062}
   NumberOfLines: 20
   LineLength: 10
@@ -7083,8 +7062,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1db3aaddf9ac0455e89f1abe63d45c28, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7161,10 +7140,8 @@ MonoBehaviour:
   m_text: 'Perspective Lines:
 
     To activate this tool in explore mode press the
-    tree icon from the palette menu. When active just tap on a yellow plane to place
-    and press the remove button to get rid of them. Tutorial complete after placing
-    and destroying a set of lines. For the tutorial the tool will activate automatically,
-    press the button to continue'
+    tree on the palette menu. Tap on the plane to place the lines. To complete this
+    tutorial place a set of lines and destroy them using the button.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17b411dd5bc19ae4c8e680763892da2b, type: 2}
   m_sharedMaterial: {fileID: 263116076355454068, guid: 17b411dd5bc19ae4c8e680763892da2b, type: 2}
@@ -7191,8 +7168,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7.17
-  m_fontSizeBase: 7.17
+  m_fontSize: 9.17
+  m_fontSizeBase: 9.17
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8226,8 +8203,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1db3aaddf9ac0455e89f1abe63d45c28, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -10908,8 +10885,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1db3aaddf9ac0455e89f1abe63d45c28, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

@@ -20,6 +20,23 @@ public class MoveObjectOnPlane : MonoBehaviour
         Touch touch = Input.GetTouch(0);
         RaycastHit hit;
 
+        DetectTouchMovement.Calculate();
+
+
+        if (Mathf.Abs(DetectTouchMovement.turnAngleDelta) > 0)
+        { // rotate
+            Quaternion desiredRotation = transform.rotation;
+            Vector3 rotationDeg = Vector3.zero;
+            rotationDeg = GameObject.FindGameObjectWithTag("UserToolPlane").transform.up;
+
+            rotationDeg *= -DetectTouchMovement.turnAngleDelta;
+
+            // rotationDeg.z = -DetectTouchMovement.turnAngleDelta;
+            desiredRotation *= Quaternion.Euler(rotationDeg);
+
+            transform.localRotation = desiredRotation;
+        }
+
         if (Physics.Raycast(cam.ScreenPointToRay(touch.position), out hit))
         {
             if(hit.transform.gameObject.tag == "UserToolPlane")
