@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4152266615695087727, guid: 80efe9dc5cd371949aaf8a4ad00146df, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7604038794286936471, guid: 80efe9dc5cd371949aaf8a4ad00146df, type: 3}
       propertyPath: m_Name
       value: CircleMenu

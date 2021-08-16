@@ -154,7 +154,7 @@ PlayerSettings:
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 3000200
   AndroidMinSdkVersion: 24
-  AndroidTargetSdkVersion: 30
+  AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
   aotOptions: 
   stripEngineCode: 0

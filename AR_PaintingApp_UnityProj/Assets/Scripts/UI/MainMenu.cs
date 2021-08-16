@@ -7,11 +7,16 @@ public class MainMenu : MonoBehaviour
     //just ui code
     public void LaunchLearnMode()
     {
-        //put the code here to switch to learn mode
+        SceneManager.LoadScene("LessonPicker");
     }
     public void LaunchExploreMode()
     {
-        SceneManager.LoadScene(2);//Explore mode is scene 2
+        SceneManager.LoadScene("ExploreMode");//Explore mode is scene 1
+    }
+
+    public void LaunchTutorial()
+    {
+        SceneManager.LoadScene("Tutorials");
     }
 
 
