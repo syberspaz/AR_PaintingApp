@@ -97,7 +97,7 @@ public class PaletteMenuSelection : MonoBehaviour
 
             if (item.ToolType == 5)
             {
-                SceneManager.LoadScene(3); //scene 3 is the 2d image editing scene
+                SceneManager.LoadScene("2D_Image_Editor"); //scene 3 is the 2d image editing scene
             }
 
             menuManager.DisableMenu();
