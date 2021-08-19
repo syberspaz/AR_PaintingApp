@@ -4207,7 +4207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LineMaterialDotted: {fileID: 2100000, guid: 78e5b9a4408037847a6d79690b271a54, type: 2}
   LineMaterialSolid: {fileID: 2100000, guid: 29fcab1ad7f3fa74fba314f2ec726669, type: 2}
-  isDotted: 0
+  isDotted: 1
   raycastManager: {fileID: 414598393}
   NumberOfLines: 20
   LineLength: 2

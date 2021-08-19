@@ -24,5 +24,10 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("MainScreen");
     }
 
+    public void Launch2dImageEditor()
+    {
+        SceneManager.LoadScene("2D_Image_Editor");
+    }
+
 
 }
