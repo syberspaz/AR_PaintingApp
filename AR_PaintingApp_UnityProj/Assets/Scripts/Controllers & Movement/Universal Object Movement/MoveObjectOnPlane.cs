@@ -26,8 +26,8 @@ public class MoveObjectOnPlane : MonoBehaviour
         if (Mathf.Abs(DetectTouchMovement.turnAngleDelta) > 0)
         { // rotate
             Quaternion desiredRotation = transform.rotation;
-            Vector3 rotationDeg = Vector3.zero;
-            rotationDeg = GameObject.FindGameObjectWithTag("UserToolPlane").transform.up;
+            Vector3 rotationDeg = new Vector3(0, 0, 1);
+
 
             rotationDeg *= -DetectTouchMovement.turnAngleDelta;
 

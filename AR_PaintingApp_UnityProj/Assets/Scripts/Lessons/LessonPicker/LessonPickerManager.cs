@@ -6,12 +6,16 @@ using UnityEngine.UI;
 
 public class LessonPickerManager : MonoBehaviour
 {
+
+    public int debugStartingValue;
     private int lessonProgress = 0;
 
     public List<GameObject> Wedges = new List<GameObject>();
 
     private void Start()
     {
+        PlayerPrefs.SetInt("LessonProgress", debugStartingValue);
+
         if (PlayerPrefs.GetInt("LessonProgress") == 0)
         {
             PlayerPrefs.SetInt("LessonProgress", 1);

@@ -41,7 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lessons/Lesson6.unity
     guid: 814e31fe4502cc445ac1e8c17a53032d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/EyedropperScene.unity
     guid: e74567f686a32044e8ecb7065675b75f
   m_configObjects:

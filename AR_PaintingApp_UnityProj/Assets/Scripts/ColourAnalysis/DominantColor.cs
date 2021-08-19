@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using OpenCvSharp;
@@ -11,6 +12,9 @@ namespace OpenCvSharp
 
     public class DominantColor : MonoBehaviour
     {
+
+        [SerializeField]
+        private TextMeshProUGUI NumberOfColText;
 
         [SerializeField]
         private Image wedgePrefab;
@@ -64,8 +68,8 @@ namespace OpenCvSharp
                         }
 
                         // Criteria:
-                        // – Stop the algorithm iteration if specified accuracy, epsilon, is reached.
-                        // – Stop the algorithm after the specified number of iterations, MaxIter.
+                        // ? Stop the algorithm iteration if specified accuracy, epsilon, is reached.
+                        // ? Stop the algorithm after the specified number of iterations, MaxIter.
                         var criteria = new TermCriteria(type: CriteriaType.Eps | CriteriaType.MaxIter, maxCount: 10, epsilon: 1.0);
 
                         // Finds centers of clusters and groups input samples around the clusters.
@@ -204,6 +208,13 @@ namespace OpenCvSharp
 
             }
         }
+
+        public void KSliderUpdated(System.Single kFromSlider)
+        {
+            NumberOfColText.text = "Number of Colors: " + kFromSlider.ToString();
+            k = ((int)kFromSlider);
+        }
+
 
 
 

@@ -6211,8 +6211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2b9ef2a5db69b4b9d1278e237d69b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LineMaterialDotted: {fileID: 0}
-  LineMaterialSolid: {fileID: 0}
+  LineMaterialDotted: {fileID: 2100000, guid: 78e5b9a4408037847a6d79690b271a54, type: 2}
+  LineMaterialSolid: {fileID: 2100000, guid: de1228e3be7d4f4468b322b6ec7e7f9a, type: 2}
   isDotted: 0
   raycastManager: {fileID: 1373730062}
   NumberOfLines: 20

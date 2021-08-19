@@ -15,17 +15,15 @@ public class SaveToGallery : MonoBehaviour
     private void SaveCurrentImage()
     {
 
-        Texture mainCanvasTexture = MainImageRenderer.material.mainTexture;
+        Texture2D mainCanvasTexture = MainImageRenderer.material.mainTexture as Texture2D;
+       
+    
 
-        Texture2D tex2D = (Texture2D)mainCanvasTexture;
-
-        tex2D.Apply();
-
-        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(tex2D.EncodeToPNG(), "ARPaintingApp", "Image.png");
+        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(mainCanvasTexture.EncodeToPNG(), "ARPaintingApp", "Image.png");
 
 
 
-        Destroy(tex2D);
+
     }
     
     public void  SaveButtonPressed()
