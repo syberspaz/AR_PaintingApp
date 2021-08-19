@@ -47,12 +47,11 @@ public class PlaceUserPlane : MonoBehaviour
                 //test code for rotation
                 Vector2 touchMovement = touch.deltaPosition;
 
-                Vector3 newRotation = transform.rotation.eulerAngles;
+                Quaternion rotation = Quaternion.Euler(touchMovement.y * 0.3f, 0, touchMovement.x * 0.3f);
 
-                newRotation.z += touchMovement.x * Time.deltaTime;
-                newRotation.x += touchMovement.y * Time.deltaTime;
 
-                transform.rotation = Quaternion.Euler(newRotation);
+
+                transform.rotation = rotation * transform.rotation;
             }
             else if (!progressFlagScale)
             {

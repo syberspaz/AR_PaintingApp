@@ -22,12 +22,22 @@ public class MoveObjectOnPlane : MonoBehaviour
 
         DetectTouchMovement.Calculate();
 
+        
+        if(Input.touchCount > 1) //2 touches, don't want to raycast the plane
+        {
+            GameObject.FindGameObjectWithTag("UserToolPlane").layer = 2;
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("UserToolPlane").layer = 0;
+        }
+
 
         if (Mathf.Abs(DetectTouchMovement.turnAngleDelta) > 0)
         { // rotate
             Quaternion desiredRotation = transform.rotation;
-            Vector3 rotationDeg = Vector3.zero;
-            rotationDeg = GameObject.FindGameObjectWithTag("UserToolPlane").transform.up;
+            Vector3 rotationDeg = new Vector3(0, 0, 1);
+
 
             rotationDeg *= -DetectTouchMovement.turnAngleDelta;
 

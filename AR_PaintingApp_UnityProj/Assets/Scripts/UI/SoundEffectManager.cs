@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
 public class SoundEffectManager : MonoBehaviour
@@ -20,7 +21,15 @@ public class SoundEffectManager : MonoBehaviour
     [SerializeField]
     AudioClip LessonStartedSound;
 
+    public void Awake()
+    {
+        if (SceneManager.GetActiveScene().name == "MainScreen")
+        {
+            PlayAppIntroSound();
+        }
 
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     public void PlayToolPaletteSound()
     {

@@ -101,6 +101,8 @@ public class PaletteMenuSelection : MonoBehaviour
             }
 
             menuManager.DisableMenu();
+            SoundEffectManager sounds = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectManager>();
+            sounds.PlayToolPaletteSound();
             // menuObject.SetActive(false);
 
 
