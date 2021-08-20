@@ -81,6 +81,7 @@ public class PaletteMenuSelection : MonoBehaviour
             {
                 //image search
                 item.toolGO[0].GetComponent<ValueToggler>().ToggleValue();
+                item.toolGO[1].SetActive(true);
 
             }
 

@@ -8444,7 +8444,7 @@ MonoBehaviour:
   raycastManager: {fileID: 1373730062}
   NumberOfLines: 20
   LineLength: 10
-  LineThickness: 0.1
+  LineThickness: 0.007
   RotationAmount: 18
   linesUI: {fileID: 1136130099}
   isEnabled: 0
