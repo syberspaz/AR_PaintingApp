@@ -8,8 +8,8 @@ public class PlaceUserPlane : MonoBehaviour
 
     private bool startedPlacing = false;
     private bool progressFlagPlace = false;
-    private bool progressFlagRotate = true;
-    private bool progressFlagScale = true;
+    private bool progressFlagRotate = false;
+    private bool progressFlagScale = false;
 
 
     // Update is called once per frame
@@ -20,10 +20,9 @@ public class PlaceUserPlane : MonoBehaviour
         DetectTouchMovement.Calculate();
         Touch touch = Input.GetTouch(0);
 
-        if (startedPlacing)
-        {
+            
             float pinchAmount = 0f;
-            if (!progressFlagPlace)
+            if (progressFlagPlace)
             {
                 if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
                 { // zoom
@@ -41,8 +40,15 @@ public class PlaceUserPlane : MonoBehaviour
 
                     transform.position += forward * pinchAmount * Time.deltaTime;
                 }
+
+            transform.parent = Camera.main.transform;
+
             }
-            else if (!progressFlagRotate)
+            else
+             {
+            transform.parent = null; //when not placing unparent
+             }
+           if (progressFlagRotate)
             {
                 //test code for rotation
                 Vector2 touchMovement = touch.deltaPosition;
@@ -53,7 +59,7 @@ public class PlaceUserPlane : MonoBehaviour
 
                 transform.rotation = rotation * transform.rotation;
             }
-            else if (!progressFlagScale)
+            if (progressFlagScale)
             {
                 if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
                 { // zoom
@@ -63,7 +69,7 @@ public class PlaceUserPlane : MonoBehaviour
                     transform.localScale += (new Vector3(pinchAmount, pinchAmount, pinchAmount) / 3) * Time.deltaTime;
                 }
             }
-        }
+       
     }
 
     public void PlacePlane()
@@ -104,6 +110,26 @@ public class PlaceUserPlane : MonoBehaviour
     public void SetScale()
     {
         progressFlagScale = true;
+    }
+
+    public void TogglePlace()
+    {
+        progressFlagPlace = !progressFlagPlace;
+    }
+    public void ToggleRotation()
+    {
+        progressFlagRotate = !progressFlagRotate;
+    }
+    public void ToggleScale()
+    {
+        progressFlagScale = !progressFlagScale;
+    }
+
+    public void EndSequence()
+    {
+        progressFlagPlace = false;
+        progressFlagRotate = false;
+        progressFlagScale = false;
     }
 
 }

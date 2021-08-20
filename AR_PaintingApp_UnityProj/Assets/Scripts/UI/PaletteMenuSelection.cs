@@ -88,11 +88,8 @@ public class PaletteMenuSelection : MonoBehaviour
             if (item.ToolType == 4)
             {
                 item.toolGO[0].SetActive(true);
-                item.toolGO[1].SetActive(false);
-                item.toolGO[2].SetActive(false);
-                item.toolGO[3].SetActive(false);
-
-
+                item.toolGO[1].SetActive(true);
+                item.toolGO[2].SetActive(true);
 
             }
 
