@@ -35,6 +35,8 @@ public class LessonPickerManager : MonoBehaviour
 
     public void ChangeScene(string sceneName)
     {
+        SoundEffectManager sounds = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectManager>();
+        sounds.PlayLessonStartedSound();
         SceneManager.LoadScene(sceneName);
     }
 }

@@ -81,6 +81,7 @@ public class PaletteMenuSelection : MonoBehaviour
             {
                 //image search
                 item.toolGO[0].GetComponent<ValueToggler>().ToggleValue();
+                item.toolGO[1].SetActive(true);
 
             }
 
@@ -106,6 +107,8 @@ public class PaletteMenuSelection : MonoBehaviour
             }
 
             menuManager.DisableMenu();
+            SoundEffectManager sounds = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectManager>();
+            sounds.PlayToolPaletteSound();
             // menuObject.SetActive(false);
 
 

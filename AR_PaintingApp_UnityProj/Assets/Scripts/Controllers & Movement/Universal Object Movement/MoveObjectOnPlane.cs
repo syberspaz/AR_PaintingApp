@@ -22,6 +22,16 @@ public class MoveObjectOnPlane : MonoBehaviour
 
         DetectTouchMovement.Calculate();
 
+        
+        if(Input.touchCount > 1) //2 touches, don't want to raycast the plane
+        {
+            GameObject.FindGameObjectWithTag("UserToolPlane").layer = 2;
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("UserToolPlane").layer = 0;
+        }
+
 
         if (Mathf.Abs(DetectTouchMovement.turnAngleDelta) > 0)
         { // rotate

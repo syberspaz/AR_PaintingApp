@@ -8,6 +8,7 @@ TagManager:
   - ReferenceImageQuad
   - ControllerManager
   - UserToolPlane
+  - AudioManager
   layers:
   - Default
   - TransparentFX

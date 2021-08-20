@@ -7,21 +7,26 @@ public class MainMenu : MonoBehaviour
     //just ui code
     public void LaunchLearnMode()
     {
-        SceneManager.LoadScene("LessonPicker");
+        SceneManager.LoadSceneAsync("LessonPicker");
     }
     public void LaunchExploreMode()
     {
-        SceneManager.LoadScene("ExploreMode");//Explore mode is scene 1
+        SceneManager.LoadSceneAsync("ExploreMode");
     }
 
     public void LaunchTutorial()
     {
-        SceneManager.LoadScene("Tutorials");
+        SceneManager.LoadSceneAsync("Tutorials");
     }
 
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("MainScreen");
+        SceneManager.LoadSceneAsync("MainScreen");
+    }
+
+    public void Launch2dImageEditor()
+    {
+        SceneManager.LoadSceneAsync("2D_Image_Editor");
     }
 
 
