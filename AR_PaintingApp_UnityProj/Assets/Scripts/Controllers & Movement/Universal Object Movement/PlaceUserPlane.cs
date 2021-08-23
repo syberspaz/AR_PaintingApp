@@ -53,7 +53,7 @@ public class PlaceUserPlane : MonoBehaviour
                 //test code for rotation
                 Vector2 touchMovement = touch.deltaPosition;
 
-                Quaternion rotation = Quaternion.Euler(touchMovement.y * 0.3f, 0, touchMovement.x * 0.3f);
+                Quaternion rotation = Quaternion.Euler(touchMovement.y * 0.3f, 0, -touchMovement.x * 0.3f);
 
 
 
@@ -114,15 +114,23 @@ public class PlaceUserPlane : MonoBehaviour
 
     public void TogglePlace()
     {
-        progressFlagPlace = !progressFlagPlace;
+        progressFlagPlace = true;
+        progressFlagRotate = false;
+        progressFlagScale = false;
+
+
     }
     public void ToggleRotation()
     {
-        progressFlagRotate = !progressFlagRotate;
+        progressFlagPlace = false;
+        progressFlagRotate = true;
+        progressFlagScale = false;
     }
     public void ToggleScale()
     {
-        progressFlagScale = !progressFlagScale;
+        progressFlagPlace = false;
+        progressFlagRotate = false;
+        progressFlagScale = true;
     }
 
     public void EndSequence()
