@@ -16,6 +16,10 @@ public class SimpleLerpPath : MonoBehaviour
 
     public int ArraySizeDisplay;
 
+    public bool AffectPosition;
+    public bool AffectRotation;
+    public bool AffectScale;
+
     // Update is called once per frame
     void Update()
     {
@@ -46,8 +50,12 @@ public class SimpleLerpPath : MonoBehaviour
             }
         }
 
+        if (AffectPosition)
         transform.position = Vector3.Lerp(KeyPoints[CurrentPreviousPointIndex].position, KeyPoints[CurrentNextPointIndex].position, T);
+        if (AffectRotation)
         transform.rotation = Quaternion.Euler(Vector3.Lerp(KeyPoints[CurrentPreviousPointIndex].rotation.eulerAngles, KeyPoints[CurrentNextPointIndex].rotation.eulerAngles, T));
+        if (AffectScale)
+        transform.localScale = Vector3.Lerp(KeyPoints[CurrentPreviousPointIndex].lossyScale, KeyPoints[CurrentNextPointIndex].lossyScale, T);
 
     }
 }
