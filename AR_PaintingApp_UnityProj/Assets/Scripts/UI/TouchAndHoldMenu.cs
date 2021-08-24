@@ -27,6 +27,15 @@ public class TouchAndHoldMenu : MonoBehaviour
     [SerializeField]
     private Camera uiCam;
 
+    public float TimeDelay;
+
+    public float InternalDelayTimer;
+
+    public bool isDelay = false;
+
+    [SerializeField]
+    private Text debugText;
+
 
     //this script just spawns and despawns an object based on touch + hold controls, mostly just used for 1 menu
     //also manages the icon that shows how close to open it is
@@ -62,39 +71,76 @@ public class TouchAndHoldMenu : MonoBehaviour
             {
                 //the filling circle
 
-                //calculate on the canvas where it needs to go
-                Vector2 newPos;
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, touch.position, uiCam, out newPos);
-                circleUIObject.rectTransform.anchoredPosition = newPos;
-                circleUIObject.fillAmount = (internalHoldTimer / TimeToHold);
+                if (InternalDelayTimer < TimeDelay)
+                {
+                  
+
+                    InternalDelayTimer += Time.deltaTime;
+                    if (InternalDelayTimer > TimeDelay)
+                    {
+
+                        isDelay = true;
+
+                    }
+
+                }
+                if (isDelay)
+                {
+                    InternalDelayTimer = 0;
+                    //calculate on the canvas where it needs to go
+                    Vector2 newPos;
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, touch.position, uiCam, out newPos);
+                    circleUIObject.rectTransform.anchoredPosition = newPos;
+                    circleUIObject.fillAmount = (internalHoldTimer / TimeToHold);
 
 
-                internalHoldTimer += Time.deltaTime;
+                    internalHoldTimer += Time.deltaTime;
+                }
             }
 
             if (internalHoldTimer >= TimeToHold)
             {
+                
                 isMenuActive = true;
                 internalHoldTimer = 0;
+                isDelay = false;
             }
         }
         else if (isMenuActive)
         {
             if (touch.phase == TouchPhase.Stationary)
             {
-                Vector2 newPos;
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, touch.position, uiCam, out newPos);
-                circleUIObject.rectTransform.anchoredPosition = newPos;
-                circleUIObject.fillAmount = (internalDismissTimer / TimeToDismiss);
+                if (InternalDelayTimer < TimeDelay)
+                {
+                    InternalDelayTimer += Time.deltaTime;
+                    if (InternalDelayTimer > TimeDelay)
+                    {
+                        
+                        isDelay = true;
+                    }
+
+                }
+                if (isDelay)
+                {
+                    InternalDelayTimer = 0;
+
+                    Vector2 newPos;
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, touch.position, uiCam, out newPos);
+                    circleUIObject.rectTransform.anchoredPosition = newPos;
+                    circleUIObject.fillAmount = (internalDismissTimer / TimeToDismiss);
 
 
-                internalDismissTimer += Time.deltaTime;
+                    internalDismissTimer += Time.deltaTime;
+                }
             }
 
             if (internalDismissTimer >= TimeToDismiss)
             {
+                
                 isMenuActive = false;
                 internalDismissTimer = 0;
+                
+                isDelay = false;
             }
         }
 

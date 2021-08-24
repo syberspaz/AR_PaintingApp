@@ -140,4 +140,13 @@ public class PlaceUserPlane : MonoBehaviour
         progressFlagScale = false;
     }
 
+    public void ResetPositionOnStart()
+    {
+        transform.parent = Camera.main.transform;
+        transform.localPosition = new Vector3(0.039f, -0.135f, 1.66f);
+        transform.localRotation =  Quaternion.Euler(new Vector3(53.7f, 0f, 0f));
+        transform.localScale = new Vector3(1f, 0.59f, 1f);
+        transform.parent = null;
+    }
+
 }
