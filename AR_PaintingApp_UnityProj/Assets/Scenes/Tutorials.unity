@@ -6432,15 +6432,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17ace9c0f82064479e4de9507a0f7cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToHold: 2
+  TimeToHold: 1.5
   internalHoldTimer: 0
-  TimeToDismiss: 0.5
+  TimeToDismiss: 1.5
   internalDismissTimer: 0
   isMenuActive: 0
   menuObject: {fileID: 385251448}
   circleUIObject: {fileID: 1882830367}
   canvas: {fileID: 224697647}
   uiCam: {fileID: 368037346}
+  TimeDelay: 0.5
+  InternalDelayTimer: 0
 --- !u!4 &571702041
 Transform:
   m_ObjectHideFlags: 0
@@ -13102,6 +13104,7 @@ GameObject:
   - component: {fileID: 1310458844}
   - component: {fileID: 1310458846}
   - component: {fileID: 1310458847}
+  - component: {fileID: 1310458848}
   m_Layer: 0
   m_Name: TutorialScriptManager
   m_TagString: Untagged
@@ -13173,6 +13176,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ac660a2aec46b43a5896f4f211f4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1310458848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310458843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af4aa3b145d385d48bf29a06122398ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShouldForceOrientation: 1
+  ForceLandscape: 0
 --- !u!1 &1315924034
 GameObject:
   m_ObjectHideFlags: 0

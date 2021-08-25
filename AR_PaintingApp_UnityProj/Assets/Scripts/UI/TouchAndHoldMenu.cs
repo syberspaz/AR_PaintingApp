@@ -31,10 +31,10 @@ public class TouchAndHoldMenu : MonoBehaviour
 
     public float InternalDelayTimer;
 
-    public bool isDelay = false;
+    private bool isDelay = false;
 
-    [SerializeField]
-    private Text debugText;
+    private bool didVibrate = false; 
+
 
 
     //this script just spawns and despawns an object based on touch + hold controls, mostly just used for 1 menu
@@ -58,8 +58,11 @@ public class TouchAndHoldMenu : MonoBehaviour
 
         Touch touch = Input.GetTouch(0);
 
-        if (touch.phase == TouchPhase.Ended)
+        if (touch.phase == TouchPhase.Ended || touch.deltaPosition.magnitude > 60)
         {
+            InternalDelayTimer = 0f;
+            isDelay = false;
+            didVibrate = false;
             internalHoldTimer = 0f;
             internalDismissTimer = 0f;
             circleUIObject.fillAmount = 0f;
@@ -86,6 +89,11 @@ public class TouchAndHoldMenu : MonoBehaviour
                 }
                 if (isDelay)
                 {
+                    if (!didVibrate)
+                    {
+                        didVibrate = true;
+                        Handheld.Vibrate();
+                    }
                     InternalDelayTimer = 0;
                     //calculate on the canvas where it needs to go
                     Vector2 newPos;
@@ -104,6 +112,7 @@ public class TouchAndHoldMenu : MonoBehaviour
                 isMenuActive = true;
                 internalHoldTimer = 0;
                 isDelay = false;
+                didVibrate = false; 
             }
         }
         else if (isMenuActive)
@@ -124,6 +133,13 @@ public class TouchAndHoldMenu : MonoBehaviour
                 {
                     InternalDelayTimer = 0;
 
+
+                    if (!didVibrate)
+                    {
+                        didVibrate = true;
+                        Handheld.Vibrate();
+                    }
+
                     Vector2 newPos;
                     RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, touch.position, uiCam, out newPos);
                     circleUIObject.rectTransform.anchoredPosition = newPos;
@@ -139,7 +155,7 @@ public class TouchAndHoldMenu : MonoBehaviour
                 
                 isMenuActive = false;
                 internalDismissTimer = 0;
-                
+                didVibrate = false;
                 isDelay = false;
             }
         }
