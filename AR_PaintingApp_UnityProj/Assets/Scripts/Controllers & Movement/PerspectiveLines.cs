@@ -41,9 +41,6 @@ public class PerspectiveLines : MonoBehaviour
     [SerializeField]
     public bool isEnabled = false;
 
-    [SerializeField]
-    private Text debugText;
-
     private void Update()
     {
         //vector that will be rotated

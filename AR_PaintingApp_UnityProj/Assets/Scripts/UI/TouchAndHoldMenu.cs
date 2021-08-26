@@ -108,8 +108,8 @@ public class TouchAndHoldMenu : MonoBehaviour
 
             if (internalHoldTimer >= TimeToHold)
             {
-                
-                isMenuActive = true;
+                circleUIObject.fillAmount = 0f;
+               isMenuActive = true;
                 internalHoldTimer = 0;
                 isDelay = false;
                 didVibrate = false; 
@@ -152,7 +152,7 @@ public class TouchAndHoldMenu : MonoBehaviour
 
             if (internalDismissTimer >= TimeToDismiss)
             {
-                
+                circleUIObject.fillAmount = 0f;
                 isMenuActive = false;
                 internalDismissTimer = 0;
                 didVibrate = false;
