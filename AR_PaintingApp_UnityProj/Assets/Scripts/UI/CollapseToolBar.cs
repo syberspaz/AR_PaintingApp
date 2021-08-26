@@ -24,14 +24,14 @@ public class CollapseToolBar : MonoBehaviour
         if(isOpen)
         {
             RectTransform thisRect = gameObject.GetComponent<RectTransform>();
-            thisRect.anchoredPosition = new Vector2(thisRect.rect.x, 300);
+            thisRect.anchoredPosition = new Vector2(0, 750);
         }
         else
         {
            
 
             RectTransform thisRect = gameObject.GetComponent<RectTransform>();
-            thisRect.anchoredPosition = new Vector2(thisRect.rect.x, 20);
+            thisRect.anchoredPosition = new Vector2(0, 20);
         }
 
 

@@ -3017,7 +3017,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "User Plane: \nThis tool defines the area your tools work in. In explore
-    mode press\t\non the palette menu to bring up the placing menu."
+    mode press \tthe \t\ticon\t\non the palette menu to bring up the placing menu."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17b411dd5bc19ae4c8e680763892da2b, type: 2}
   m_sharedMaterial: {fileID: 263116076355454068, guid: 17b411dd5bc19ae4c8e680763892da2b, type: 2}
@@ -5548,8 +5548,8 @@ GameObject:
   - component: {fileID: 464023652}
   - component: {fileID: 464023656}
   - component: {fileID: 464023655}
-  - component: {fileID: 464023654}
   - component: {fileID: 464023653}
+  - component: {fileID: 464023654}
   m_Layer: 0
   m_Name: Quad
   m_TagString: UserToolPlane
@@ -5584,8 +5584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf00a7f6d032b046b4d2d6e794ef3e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &464023654
-MeshCollider:
+--- !u!65 &464023654
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5594,10 +5594,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.9999999, y: 1, z: 0.053448997}
+  m_Center: {x: 0, y: -6.4502376e-11, z: 0.0033844572}
 --- !u!23 &464023655
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6433,15 +6432,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17ace9c0f82064479e4de9507a0f7cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToHold: 2
+  TimeToHold: 1.5
   internalHoldTimer: 0
-  TimeToDismiss: 0.5
+  TimeToDismiss: 1.5
   internalDismissTimer: 0
   isMenuActive: 0
   menuObject: {fileID: 385251448}
   circleUIObject: {fileID: 1882830367}
   canvas: {fileID: 224697647}
   uiCam: {fileID: 368037346}
+  TimeDelay: 0.5
+  InternalDelayTimer: 0
 --- !u!4 &571702041
 Transform:
   m_ObjectHideFlags: 0
@@ -10786,7 +10787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 59.3, y: 20.8}
+  m_AnchoredPosition: {x: -48.3, y: 8.8}
   m_SizeDelta: {x: 23.92, y: 13.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1017230765
@@ -13103,6 +13104,7 @@ GameObject:
   - component: {fileID: 1310458844}
   - component: {fileID: 1310458846}
   - component: {fileID: 1310458847}
+  - component: {fileID: 1310458848}
   m_Layer: 0
   m_Name: TutorialScriptManager
   m_TagString: Untagged
@@ -13174,6 +13176,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ac660a2aec46b43a5896f4f211f4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1310458848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310458843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af4aa3b145d385d48bf29a06122398ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShouldForceOrientation: 1
+  ForceLandscape: 0
 --- !u!1 &1315924034
 GameObject:
   m_ObjectHideFlags: 0
@@ -14503,7 +14519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.20115566, a: 1}
+  m_Color: {r: 0.5188679, g: 0.35978106, b: 0.35978106, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

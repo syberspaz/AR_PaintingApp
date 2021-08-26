@@ -11,6 +11,10 @@ public class PlaceUserPlane : MonoBehaviour
     private bool progressFlagRotate = false;
     private bool progressFlagScale = false;
 
+    private bool RotationSnapFlag = false;
+
+    private bool canSnapRotate = true;
+
 
     // Update is called once per frame
     void Update()
@@ -20,56 +24,80 @@ public class PlaceUserPlane : MonoBehaviour
         DetectTouchMovement.Calculate();
         Touch touch = Input.GetTouch(0);
 
-            
-            float pinchAmount = 0f;
-            if (progressFlagPlace)
-            {
-                if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
-                { // zoom
 
-                    pinchAmount = DetectTouchMovement.pinchDistanceDelta;
+        float pinchAmount = 0f;
+        if (progressFlagPlace)
+        {
+            if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
+            { // zoom
 
-                    Matrix4x4 viewMatrix;
+                pinchAmount = DetectTouchMovement.pinchDistanceDelta;
 
-                    viewMatrix = Matrix4x4.Inverse(Camera.main.transform.localToWorldMatrix);
+                Matrix4x4 viewMatrix;
 
-                    Vector3 forward;
-                    forward.x = viewMatrix.m20;
-                    forward.y = viewMatrix.m21;
-                    forward.z = viewMatrix.m22;
+                viewMatrix = Matrix4x4.Inverse(Camera.main.transform.localToWorldMatrix);
 
-                    transform.position += forward * pinchAmount * Time.deltaTime;
-                }
+                Vector3 forward;
+                forward.x = viewMatrix.m20;
+                forward.y = viewMatrix.m21;
+                forward.z = viewMatrix.m22;
+
+                transform.position += forward * pinchAmount/2 * Time.deltaTime;
+            }
 
             transform.parent = Camera.main.transform;
 
-            }
-            else
-             {
+        }
+        else
+        {
             transform.parent = null; //when not placing unparent
-             }
-           if (progressFlagRotate)
+        }
+        if (progressFlagRotate)
+        {
+            if (Input.touchCount >= 2 && canSnapRotate)
             {
-                //test code for rotation
-                Vector2 touchMovement = touch.deltaPosition;
-
-                Quaternion rotation = Quaternion.Euler(touchMovement.y * 0.3f, 0, -touchMovement.x * 0.3f);
 
 
+                if (RotationSnapFlag)
+                {
 
-                transform.rotation = rotation * transform.rotation;
-            }
-            if (progressFlagScale)
-            {
-                if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
-                { // zoom
-
-                    pinchAmount = DetectTouchMovement.pinchDistanceDelta;
-
-                    transform.localScale += (new Vector3(pinchAmount, pinchAmount, pinchAmount) / 3) * Time.deltaTime;
+                    transform.rotation = Quaternion.Euler(90f, 0f, 0f);
                 }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                }
+                RotationSnapFlag = !RotationSnapFlag;
+                canSnapRotate = false;
             }
-       
+
+           
+
+            //test code for rotation
+            Vector2 touchMovement = touch.deltaPosition;
+
+            Quaternion rotation = Quaternion.Euler(touchMovement.y * 0.1f, 0, touchMovement.x * 0.1f);
+
+
+
+            transform.rotation = rotation * transform.rotation;
+        }
+        if (progressFlagScale)
+        {
+            if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
+            { // zoom
+
+                pinchAmount = DetectTouchMovement.pinchDistanceDelta;
+
+                transform.localScale += (new Vector3(pinchAmount, pinchAmount, pinchAmount) / 3) * Time.deltaTime;
+            }
+        }
+
+        if (touch.phase == TouchPhase.Ended)
+        {
+            canSnapRotate = true;
+        }
+
     }
 
     public void PlacePlane()
@@ -138,6 +166,15 @@ public class PlaceUserPlane : MonoBehaviour
         progressFlagPlace = false;
         progressFlagRotate = false;
         progressFlagScale = false;
+    }
+
+    public void ResetPositionOnStart()
+    {
+        transform.parent = Camera.main.transform;
+        transform.localPosition = new Vector3(0.039f, -0.135f, 1.66f);
+        transform.localRotation =  Quaternion.Euler(new Vector3(53.7f, 0f, 0f));
+        transform.localScale = new Vector3(1f, 0.59f, 1f);
+        transform.parent = null;
     }
 
 }

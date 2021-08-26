@@ -69,7 +69,7 @@ public class PaletteMenuSelection : MonoBehaviour
               
 
                 //perspective lines
-                item.toolGO[0].GetComponent<TogglePlaneDetection>().PlaneDetectionToggle();
+                //item.toolGO[0].GetComponent<TogglePlaneDetection>().PlaneDetectionToggle();
                 item.toolGO[1].GetComponent<PerspectiveLines>().ToggleEnable();
                 item.toolGO[2].SetActive(true);
 
@@ -89,7 +89,9 @@ public class PaletteMenuSelection : MonoBehaviour
             {
                 item.toolGO[0].SetActive(true);
                 item.toolGO[1].SetActive(true);
+                item.toolGO[1].GetComponent<PlaceUserPlane>().ResetPositionOnStart();
                 item.toolGO[2].SetActive(true);
+
 
             }
 

@@ -66,6 +66,7 @@ public class Marker : MonoBehaviour
                     //set all colors in array to be the selection
                     for (int i = 0; i < colors.Length; i++)
                     {
+                        
                         colors[i] = fcp.color;
                     }
 
