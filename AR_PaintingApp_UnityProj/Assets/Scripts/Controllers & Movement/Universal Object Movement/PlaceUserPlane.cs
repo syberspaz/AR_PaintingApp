@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlaceUserPlane : MonoBehaviour
 {
+
+    [SerializeField]
+    private RawImage GizmoPannel;
+
+    [SerializeField]
+    private Texture[] GizmoTextures;
 
 
     private bool startedPlacing = false;
@@ -28,6 +35,8 @@ public class PlaceUserPlane : MonoBehaviour
         float pinchAmount = 0f;
         if (progressFlagPlace)
         {
+            GizmoPannel.texture = GizmoTextures[2];
+
             if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
             { // zoom
 
@@ -54,6 +63,8 @@ public class PlaceUserPlane : MonoBehaviour
         }
         if (progressFlagRotate)
         {
+            GizmoPannel.texture = GizmoTextures[0];
+
             if (Input.touchCount >= 2 && canSnapRotate)
             {
 
@@ -84,6 +95,8 @@ public class PlaceUserPlane : MonoBehaviour
         }
         if (progressFlagScale)
         {
+            GizmoPannel.texture = GizmoTextures[1];
+
             if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
             { // zoom
 
