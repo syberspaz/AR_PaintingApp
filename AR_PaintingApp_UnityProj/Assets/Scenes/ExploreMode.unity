@@ -325,7 +325,7 @@ RectTransform:
   m_Children:
   - {fileID: 1082581393}
   m_Father: {fileID: 1793302701}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2784,7 +2784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &790433274
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2800,7 +2800,7 @@ RectTransform:
   - {fileID: 2139492627}
   - {fileID: 947792203}
   m_Father: {fileID: 1793302701}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3393,7 +3393,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1834229332}
         m_TargetAssemblyTypeName: PlaceUserPlane, Assembly-CSharp
-        m_MethodName: ToggleScale
+        m_MethodName: SetForScale
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3459,7 +3459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &957790446
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3469,7 +3469,7 @@ RectTransform:
   m_GameObject: {fileID: 957790445}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.60586, y: 0.60586, z: 0.60586}
   m_Children:
   - {fileID: 1926782005}
   m_Father: {fileID: 1793302701}
@@ -3477,7 +3477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 667, y: 16.4}
+  m_AnchoredPosition: {x: 420.5, y: -4.8}
   m_SizeDelta: {x: 428.8, y: 219.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &957790447
@@ -3704,6 +3704,7 @@ RectTransform:
   - {fileID: 1479391375}
   - {fileID: 1511477001}
   - {fileID: 477106118}
+  - {fileID: 1806321733}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5208,7 +5209,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1834229332}
         m_TargetAssemblyTypeName: PlaceUserPlane, Assembly-CSharp
-        m_MethodName: TogglePlace
+        m_MethodName: SetForLocation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5481,7 +5482,6 @@ RectTransform:
   - {fileID: 2023040701}
   - {fileID: 957790446}
   - {fileID: 257752231}
-  - {fileID: 1806321733}
   - {fileID: 790433274}
   - {fileID: 54067051}
   m_Father: {fileID: 1511477001}
@@ -5519,17 +5519,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806321732}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.36, y: 1.36, z: 1.36}
+  m_LocalScale: {x: 2.3119998, y: 2.3119998, z: 1.3599999}
   m_Children:
   - {fileID: 627913226}
-  m_Father: {fileID: 1793302701}
-  m_RootOrder: 5
+  m_Father: {fileID: 970549482}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -403, y: 0.000030518}
+  m_AnchoredPosition: {x: -672.645, y: 1533}
   m_SizeDelta: {x: 248.3, y: 133.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1806321734
@@ -5565,7 +5565,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5882353}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -5652,12 +5652,12 @@ GameObject:
   - component: {fileID: 1834229332}
   - component: {fileID: 1834229328}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: UserPlane
   m_TagString: UserToolPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1834229328
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5746,6 +5746,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf00a7f6d032b046b4d2d6e794ef3e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LocationActive: 0
+  RotationActive: 0
+  ScaleActive: 0
 --- !u!1 &1874034218
 GameObject:
   m_ObjectHideFlags: 0
@@ -6686,7 +6689,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1834229332}
         m_TargetAssemblyTypeName: PlaceUserPlane, Assembly-CSharp
-        m_MethodName: ToggleRotation
+        m_MethodName: SetForRotation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

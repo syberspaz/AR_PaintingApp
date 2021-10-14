@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlaceUserPlane : MonoBehaviour
 {
 
-
+    /*
     private bool startedPlacing = false;
     private bool progressFlagPlace = false;
     private bool progressFlagRotate = false;
@@ -14,161 +14,27 @@ public class PlaceUserPlane : MonoBehaviour
     private bool RotationSnapFlag = false;
 
     private bool canSnapRotate = true;
+    */
+
+    public bool LocationActive;
+    public bool RotationActive;
+    public bool ScaleActive;
 
 
     // Update is called once per frame
     void Update()
     {
 
-
-        DetectTouchMovement.Calculate();
-        Touch touch = Input.GetTouch(0);
-
-
-        float pinchAmount = 0f;
-        if (progressFlagPlace)
-        {
-            if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
-            { // zoom
-
-                pinchAmount = DetectTouchMovement.pinchDistanceDelta;
-
-                Matrix4x4 viewMatrix;
-
-                viewMatrix = Matrix4x4.Inverse(Camera.main.transform.localToWorldMatrix);
-
-                Vector3 forward;
-                forward.x = viewMatrix.m20;
-                forward.y = viewMatrix.m21;
-                forward.z = viewMatrix.m22;
-
-                transform.position += forward * pinchAmount/2 * Time.deltaTime;
-            }
-
-            transform.parent = Camera.main.transform;
-
-        }
-        else
-        {
-            transform.parent = null; //when not placing unparent
-        }
-        if (progressFlagRotate)
-        {
-            if (Input.touchCount >= 2 && canSnapRotate)
-            {
-
-
-                if (RotationSnapFlag)
-                {
-
-                    transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-                }
-                else
-                {
-                    transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                }
-                RotationSnapFlag = !RotationSnapFlag;
-                canSnapRotate = false;
-            }
-
-           
-
-            //test code for rotation
-            Vector2 touchMovement = touch.deltaPosition;
-
-            Quaternion rotation = Quaternion.Euler(touchMovement.y * 0.1f, 0, touchMovement.x * 0.1f);
-
-
-
-            transform.rotation = rotation * transform.rotation;
-        }
-        if (progressFlagScale)
-        {
-            if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
-            { // zoom
-
-                pinchAmount = DetectTouchMovement.pinchDistanceDelta;
-
-                transform.localScale += (new Vector3(pinchAmount, pinchAmount, pinchAmount) / 3) * Time.deltaTime;
-            }
-        }
-
-        if (touch.phase == TouchPhase.Ended)
-        {
-            canSnapRotate = true;
-        }
-
+        if (LocationActive)
+        DoPlacementCalculations();
+        else if (RotationActive)
+        DoRotationCalculations();
+        else if (ScaleActive) 
+        DoScaleCalculations();
     }
 
-    public void PlacePlane()
-    {
-        gameObject.SetActive(true);
-    }
 
-    public void DestroyPlane()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public void StartSequence()
-    {
-        startedPlacing = true;
-        gameObject.transform.parent = Camera.main.transform;
-        gameObject.SetActive(true);
-        gameObject.transform.position = Camera.main.transform.position + (Camera.main.transform.forward * 2);
-        progressFlagPlace = false;
-        progressFlagRotate = true;
-        progressFlagScale = true;
-}
-
-    //these exist to confirm progress using the ui buttons
-    public void SetPlace()
-    {
-        gameObject.transform.parent = null;
-        progressFlagPlace = true;
-        progressFlagRotate = false;
-    }
-
-    public void SetRotation()
-    {
-        progressFlagRotate = true;
-        progressFlagScale = false;
-    }
-
-    public void SetScale()
-    {
-        progressFlagScale = true;
-    }
-
-    public void TogglePlace()
-    {
-        progressFlagPlace = true;
-        progressFlagRotate = false;
-        progressFlagScale = false;
-
-
-    }
-    public void ToggleRotation()
-    {
-        progressFlagPlace = false;
-        progressFlagRotate = true;
-        progressFlagScale = false;
-    }
-    public void ToggleScale()
-    {
-        progressFlagPlace = false;
-        progressFlagRotate = false;
-        progressFlagScale = true;
-    }
-
-    public void EndSequence()
-    {
-        progressFlagPlace = false;
-        progressFlagRotate = false;
-        progressFlagScale = false;
-    }
-
-    public void ResetPositionOnStart()
+    public void ResetPositionOnStart() //Button on pallette
     {
         transform.parent = Camera.main.transform;
         transform.localPosition = new Vector3(0.039f, -0.135f, 1.66f);
@@ -176,5 +42,109 @@ public class PlaceUserPlane : MonoBehaviour
         transform.localScale = new Vector3(1f, 0.59f, 1f);
         transform.parent = null;
     }
+
+    public void DoPlacementCalculations()
+    {
+        DetectTouchMovement.Calculate();
+
+        float pinchAmount = 0f;
+
+        if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
+        { // zoom
+
+            pinchAmount = DetectTouchMovement.pinchDistanceDelta;
+
+            Matrix4x4 viewMatrix;
+
+            viewMatrix = Matrix4x4.Inverse(Camera.main.transform.localToWorldMatrix);
+
+            Vector3 forward;
+            forward.x = viewMatrix.m20;
+            forward.y = viewMatrix.m21;
+            forward.z = viewMatrix.m22;
+
+            transform.position += forward * pinchAmount / 2 * Time.deltaTime;
+        }
+
+        transform.parent = Camera.main.transform;
+    }
+
+    public void DoRotationCalculations()
+    {
+        Touch touch = Input.GetTouch(0);
+
+        //test code for rotation
+        Vector2 touchMovement = touch.deltaPosition;
+
+        Quaternion rotation = Quaternion.Euler(touchMovement.y * 0.1f, 0, touchMovement.x * 0.1f);
+
+        transform.rotation = rotation * transform.rotation;
+    }
+
+    public void DoScaleCalculations()
+    {
+        DetectTouchMovement.Calculate();
+
+        float pinchAmount = 0f;
+
+        if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
+        { // zoom
+
+            pinchAmount = DetectTouchMovement.pinchDistanceDelta;
+
+            transform.localScale += (new Vector3(pinchAmount, pinchAmount, pinchAmount) / 3) * Time.deltaTime;
+        }
+    }
+
+    public void SetForLocation()
+    {
+        if (LocationActive == false)
+        {
+            transform.parent = Camera.main.transform;
+            LocationActive = true;
+            RotationActive = false;
+            ScaleActive = false;
+        }
+        else
+        {
+            transform.parent = null;
+            LocationActive = false;
+            RotationActive = false;
+            ScaleActive = false;
+        }
+    }
+
+    public void SetForRotation()
+    {
+        if (RotationActive == false)
+        {
+            LocationActive = false;
+            RotationActive = true;
+            ScaleActive = false;
+        }
+        else
+        {
+            LocationActive = false;
+            RotationActive = false;
+            ScaleActive = false;
+        }
+    }
+
+    public void SetForScale()
+    {
+        if (ScaleActive == false)
+        {
+            LocationActive = false;
+            RotationActive = false;
+            ScaleActive = true;
+        }
+        else
+        {
+            LocationActive = false;
+            RotationActive = false;
+            ScaleActive = false;
+        }
+    }
+
 
 }
