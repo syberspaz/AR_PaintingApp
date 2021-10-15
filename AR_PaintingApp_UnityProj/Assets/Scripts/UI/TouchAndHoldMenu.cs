@@ -19,6 +19,9 @@ public class TouchAndHoldMenu : MonoBehaviour
     private GameObject menuObject;
 
     [SerializeField]
+    private GameObject userPlaneUiObject;
+
+    [SerializeField]
     public Image circleUIObject;
 
     [SerializeField]
@@ -31,13 +34,17 @@ public class TouchAndHoldMenu : MonoBehaviour
 
     public float InternalDelayTimer;
 
+    private bool CanTogglePlane = true;
+
     private bool isDelay = false;
 
-    private bool didVibrate = false; 
+    private bool didVibrate = false;
+
+    private int TouchCount;
 
 
 
-    //this script just spawns and despawns an object based on touch + hold controls, mostly just used for 1 menu
+    //this script just spawns and despawns an object based on touch + hold controls, mostly just used for 1 menu and the user plane
     //also manages the icon that shows how close to open it is
 
     void Update()
@@ -49,12 +56,13 @@ public class TouchAndHoldMenu : MonoBehaviour
         menuObject.SetActive(isMenuActive);
         CheckForTouchHold();
 
+
     }
 
     private void CheckForTouchHold()
     {
 
-
+        
 
         Touch touch = Input.GetTouch(0);
 
@@ -161,8 +169,38 @@ public class TouchAndHoldMenu : MonoBehaviour
         }
 
 
-
+       
     }
+
+
+    private void CheckForPlaneTouchHold()
+    {
+
+        /*
+        Touch touch = Input.GetTouch(0);
+
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(touch.position);
+
+        Physics.Raycast(ray, out hit);
+
+        if (hit.transform.gameObject.tag == "UserToolPlane" && CanTogglePlane && touch.phase == TouchPhase.Began)
+        {
+            PlaceUserPlane userplane;
+            hit.transform.gameObject.TryGetComponent<PlaceUserPlane>(out userplane);
+
+            if (userPlaneUiObject.activeSelf == true)
+            {
+                userplane.RotationActive = false;
+                userplane.LocationActive = false;
+                userplane.ScaleActive = false;
+            }
+
+
+        }
+        */
+    }
+
 
     public void DisableMenu()
     { 
