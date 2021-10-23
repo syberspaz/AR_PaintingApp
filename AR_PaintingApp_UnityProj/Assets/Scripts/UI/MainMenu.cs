@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
 
     public void LaunchTutorial()
     {
-        SceneManager.LoadSceneAsync("Tutorials");
+        SceneManager.LoadSceneAsync("MainTutorialMenu");
     }
 
     public void ReturnToMainMenu()

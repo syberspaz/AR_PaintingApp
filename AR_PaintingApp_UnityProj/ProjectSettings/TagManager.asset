@@ -9,6 +9,7 @@ TagManager:
   - ControllerManager
   - UserToolPlane
   - AudioManager
+  - ARPlane
   layers:
   - Default
   - TransparentFX
