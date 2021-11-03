@@ -14,6 +14,8 @@ public class PerspectiveLines : MonoBehaviour
     [SerializeField]
     private Material LineMaterialSolid;
 
+
+
     public bool isDotted;
 
 
@@ -52,14 +54,17 @@ public class PerspectiveLines : MonoBehaviour
         {
             return;
         }
-        
 
-         if (isEnabled)
-          {
+
+        if (isEnabled)
+        {
+
+
             RaycastHit hit;
             //if touch raycasts onto a plane (valid placement), we can continue with the code that places the lines
             if (Physics.Raycast(Camera.main.ScreenPointToRay(touchPosition), out hit) && linesUI.activeSelf)
             {
+
                 if (hit.transform.gameObject.tag == "UserToolPlane")
                 {
 
@@ -77,7 +82,7 @@ public class PerspectiveLines : MonoBehaviour
                     }
                 }
             }
-          }
+        }
     }
 
 

@@ -16046,7 +16046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634328523085810811, guid: 72e4e4df8d4576745a9925d889cd01ff, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8978098098609706689, guid: 72e4e4df8d4576745a9925d889cd01ff, type: 3}
       propertyPath: m_RootOrder
@@ -18138,8 +18138,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "User Plane Buttons General:\nYou can reset the user plane by pressing\n
-    the\t\ticon\n"
+  m_text: "User Plane Buttons General:\nYou can reset the user plane by pressing\nthe\t\ticon\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17b411dd5bc19ae4c8e680763892da2b, type: 2}
   m_sharedMaterial: {fileID: 263116076355454068, guid: 17b411dd5bc19ae4c8e680763892da2b, type: 2}
@@ -18229,7 +18228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634328523085810811, guid: 72e4e4df8d4576745a9925d889cd01ff, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8978098098609706689, guid: 72e4e4df8d4576745a9925d889cd01ff, type: 3}
       propertyPath: m_RootOrder

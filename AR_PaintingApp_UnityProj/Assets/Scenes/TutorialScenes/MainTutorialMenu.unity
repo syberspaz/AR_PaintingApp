@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 257602193}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 866556442}
+        m_TargetAssemblyTypeName: TutorialMenuScript, Assembly-CSharp
+        m_MethodName: LoadTutorialScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &257602193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1049,7 +1061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233405fde9a1e514a9d328d52784f0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutorialSceneIndex: 0c0000000d000000
+  TutorialSceneIndex: 0c0000000d0000000e0000000f000000
 --- !u!4 &866556443
 Transform:
   m_ObjectHideFlags: 0
@@ -1400,7 +1412,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1090293426}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 866556442}
+        m_TargetAssemblyTypeName: TutorialMenuScript, Assembly-CSharp
+        m_MethodName: LoadTutorialScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1090293426
 MonoBehaviour:
   m_ObjectHideFlags: 0
