@@ -30,7 +30,14 @@ public class CaliperController : MonoBehaviour
         animator.SetFloat("DistanceBetweenEnds", Openness);
 
         //calculate distance between tips and update text
-        distanceText.text = Vector3.Distance(tip1.position, tip2.position).ToString();
+
+
+        float distance = Vector3.Distance(tip1.position, tip2.position);
+
+        distance *= 100; //multiply by 100 to bring to cm from m
+
+        
+        distanceText.text = distance.ToString() + " cm";
 
     }
 

@@ -86,7 +86,7 @@ public class MenuItemBob : MonoBehaviour
         }
 
         transform.localPosition = Vector3.Lerp(startingPosition, endingPosition, moveT);
-        transform.rotation = Quaternion.Euler(Vector3.Lerp(startingRotation, endingRotation, rotationT));
+        transform.localRotation = Quaternion.Euler(Vector3.Lerp(startingRotation, endingRotation, rotationT));
 
 
 
