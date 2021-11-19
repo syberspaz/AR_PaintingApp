@@ -39,6 +39,16 @@ public class CaliperController : MonoBehaviour
         
         distanceText.text = distance.ToString() + " cm";
 
+        float pinchAmount = 0f;
+
+        if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
+        { // zoom
+            pinchAmount = DetectTouchMovement.pinchDistanceDelta;
+        }
+
+        Openness += (pinchAmount * Time.deltaTime) / 20;
+
+
     }
 
 

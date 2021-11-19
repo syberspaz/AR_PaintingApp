@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class CircularMenu : MonoBehaviour, IDropHandler
 {
     public float radius = 100.0f;
-    static public int NumItems =  5;
+    static public int NumItems =  3;
     public int startSceneIndex;
     //public GameObject cube;
     public string[] scenesNames = new string[NumItems];
     private Color[] colours;
+
+    [SerializeField]
+    private Text loadingDisplayText;
+
+
+
     private Vector2 cartesianToPolar(Vector3 pos){
         //We want atan2 instead of atan b/c atan2 handles when x = 0
         float theta = Mathf.Atan2(pos.y, pos.x);
@@ -25,7 +32,7 @@ public class CircularMenu : MonoBehaviour, IDropHandler
     }
 
     void Awake(){
-        DontDestroyOnLoad(this.gameObject.transform.parent.gameObject);
+        //DontDestroyOnLoad(this.gameObject.transform.parent.gameObject);
         // SceneManager.LoadScene(scenesNames[startSceneIndex], LoadSceneMode.Single);
     }
     // Start is called before the first frame update
@@ -53,9 +60,13 @@ public class CircularMenu : MonoBehaviour, IDropHandler
             Debug.DrawLine(center, center + new Vector3(x, y, 0.0f), Color.red, 5.0f);
             angle += angleDelta;
         }
+
+        loadingDisplayText.text = CheckSceneHover();
+
     }
 
-    public void OnDrop(PointerEventData eventData){
+    public void OnDrop(PointerEventData eventData)
+    {
         Vector3 center = this.transform.position;
         Vector3 colourWheelPos = eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition;
 
@@ -94,4 +105,36 @@ public class CircularMenu : MonoBehaviour, IDropHandler
         }
         
     }
+
+    //checks where the circle is and returns the name of the scene
+    private string CheckSceneHover()
+    {
+        Vector3 center = this.transform.position;
+        Vector3 colourWheelPos = GameObject.FindObjectOfType<ColourCircle>().GetComponent<RectTransform>().anchoredPosition;
+
+        Vector2 polarCoord = cartesianToPolar(colourWheelPos);
+        //We want atan2 instead of atan b/c atan2 handles when x = 0
+        //float theta = Mathf.Atan2(colourWheelPos.y, colourWheelPos.x);
+        Debug.Log(polarCoord.x);
+
+
+        float circleAngle = (-Mathf.PI);
+        float angleDelta = (2 * Mathf.PI) / NumItems;
+        for (int i = 0; i < NumItems; i++)
+        {
+            if (polarCoord.x >= circleAngle && polarCoord.x < circleAngle + angleDelta)
+            {
+                return scenesNames[i];
+            }
+            circleAngle += angleDelta;
+        }
+
+        string newString;
+        newString = "";
+        return newString;
+
+    }
 }
+
+
+

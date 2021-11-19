@@ -43,23 +43,56 @@ public class PerspectiveLines : MonoBehaviour
     [SerializeField]
     public bool isEnabled = false;
 
+    [SerializeField]
+    private GameObject LineHolder;
+
+
+    //debug
+    public Text debugText;
+
     private void Update()
     {
+
+        Touch touch = Input.GetTouch(0);
+
+        GameObject[] LineOriginObjects = GameObject.FindGameObjectsWithTag("LineHolder");
+
+        Vector2 deltaPosTouch = touch.deltaPosition;
+
+        debugText.text = deltaPosTouch.ToString();
+
+        for (int i = 0; i < LineOriginObjects.Length; i++)
+        {
+
+            Vector3 CurRot = LineOriginObjects[i].transform.rotation.eulerAngles;
+
+            CurRot.z += deltaPosTouch.x * Time.deltaTime;
+
+            LineOriginObjects[i].transform.rotation = Quaternion.Euler(CurRot);
+        }
+
+
+
         //vector that will be rotated
         Vector3 end = new Vector3(0, 0, 0);
 
         //if no touch, don't need to run the rest of the code
         
+        
         if (!TryGetTouchPosition(out Vector2 touchPosition))
         {
             return;
-        }
+       }
+        
+       
+
+
 
 
         if (isEnabled)
         {
 
-
+            
             RaycastHit hit;
             //if touch raycasts onto a plane (valid placement), we can continue with the code that places the lines
             if (Physics.Raycast(Camera.main.ScreenPointToRay(touchPosition), out hit) && linesUI.activeSelf)
@@ -68,32 +101,39 @@ public class PerspectiveLines : MonoBehaviour
                 if (hit.transform.gameObject.tag == "UserToolPlane")
                 {
 
+
+
                     var hitPos = hit.transform;
 
                     end = (hitPos.right * LineLength) + hit.point;
+
+                    GameObject lineHolder = Instantiate(LineHolder, hit.point, Quaternion.identity);
+
 
                     for (int i = 0; i < NumberOfLines; i++)
                     {
                         //Loops based on number of lines selected by user, takes a vector and rotates it around a pivot
                         //Each line that gets drawn is a line defined by 2 vectors, the center one does not change, but the end
                         //gets rotated around the center and passed into the line drawing function
-                        DrawLine(hit.point, end, Color.red);
+                        DrawLine(hit.point, end, Color.red, lineHolder);
                         end = RotatePointAroundPivot(end, hit.point, hitPos.forward * RotationAmount);
                     }
                 }
             }
+            
         }
     }
 
 
     //Function called when drawing a line
-    void DrawLine(Vector3 start, Vector3 end, Color color)
+    void DrawLine(Vector3 start, Vector3 end, Color color, GameObject parent)
     {
         //Creates a game object for the lines, and with settings from user/developers
-        
+
         GameObject myLine = new GameObject();
         myLine.gameObject.tag = "PerspectiveLine";
         myLine.transform.position = start;
+        myLine.transform.parent = parent.transform;
         myLine.AddComponent<LineRenderer>();
         LineRenderer lr = myLine.GetComponent<LineRenderer>();
 
@@ -101,7 +141,7 @@ public class PerspectiveLines : MonoBehaviour
             lr.material = LineMaterialDotted;
         else
             lr.material = LineMaterialSolid;
-
+        lr.useWorldSpace = false;
         lr.textureMode = LineTextureMode.Tile;
         lr.startColor = color;
         lr.endColor = color;
@@ -157,7 +197,7 @@ public class PerspectiveLines : MonoBehaviour
 
     public void DestroyAllLines()
     {
-        GameObject[] PerspectiveLines = GameObject.FindGameObjectsWithTag("PerspectiveLine");
+        GameObject[] PerspectiveLines = GameObject.FindGameObjectsWithTag("LineHolder");
 
         for (int i = 0; i < PerspectiveLines.Length; i++)
         {

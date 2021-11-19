@@ -55,6 +55,9 @@ EditorBuildSettings:
     guid: 1509e213dea971d4e856d97c9819a43f
   - enabled: 1
     path: Assets/Scenes/TutorialScenes/Tutorial4-PerspLines.unity
+    guid: 142c64e8e93a3b44f834f5a727f050e1
+  - enabled: 1
+    path: Assets/Scenes/TutorialScenes/Tutorial5-ImageSearch.unity
     guid: 1fc454209b1a2b34781160e2b637b9f4
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 0cbddbb8743b3af459c678093948e826, type: 2}

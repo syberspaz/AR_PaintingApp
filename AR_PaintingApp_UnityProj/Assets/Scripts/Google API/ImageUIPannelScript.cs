@@ -20,6 +20,7 @@ public class ImageUIPannelScript : MonoBehaviour
     [SerializeField]
     private ControllerManager transformController;
 
+
     public void Start()
     {
         selectionDisplay.texture = null;   
@@ -34,10 +35,15 @@ public class ImageUIPannelScript : MonoBehaviour
     {
         if (selectionDisplay.texture != null) //Check to make sure there is a valid selection
         {
-            GameObject newPlane = Instantiate(referenceImageQuadPrefab, new Vector3(-1,-1,0), Quaternion.identity); //spawns at 0,0,0
-            newPlane.tag = "ReferenceImageQuad";
-            newPlane.GetComponent<Renderer>().material.mainTexture = selectionDisplay.texture;
-            transformController.movementControllers.Add(newPlane.GetComponent<MovementController>());
+            //GameObject newPlane = Instantiate(referenceImageQuadPrefab, new Vector3(-1,-1,0), Quaternion.identity); //spawns at 0,0,0
+            //newPlane.tag = "ReferenceImageQuad";
+
+            if (referenceImageQuadPrefab.activeSelf == false)
+                referenceImageQuadPrefab.SetActive(true);
+
+            referenceImageQuadPrefab.GetComponent<Renderer>().material.mainTexture = selectionDisplay.texture;
+
+
         }
         else
         {
@@ -47,14 +53,7 @@ public class ImageUIPannelScript : MonoBehaviour
 
     public void RemoveAllReferenceImages()
     {
-        GameObject[] ImagePannels;
-        ImagePannels = GameObject.FindGameObjectsWithTag("ReferenceImageQuad");
-
-        for (int i = 0; i < ImagePannels.Length; i ++)
-        {
-            transformController.movementControllers.Remove(ImagePannels[i].GetComponent<MovementController>());
-           GameObject.Destroy(ImagePannels[i]);
-        }
+        referenceImageQuadPrefab.SetActive(false);
     }
 
 

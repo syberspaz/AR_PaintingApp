@@ -27,7 +27,14 @@ public class MoveObjectOnPlane : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (raycastManager == null)
+        {
+            raycastManager = GameObject.FindObjectOfType<ARRaycastManager>();
+        }
+        if (origin == null)
+        {
+            origin = GameObject.FindObjectOfType<ARSessionOrigin>();
+        }
     }
 
     // Update is called once per frame
