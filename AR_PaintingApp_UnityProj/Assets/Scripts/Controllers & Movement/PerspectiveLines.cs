@@ -50,31 +50,33 @@ public class PerspectiveLines : MonoBehaviour
     //debug
     public Text debugText;
 
+
+    private void Start()
+    {
+        
+       //CreateVanishingPoint(new Vector3(0,0,0), Quaternion.identity);
+        
+    }
+
+
     private void Update()
     {
 
         Touch touch = Input.GetTouch(0);
-
-        GameObject[] LineOriginObjects = GameObject.FindGameObjectsWithTag("LineHolder");
-
         Vector2 deltaPosTouch = touch.deltaPosition;
 
-        debugText.text = deltaPosTouch.ToString();
+        GameObject[] LineOriginObjects = GameObject.FindGameObjectsWithTag("LineHolder");
+      
 
         for (int i = 0; i < LineOriginObjects.Length; i++)
         {
-
-            Vector3 CurRot = LineOriginObjects[i].transform.rotation.eulerAngles;
-
-            CurRot.z += deltaPosTouch.x * Time.deltaTime;
-
-            LineOriginObjects[i].transform.rotation = Quaternion.Euler(CurRot);
+            LineOriginObjects[i].transform.RotateAround(LineOriginObjects[i].transform.position, LineOriginObjects[i].transform.forward, Time.deltaTime * deltaPosTouch.x);
         }
 
-
+        
 
         //vector that will be rotated
-        Vector3 end = new Vector3(0, 0, 0);
+     
 
         //if no touch, don't need to run the rest of the code
         
@@ -91,8 +93,6 @@ public class PerspectiveLines : MonoBehaviour
 
         if (isEnabled)
         {
-
-            
             RaycastHit hit;
             //if touch raycasts onto a plane (valid placement), we can continue with the code that places the lines
             if (Physics.Raycast(Camera.main.ScreenPointToRay(touchPosition), out hit) && linesUI.activeSelf)
@@ -101,27 +101,38 @@ public class PerspectiveLines : MonoBehaviour
                 if (hit.transform.gameObject.tag == "UserToolPlane")
                 {
 
+                    //CreateVanishingPoint(hit.point, hit.transform.rotation);
 
-
-                    var hitPos = hit.transform;
-
-                    end = (hitPos.right * LineLength) + hit.point;
-
-                    GameObject lineHolder = Instantiate(LineHolder, hit.point, Quaternion.identity);
-
-
-                    for (int i = 0; i < NumberOfLines; i++)
-                    {
-                        //Loops based on number of lines selected by user, takes a vector and rotates it around a pivot
-                        //Each line that gets drawn is a line defined by 2 vectors, the center one does not change, but the end
-                        //gets rotated around the center and passed into the line drawing function
-                        DrawLine(hit.point, end, Color.red, lineHolder);
-                        end = RotatePointAroundPivot(end, hit.point, hitPos.forward * RotationAmount);
-                    }
+                    GameObject lines = Instantiate(LineHolder, hit.point, hit.transform.rotation);
+                    lines.transform.parent = hit.transform;
                 }
-            }
-            
+            } 
         }
+
+      
+
+    }
+
+
+    void CreateVanishingPoint(Vector3 pos, Quaternion rot)
+    {
+
+        Vector3 end = new Vector3(1, 0, 0);
+
+
+        GameObject lineHolder = Instantiate(LineHolder, pos, rot);
+
+
+        for (int i = 0; i < NumberOfLines; i++)
+        {
+            //Loops based on number of lines selected by user, takes a vector and rotates it around a pivot
+            //Each line that gets drawn is a line defined by 2 vectors, the center one does not change, but the end
+            //gets rotated around the center and passed into the line drawing function
+            DrawLine(pos, end, Color.red, lineHolder);
+            end = RotatePointAroundPivot(end, pos, lineHolder.transform.forward * RotationAmount);
+        }
+
+
     }
 
 

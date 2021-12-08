@@ -9,9 +9,18 @@ public class UserPlaneFromARPlane : MonoBehaviour
 {
 
     public bool isEnabled;
+    public bool isRotationEnabled;
+
+
 
     [SerializeField]
     private Text ToggleButtonText;
+
+    [SerializeField]
+    private Text RotationLockText;
+
+    [SerializeField]
+    private GameObject RotationButton;
 
 
 
@@ -27,39 +36,45 @@ public class UserPlaneFromARPlane : MonoBehaviour
     void Update()
     {
 
+        RotationButton.SetActive(isEnabled);
+
         if (isEnabled)
         {
-            //if no touch, don't need to run the rest of the code
 
             Touch touch = Input.GetTouch(0);
 
             RaycastHit[] hits;
 
-
-            hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(touch.position));
-
-            for (int i = 0; i < hits.Length; i++)
+            if (isRotationEnabled)
             {
-                if (hits[i].transform.gameObject.tag == "ARPlane")
-                {
-                    transform.position = hits[i].point;
-                    Vector3 temp = hits[i].transform.rotation.eulerAngles;
-                    temp.x += 90;
+                Vector2 deltaPosTouch = touch.deltaPosition;
 
-                    transform.rotation = Quaternion.Euler(temp);
+                Vector3 CurRot = transform.rotation.eulerAngles;
+
+                CurRot.z += deltaPosTouch.x * Time.deltaTime;
+
+                transform.rotation = Quaternion.Euler(CurRot);
+
+            }
+            else
+            {
+                hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(touch.position));
+
+                for (int i = 0; i < hits.Length; i++)
+                {
+                    if (hits[i].transform.gameObject.tag == "ARPlane")
+                    {
+                        transform.position = hits[i].point;
+                        Vector3 temp = hits[i].transform.rotation.eulerAngles;
+                        temp.x += 90;
+
+                        transform.rotation = Quaternion.Euler(temp);
+                    }
                 }
+
             }
 
-            Vector2 deltaPosTouch = touch.deltaPosition;
-
-            Vector3 CurRot = transform.rotation.eulerAngles;
-
-            CurRot.z += deltaPosTouch.x * Time.deltaTime;
-
-            transform.rotation = Quaternion.Euler(CurRot);
-
-
-
+            //if no touch, don't need to run the rest of the code
         }
 
     }
@@ -87,6 +102,22 @@ public class UserPlaneFromARPlane : MonoBehaviour
         }
 
         isEnabled = !isEnabled;
+    }
+
+    public void ToggleRotation()
+    {
+       
+
+        if (isRotationEnabled)
+        {
+            RotationLockText.text = "Switch to Position";
+        }
+        else
+        {
+            RotationLockText.text = "Switch To Rotation";
+        }
+
+        isRotationEnabled = !isRotationEnabled;
     }
 
 

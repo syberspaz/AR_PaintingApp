@@ -57,8 +57,8 @@ public class PaletteMenuSelection : MonoBehaviour
 
 
                 //Caliper Tools
-                item.toolGO[0].SetActive(true);
-                item.toolGO[1].GetComponent<ValueToggler>().ToggleValue();
+               // item.toolGO[0].SetActive(true);
+                item.toolGO[0].GetComponent<ValueToggler>().ToggleValue();
 
                 //For the caliper, item 0 is the menu that needs to open for the calipers
                 //item 1 is the 3d object for the calipers in the scene

@@ -46,77 +46,58 @@ public class MoveObjectOnPlane : MonoBehaviour
 
         DetectTouchMovement.Calculate();
 
+        /*
+        if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0) //if 2 or 0 touches, don't rotate since user is most likely trying to pinch
+        { // rotate
+            Quaternion desiredRotation = transform.rotation;
+            Vector3 rotationDeg = new Vector3(0, 0, 1);
 
 
-            if (Input.touchCount > 1) //2 touches, don't want to raycast the plane
-            {
-                GameObject.FindGameObjectWithTag("UserToolPlane").layer = 2;
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("UserToolPlane").layer = 0;
-            }
+            rotationDeg *= -DetectTouchMovement.pinchDistanceDelta;
 
+            rotationDeg *= Time.deltaTime;
 
+            // rotationDeg.z = -DetectTouchMovement.turnAngleDelta;
+            desiredRotation *= Quaternion.Euler(rotationDeg);
 
+            transform.localRotation = desiredRotation;
+        }
+        */
 
-            if (Mathf.Abs(DetectTouchMovement.turnAngleDelta) > 0)
-            { // rotate
-                Quaternion desiredRotation = transform.rotation;
-                Vector3 rotationDeg = new Vector3(0, 0, 1);
-
-
-                rotationDeg *= -DetectTouchMovement.turnAngleDelta;
-
-                // rotationDeg.z = -DetectTouchMovement.turnAngleDelta;
-                desiredRotation *= Quaternion.Euler(rotationDeg);
-
-                transform.localRotation = desiredRotation;
-            }
-
-
-        if (isFreeForm)
+        if (Input.touchCount < 2)
         {
+            float rotationAmount = touch.deltaPosition.x;
+            rotationAmount *= Time.deltaTime;
 
-            for (int i = -FreeFormRadius; i < FreeFormRadius; i++)
-            {
-                Vector2 newPos = touch.position;
-                newPos.x += i;
-                newPos.y += i;
 
-                var ray = Camera.main.ScreenPointToRay(newPos);
-                var hits = new List<ARRaycastHit>();
-                var hasHit = raycastManager.Raycast(ray, hits, trackableTypeMask);
+            Quaternion desiredRotation = transform.rotation;
+            Vector3 rotationDeg = new Vector3(0, 0, 1);
 
-                if (hasHit)
-                {
-                    var pose = hits[0].pose;
-                    transform.position = pose.position;
-                    transform.rotation = pose.rotation;
+            rotationDeg *= rotationAmount;
+            desiredRotation *= Quaternion.Euler(rotationDeg);
 
-                    debugText.text = "Hit point";
 
-                    return;
-                }
-
-            }
+            transform.localRotation = desiredRotation;
 
 
         }
-        else
+
+
+        if (Physics.Raycast(cam.ScreenPointToRay(touch.position), out hit))
         {
-
-
-            if (Physics.Raycast(cam.ScreenPointToRay(touch.position), out hit))
+            if (hit.transform.gameObject.tag == "UserToolPlane")
             {
-                if (hit.transform.gameObject.tag == "UserToolPlane")
-                {
-                    transform.position = hit.point;
-                    transform.rotation = hit.transform.rotation;
-                }
+                transform.position = hit.point;
+                transform.rotation = hit.transform.rotation;
             }
-
         }
+
+
+      
+
+
+           
+    
 
 
 
