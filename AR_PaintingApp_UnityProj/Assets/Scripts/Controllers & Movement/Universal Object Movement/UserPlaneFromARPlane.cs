@@ -24,6 +24,7 @@ public class UserPlaneFromARPlane : MonoBehaviour
 
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +41,23 @@ public class UserPlaneFromARPlane : MonoBehaviour
 
         if (isEnabled)
         {
+            //for scaling
+            float pinchAmount = 0f;
+
+            DetectTouchMovement.Calculate();
+
+            if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 0)
+            { // zoom
+                pinchAmount = DetectTouchMovement.pinchDistanceDelta;
+            }
+
+            // pinchAmount = 0.1f;
+
+            pinchAmount *= Time.deltaTime;
+
+            
+            transform.localScale += pinchAmount * Vector3.one * (2f * Time.deltaTime);       
+
 
             Touch touch = Input.GetTouch(0);
 
@@ -53,24 +71,28 @@ public class UserPlaneFromARPlane : MonoBehaviour
 
                 CurRot.z += deltaPosTouch.x * Time.deltaTime;
 
-                transform.rotation = Quaternion.Euler(CurRot);
+                if (Input.touchCount < 2)//if pinching to scale, don't rotate
+                    transform.rotation = Quaternion.Euler(CurRot);
 
             }
             else
             {
                 hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(touch.position));
-
-                for (int i = 0; i < hits.Length; i++)
-                {
-                    if (hits[i].transform.gameObject.tag == "ARPlane")
+               
+                    for (int i = 0; i < hits.Length; i++)
                     {
-                        transform.position = hits[i].point;
-                        Vector3 temp = hits[i].transform.rotation.eulerAngles;
-                        temp.x += 90;
 
-                        transform.rotation = Quaternion.Euler(temp);
+                        if (hits[i].transform.gameObject.tag == "ARPlane")
+                        {
+                            transform.position = hits[i].point;
+                            Vector3 temp = hits[i].transform.rotation.eulerAngles;
+                            temp.x += 90;
+
+
+                            
+                            transform.rotation = Quaternion.Euler(temp);
+                        }
                     }
-                }
 
             }
 
@@ -108,7 +130,7 @@ public class UserPlaneFromARPlane : MonoBehaviour
     {
        
 
-        if (isRotationEnabled)
+        if (!isRotationEnabled)
         {
             RotationLockText.text = "Switch to Position";
         }

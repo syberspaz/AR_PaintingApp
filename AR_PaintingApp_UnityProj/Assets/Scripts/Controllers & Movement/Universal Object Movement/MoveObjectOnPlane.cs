@@ -16,26 +16,16 @@ public class MoveObjectOnPlane : MonoBehaviour
     [SerializeField] ARSessionOrigin origin = null;
     [SerializeField] TrackableType trackableTypeMask = TrackableType.FeaturePoint;
 
-    public Text debugText;
+
 
     public bool isFreeForm; //Feature point tracking mostly just for caliper, refering to it as freeform
 
     public int FreeFormRadius;
-    
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (raycastManager == null)
-        {
-            raycastManager = GameObject.FindObjectOfType<ARRaycastManager>();
-        }
-        if (origin == null)
-        {
-            origin = GameObject.FindObjectOfType<ARSessionOrigin>();
-        }
-    }
+
+
+ 
 
     // Update is called once per frame
     void Update()
@@ -88,7 +78,16 @@ public class MoveObjectOnPlane : MonoBehaviour
             if (hit.transform.gameObject.tag == "UserToolPlane")
             {
                 transform.position = hit.point;
-                transform.rotation = hit.transform.rotation;
+
+                Vector3 rot = transform.rotation.eulerAngles;
+
+                rot.x = hit.transform.rotation.eulerAngles.x;
+               // rot.y = hit.transform.rotation.eulerAngles.y;
+
+                transform.rotation = Quaternion.Euler(rot);
+
+                
+          
             }
         }
 

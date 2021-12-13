@@ -88,9 +88,10 @@ public class PaletteMenuSelection : MonoBehaviour
             if (item.ToolType == 4)
             {
                 item.toolGO[0].SetActive(true);
-                item.toolGO[1].SetActive(true);
-                item.toolGO[1].GetComponent<PlaceUserPlane>().ResetPositionOnStart();
-                item.toolGO[2].SetActive(true);
+                item.toolGO[0].transform.position = new Vector3(0, 0, 2.5f);
+                item.toolGO[0].transform.rotation = Quaternion.identity;
+
+                
 
 
             }
