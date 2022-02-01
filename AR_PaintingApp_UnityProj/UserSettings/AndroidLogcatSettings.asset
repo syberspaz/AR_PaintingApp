@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "1A221FDEE007WD",
         "name": "com.XRArtStudio.ARPhoneApp",
-        "processId": 18366,
+        "processId": 21968,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -18,6 +18,12 @@
             "deviceId": "1A221FDEE007WD",
             "name": "com.XRArtStudio.ARPhoneApp",
             "processId": 18366,
+            "exited": false
+        },
+        {
+            "deviceId": "1A221FDEE007WD",
+            "name": "com.XRArtStudio.ARPhoneApp",
+            "processId": 21968,
             "exited": false
         }
     ],
