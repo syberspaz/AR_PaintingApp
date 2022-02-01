@@ -39,7 +39,7 @@ public class DetectTouchMovement : MonoBehaviour
 		turnAngle = turnAngleDelta = 0;
 
 		// if two fingers are touching the screen at the same time ...
-		if (Input.touchCount == 2)
+		if (Input.touchCount >= 2)
 		{
 			Touch touch1 = Input.touches[0];
 			Touch touch2 = Input.touches[1];

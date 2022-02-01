@@ -35,12 +35,15 @@ public class Marker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+     
         Touch touch;
         touch = Input.GetTouch(0);
-        
+       
 
         //if the finger is just touching the screen or if it is already moving on the screen
         if(touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved)
+        
+      
         {
             if(!isRestoreMode) //if its not restore mode just regular marker code
             { 

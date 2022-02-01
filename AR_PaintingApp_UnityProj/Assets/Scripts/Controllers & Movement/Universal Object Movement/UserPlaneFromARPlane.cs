@@ -82,7 +82,7 @@ public class UserPlaneFromARPlane : MonoBehaviour
                     for (int i = 0; i < hits.Length; i++)
                     {
 
-                        if (hits[i].transform.gameObject.tag == "ARPlane")
+                        if (hits[i].transform.gameObject.tag == "ARPlane" && touch.phase == TouchPhase.Moved)
                         {
                             transform.position = hits[i].point;
                             Vector3 temp = hits[i].transform.rotation.eulerAngles;

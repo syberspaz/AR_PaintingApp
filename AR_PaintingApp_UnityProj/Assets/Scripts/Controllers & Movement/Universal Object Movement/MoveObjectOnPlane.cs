@@ -75,7 +75,7 @@ public class MoveObjectOnPlane : MonoBehaviour
 
         if (Physics.Raycast(cam.ScreenPointToRay(touch.position), out hit))
         {
-            if (hit.transform.gameObject.tag == "UserToolPlane")
+            if (hit.transform.gameObject.tag == "UserToolPlane" && touch.phase == TouchPhase.Moved)
             {
                 transform.position = hit.point;
 

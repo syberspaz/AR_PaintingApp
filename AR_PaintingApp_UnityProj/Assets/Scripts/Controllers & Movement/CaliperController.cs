@@ -46,8 +46,24 @@ public class CaliperController : MonoBehaviour
             pinchAmount = DetectTouchMovement.pinchDistanceDelta;
         }
 
+       
+
         Openness += (pinchAmount * Time.deltaTime) / 20;
 
+
+        if (Input.touchCount > 2)
+        {
+            transform.localScale += (pinchAmount * Vector3.one * (Time.deltaTime)) / 3;
+            //makes sure the caliper doesn't become comicaly large
+
+            Vector3 newSize;
+            newSize.x = Mathf.Clamp(transform.localScale.x, 0.2f, 1);
+            newSize.y = Mathf.Clamp(transform.localScale.y, 0.2f, 1);
+            newSize.z = Mathf.Clamp(transform.localScale.z, 0.2f, 1);
+
+            transform.localScale = newSize;
+
+        }
 
     }
 
