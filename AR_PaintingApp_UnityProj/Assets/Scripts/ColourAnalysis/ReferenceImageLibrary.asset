@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: ReferenceImageLibrary
+  m_EditorClassIdentifier: 
+  m_GuidLow: 5346998320302180388
+  m_GuidHigh: 9904894578646426045
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 4662325967241920603
+      m_GuidHigh: 5379411467113338015
+    m_SerializedTextureGuid:
+      m_GuidLow: 6333388120335180138
+      m_GuidHigh: 13611762641278472905
+    m_Size: {x: 0.01, y: 0.01}
+    m_SpecifySize: 1
+    m_Name: Paper
+    m_Texture: {fileID: 0}

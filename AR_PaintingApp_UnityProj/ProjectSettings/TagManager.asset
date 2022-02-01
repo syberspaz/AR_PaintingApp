@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PerspectiveLine
+  - ReferenceImageQuad
+  - ControllerManager
+  - UserToolPlane
+  - AudioManager
+  - ARPlane
+  - LineHolder
   layers:
   - Default
   - TransparentFX
@@ -11,6 +18,7 @@ TagManager:
   - 
   - Water
   - UI
+  - Outline
   - 
   - 
   - 
@@ -34,8 +42,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - MARS Simulation Environment
   - 
   m_SortingLayers:
   - name: Default
